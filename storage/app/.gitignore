@@ -1,0 +1,7 @@
+*
+!private/
+!public/
+!.gitignore
+
+# Tambahkan ini biar lebih eksplisit
+credentials.json
