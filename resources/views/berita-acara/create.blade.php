@@ -46,18 +46,9 @@
                         <label class="block text-[10px] font-black text-gray-400 uppercase mb-1.5 ml-1 tracking-widest">Departemen <span class="text-red-500">*</span></label>
                         <select name="asal_departemen" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-xl {{ $theme['ring'] }} focus:border-red-500 transition shadow-sm text-xs md:text-sm py-2.5 px-4" required>
                             <option value="" disabled selected>-- Pilih --</option>
-                            <option value="Syiar Pusat">Syiar Pusat</option>
-                            <option value="Medkominfo">Medkominfo</option>
-                            <option value="Kaderisasi Pusat">Kaderisasi Pusat</option>
-                            <option value="Keuangan">Keuangan</option>
-                            <option value="Kesekretariatan">Kesekretariatan</option>
-                            <option value="Fakultas Teknik Elektro">FTE</option>
-                            <option value="Fakultas Informatika">FIF</option>
-                            <option value="Fakultas Rekayasa Industri">FRI</option>
-                            <option value="Fakultas Ekonomi Bisnis">FEB</option>
-                            <option value="Fakultas Komunikasi dan Ilmu Sosial">FKB</option>
-                            <option value="Fakultas Industri Kreatif">FIK</option>
-                            <option value="Fakultas Ilmu Terapan">FIT</option>
+                            @foreach($allUnits as $unit)
+                                <option value="{{ $unit }}">{{ $unit }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div>

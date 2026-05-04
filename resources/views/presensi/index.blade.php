@@ -48,29 +48,9 @@
                             {{-- Jika Superadmin: Tampilkan Dropdown --}}
                             <select name="unit_host" class="w-full border-gray-300 rounded-lg {{ $theme['ring'] }} focus:{{ $theme['border'] }} py-2 px-3 text-sm transition bg-white" required>
                                 <option value="" disabled selected>-- Pilih Unit Penyelenggara --</option>
-                                <optgroup label="Pusat / Biro">
-                                    <option value="Biro Kesekretariatan">Biro Kesekretariatan</option>
-                                    <option value="Biro Keuangan">Biro Keuangan</option>
-                                    <option value="Departemen Syiar Pusat">Departemen Syiar Pusat</option>
-                                    <option value="Departemen Kaderisasi Pusat">Departemen Kaderisasi Pusat</option>
-                                    <option value="Departemen Media Komunikasi dan Informasi">Departemen Medkominfo</option>
-                                </optgroup>
-                                <optgroup label="LDF / Fakultas">
-                                    <option value="LDF Al-Fath Fakultas Teknik Elektro">LDF Al-Fath FTE</option>
-                                    <option value="LDF Al-Fath Fakultas Informatika">LDF Al-Fath FIF</option>
-                                    <option value="LDF Al-Fath Fakultas Rekayasa Industri">LDF Al-Fath FRI</option>
-                                    <option value="LDF Al-Fath Fakultas Ekonomi Bisnis">LDF Al-Fath FEB</option>
-                                    <option value="LDF Al-Fath Fakultas Komunikasi dan Ilmu Sosial">LDF Al-Fath FKB</option>
-                                    <option value="LDF Al-Fath Fakultas Industri Kreatif">LDF Al-Fath FIK</option>
-                                    <option value="LDF Al-Fath Fakultas Ilmu Terapan">LDF Al-Fath FIT</option>
-                                </optgroup>
-                                <optgroup label="Lembaga Otonom / Lainnya">
-                                    <option value="DKM Syamsul 'Ulum">DKM Syamsul 'Ulum</option>
-                                    <option value="Badan Mentoring (BM)">Badan Mentoring (BM)</option>
-                                    <option value="MQ">MQ</option>
-                                    <option value="PRISMA">PRISMA</option>
-                                    <option value="LAZISSU">LAZISSU</option>
-                                </optgroup>
+                                @foreach($allUnits as $unit)
+                                    <option value="{{ $unit }}">{{ $unit }}</option>
+                                @endforeach
                             </select>
                         @else
                             {{-- Jika Unit Biasa: Kunci Input (Readonly) --}}

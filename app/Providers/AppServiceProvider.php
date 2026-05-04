@@ -30,8 +30,70 @@ class AppServiceProvider extends ServiceProvider
         // 2. SET TIMEZONE WIB
         date_default_timezone_set('Asia/Jakarta');
 
-        // 3. GLOBAL DASHBOARD THEME (Personalisasi Unit)
+        // 3. GLOBAL UNITS DATA (Scalable - Otomatis mendeteksi admin baru dari unit manapun)
         View::composer('*', function ($view) {
+            // Ambil daftar unit unik dari tabel Users
+            try {
+                $dbUnitsRaw = \App\Models\User::whereNotNull('unit')
+                            ->where('unit', '!=', '')
+                            ->distinct()
+                            ->pluck('unit')
+                            ->toArray();
+
+                // Fungsi Perapi Otomatis (Cerdas & Presisi)
+                $formatUnit = function($text) {
+                    $text = strtolower(trim($text));
+                    $text = ucwords($text);
+                    
+                    // Daftar kata yang WAJIB HURUF BESAR SEMUA (Singkatan)
+                    $acronyms = ['Ldf', 'Fte', 'Fif', 'Fri', 'Feb', 'Fkb', 'Fik', 'Fit', 'Fks', 'Mdk', 'Syr', 'Kdr', 'Keu', 'Kes', 'Mq', 'Dkm', 'Prisma', 'Lazissu', 'Bm'];
+                    $replacements = ['LDF', 'FTE', 'FIF', 'FRI', 'FEB', 'FKB', 'FIK', 'FIT', 'FKS', 'MDK', 'SYR', 'KDR', 'KEU', 'KES', 'MQ', 'DKM', 'PRISMA', 'LAZISSU', 'BM'];
+                    
+                    // Gunakan Regex (Case Insensitive /i) agar lebih galak mencari singkatan
+                    foreach ($acronyms as $i => $search) {
+                        $text = preg_replace('/\b' . $search . '\b/i', $replacements[$i], $text);
+                    }
+
+                    // Perbaikan Khusus
+                    $text = str_replace(['Al-fath', "'ulum"], ['Al-Fath', "'Ulum"], $text);
+                    
+                    return $text;
+                };
+
+                $dbUnits = array_map($formatUnit, $dbUnitsRaw);
+                
+                // Daftar Lembaga Luar / Tetangga (Hanya untuk Absen, bukan untuk Nomor Surat)
+                $externalUnitsRaw = ["DKM Syamsul 'Ulum", "Badan Mentoring (BM)", "MQ", "PRISMA", "LAZISSU"];
+                $externalUnits = array_map($formatUnit, $externalUnitsRaw);
+
+                // Gabungkan untuk Absen
+                $allUnits = array_unique(array_merge($dbUnits, $externalUnits));
+                sort($allUnits);
+                
+                // Pisahkan untuk Nomor Surat (Hanya yang dari DB / Al-Fath)
+                $pusatUnits = [];
+                $ldfUnits = [];
+                foreach($dbUnits as $u) {
+                    if(str_contains(strtoupper($u), 'LDF') || str_contains(strtoupper($u), 'FAKULTAS')) {
+                        $ldfUnits[] = $u;
+                    } else {
+                        $pusatUnits[] = $u;
+                    }
+                }
+                
+                // Bagikan ke semua Blade
+                $view->with(compact('allUnits', 'pusatUnits', 'ldfUnits'));
+
+                // Fallback jika kosong
+                if(empty($allUnits)) {
+                    $allUnits = ['Biro Kesekretariatan', 'LDF Al-Fath'];
+                }
+            } catch (\Exception $e) {
+                $allUnits = ['Biro Kesekretariatan'];
+                $view->with(['allUnits' => $allUnits, 'pusatUnits' => [], 'ldfUnits' => []]);
+            }
+
+            // 4. THEME & LOGO (Khusus User Login)
             if (Auth::check()) {
                 $user = Auth::user();
                 $themes = [
@@ -50,32 +112,26 @@ class AppServiceProvider extends ServiceProvider
                 $unitName = $user->unit;
                 $isKestari = ($user->role == 'superadmin' || $unitName == 'Biro Kesekretariatan');
 
-                $logoMap = [
-                    'Biro Kesekretariatan'                            => 'LogoPusat.png',
-                    'Biro Keuangan'                                   => 'LogoPusat.png',
-                    'Departemen Syiar Pusat'                          => 'LogoPusat.png',
-                    'Departemen Kaderisasi Pusat'                     => 'LogoPusat.png',
-                    'Departemen Medkominfo'                           => 'LogoPusat.png',
-                    'LDF Al-Fath Fakultas Informatika'                => 'LogoFIF.png',
-                    'LDF Al-Fath Fakultas Teknik Elektro'             => 'LogoFTE.png',
-                    'LDF Al-Fath Fakultas Industri Kreatif'           => 'LogoFIK.png',
-                    'LDF Al-Fath Fakultas Komunikasi dan Ilmu Sosial' => 'LogoFKS.png',
-                    'LDF Al-Fath Fakultas Rekayasa Industri'          => 'LogoFRI.png',
-                    'LDF Al-Fath Fakultas Ilmu Terapan'               => 'LogoFIT.png',
-                    'LDF Al-Fath Fakultas Ekonomi dan Bisnis'         => 'LogoFEB.png',
-                ];
-                $logoFile = $logoMap[$unitName] ?? 'LogoPusat.png';
-
-                $allUnits = [
-                    'Biro Kesekretariatan', 'Biro Keuangan', 'Departemen Syiar Pusat', 
-                    'Departemen Kaderisasi Pusat', 'Departemen Medkominfo',
-                    'LDF Al-Fath Fakultas Informatika', 'LDF Al-Fath Fakultas Teknik Elektro',
-                    'LDF Al-Fath Fakultas Industri Kreatif', 'LDF Al-Fath Fakultas Komunikasi dan Ilmu Sosial',
-                    'LDF Al-Fath Fakultas Rekayasa Industri', 'LDF Al-Fath Fakultas Ilmu Terapan',
-                    'LDF Al-Fath Fakultas Ekonomi dan Bisnis'
+                // Auto-Detect Logo berdasarkan Kata Kunci di Nama Unit
+                $logoFile = 'LogoPusat.png'; // Default
+                $searchKeywords = [
+                    'Informatika' => 'LogoFIF.png',
+                    'Elektro'     => 'LogoFTE.png',
+                    'Kreatif'     => 'LogoFIK.png',
+                    'Sosial'      => 'LogoFKS.png',
+                    'Industri'    => 'LogoFRI.png',
+                    'Terapan'     => 'LogoFIT.png',
+                    'Bisnis'      => 'LogoFEB.png',
                 ];
 
-                $view->with(compact('theme', 'unitName', 'isKestari', 'logoFile', 'user', 'allUnits'));
+                foreach($searchKeywords as $keyword => $file) {
+                    if(strpos($unitName, $keyword) !== false) {
+                        $logoFile = $file;
+                        break;
+                    }
+                }
+
+                $view->with(compact('theme', 'unitName', 'isKestari', 'logoFile', 'user'));
             }
         });
     }

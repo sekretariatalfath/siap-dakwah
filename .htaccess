@@ -1,0 +1,5 @@
+<IfModule mod_rewrite.c>
+   RewriteEngine On
+   # Mengarahkan semua trafik ke folder /public agar Laravel jalan normal di Shared Hosting
+   RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

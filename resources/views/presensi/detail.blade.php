@@ -19,9 +19,14 @@
         
         {{-- Title & Actions Row --}}
         <div class="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4 mb-4">
-            <h1 class="text-2xl md:text-[32px] font-black text-[#1a202c] uppercase tracking-tight leading-none flex-1">
-                {{ $sesiInfo->nama_kegiatan ?? 'Daftar Kehadiran' }}
-            </h1>
+            <div class="flex items-center gap-4 flex-1">
+                <a href="{{ route('presensi.index') }}" class="w-9 h-9 rounded-full bg-white border border-gray-200 text-gray-500 hover:text-gray-900 transition-all shadow-sm flex items-center justify-center hover:bg-gray-50 active:scale-95 shrink-0">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                </a>
+                <h1 class="text-2xl md:text-[32px] font-black text-[#1a202c] uppercase tracking-tight leading-none">
+                    {{ $sesiInfo->nama_kegiatan ?? 'Daftar Kehadiran' }}
+                </h1>
+            </div>
             
             <div class="flex flex-wrap items-center justify-start xl:justify-end gap-3 w-full xl:w-auto">
                 <form action="{{ route('presensi.detail', $idSesi) }}" method="GET" class="relative">
@@ -44,10 +49,6 @@
                     <span class="hidden md:inline">Cetak PDF</span>
                     <span class="md:hidden">Cetak</span>
                 </button>
-
-                <a href="{{ route('presensi.index') }}" class="w-9 h-9 rounded-full bg-white border border-gray-200 text-gray-500 hover:text-gray-900 transition-all shadow-sm flex items-center justify-center hover:bg-gray-50 active:scale-95 shrink-0">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                </a>
             </div>
         </div>
         

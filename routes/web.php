@@ -207,3 +207,16 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/dashboard/settings/hard-reset', [AccountController::class, 'hardReset'])->name('settings.hard-reset');
 });
 
+Route::get('/gas-pol-storage', function () {
+    \Artisan::call('storage:link');
+    return "Selamat! Folder Storage sudah terhubung.";
+});
+
+Route::get('/clear-cache', function () {
+    try {
+        Artisan::call('optimize:clear');
+        return "Cache berhasil dihapus. Silahkan cek ulang tampilan web.";
+    } catch (\Exception $e) {
+        return "Gagal membersihkan cache: " . $e->getMessage();
+    }
+});

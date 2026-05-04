@@ -90,7 +90,7 @@
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Penerima Fisik Surat <span class="text-red-500">*</span></label>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Penerima Surat <span class="text-red-500">*</span></label>
                         <input type="text" name="penerima_fisik" value="{{ old('penerima_fisik', Auth::user()->name) }}" class="w-full border-gray-300 rounded-lg text-sm bg-gray-50 py-2.5" required>
                     </div>
 

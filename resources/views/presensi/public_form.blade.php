@@ -54,40 +54,16 @@
                     class="w-full mt-1.5 p-4 rounded-2xl bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-red-800 transition-all outline-none text-sm font-black uppercase text-gray-800">
             </div>
 
-            {{-- Update bagian Select Asal Wajihah di public_form.blade.php --}}
             <div>
                 <label class="text-[10px] font-bold text-gray-400 uppercase ml-1 tracking-widest">Asal Wajihah / Unit</label>
                 <div class="relative">
                     <select name="asal_wajihah" required 
                         class="w-full mt-1.5 p-4 rounded-2xl bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-red-800 transition-all outline-none text-[11px] font-bold appearance-none cursor-pointer uppercase">
                         <option value="" disabled selected>-- Pilih Wajihah --</option>
-                        
-                        <optgroup label="PUSAT / BIRO">
-                            <option value="Biro Kesekretariatan">Biro Kesekretariatan</option>
-                            <option value="Biro Keuangan">Biro Keuangan</option>
-                            <option value="Departemen Syiar Pusat">Departemen Syiar Pusat</option>
-                            <option value="Departemen Kaderisasi Pusat">Departemen Kaderisasi Pusat</option>
-                            <option value="Departemen Media Komunikasi dan Informasi">Departemen Medkominfo</option>
-                        </optgroup>
-
-                        <optgroup label="LDF / FAKULTAS">
-                            <option value="LDF Al-Fath FTE">LDF Al-Fath FTE (Elektro)</option>
-                            <option value="LDF Al-Fath FIF">LDF Al-Fath FIF (Informatika)</option>
-                            <option value="LDF Al-Fath FRI">LDF Al-Fath FRI (Industri)</option>
-                            <option value="LDF Al-Fath FEB">LDF Al-Fath FEB (Ekonomi)</option>
-                            <option value="LDF Al-Fath FKB">LDF Al-Fath FKB (Komunikasi)</option>
-                            <option value="LDF Al-Fath FIK">LDF Al-Fath FIK (Kreatif)</option>
-                            <option value="LDF Al-Fath FIT">LDF Al-Fath FIT (Terapan)</option>
-                        </optgroup>
-
-                        <optgroup label="LEMBAGA LAIN">
-                            <option value="DKM Syamsul 'Ulum">DKM Syamsul 'Ulum</option>
-                            <option value="Badan Mentoring (BM)">Badan Mentoring (BM)</option>
-                            <option value="MQ">MQ</option>
-                            <option value="PRISMA">PRISMA</option>
-                            <option value="LAZISSU">LAZISSU</option>
-                            <option value="Umum/Non-Wajihah">Umum / Non-Wajihah</option>
-                        </optgroup>
+                        @foreach($allUnits as $unit)
+                            <option value="{{ $unit }}">{{ $unit }}</option>
+                        @endforeach
+                        <option value="Umum/Non-Wajihah">Umum / Non-Wajihah</option>
                     </select>
                     <svg class="w-4 h-4 absolute right-4 top-6 text-red-800 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </div>

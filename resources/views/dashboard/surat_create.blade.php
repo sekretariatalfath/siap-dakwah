@@ -89,13 +89,28 @@
                             <label class="block text-sm font-bold text-gray-700 mb-2">Asal Fakultas <span class="{{ $theme['text'] }}">*</span></label>
                             <select name="kode_fakultas" id="kode_fakultas" class="w-full border-gray-300 rounded-lg {{ $theme['ring'] }} py-2.5 px-4 bg-white shadow-sm">
                                 <option value="" disabled selected>-- Pilih Fakultas --</option>
-                                <option value="FIT">FIT - Fakultas Ilmu Terapan</option>
-                                <option value="FIF">FIF - Fakultas Informatika</option>
-                                <option value="FRI">FRI - Fakultas Rekayasa Industri</option>
-                                <option value="FTE">FTE - Fakultas Teknik Elektro</option>
-                                <option value="FEB">FEB - Fakultas Ekonomi Bisnis</option>
-                                <option value="FKS">FKS - Fakultas Komunikasi & Ilmu Sosial</option>
-                                <option value="FIK">FIK - Fakultas Industri Kreatif</option>
+                                @foreach($ldfUnits as $unit)
+                                    @php
+                                        $u = strtoupper($unit);
+                                        $shortCode = "UNIT";
+                                        if(str_contains($u, 'INFORMATIKA')) $shortCode = "FIF";
+                                        elseif(str_contains($u, 'ELEKTRO')) $shortCode = "FTE";
+                                        elseif(str_contains($u, 'INDUSTRI')) $shortCode = "FRI";
+                                        elseif(str_contains($u, 'EKONOMI')) $shortCode = "FEB";
+                                        elseif(str_contains($u, 'KOMUNIKASI')) $shortCode = "FKB";
+                                        elseif(str_contains($u, 'KREATIF')) $shortCode = "FIK";
+                                        elseif(str_contains($u, 'TERAPAN')) $shortCode = "FIT";
+                                        elseif(str_contains($u, 'SOSIAL')) $shortCode = "FKS";
+                                        elseif(str_contains($u, 'KEDOKTERAN')) $shortCode = "FKD";
+                                        else {
+                                            $words = explode(' ', $unit);
+                                            $shortCode = "";
+                                            foreach($words as $w) { if(!empty($w)) $shortCode .= strtoupper($w[0]); }
+                                            $shortCode = substr($shortCode, -3);
+                                        }
+                                    @endphp
+                                    <option value="{{ $shortCode }}">{{ $shortCode }} - {{ $unit }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -129,11 +144,24 @@
                         <div id="input-dept" class="hidden">
                             <label class="block text-xs font-bold text-blue-800 uppercase mb-2">Pilih Departemen</label>
                             <select name="kode_departemen" class="w-full border-blue-300 rounded-lg py-2 px-3 text-sm">
-                                <option value="KES">KES - Kesekretariatan</option>
-                                <option value="KEU">KEU - Keuangan</option>
-                                <option value="KDR">KDR - Kaderisasi</option>
-                                <option value="SYR">SYR - Syiar</option>
-                                <option value="MDK">MDK - Medkominfo</option>
+                                @foreach($pusatUnits as $unit)
+                                    @php
+                                        $u = strtoupper($unit);
+                                        $shortCode = "DEPT";
+                                        if(str_contains($u, 'KESEKRETARIATAN')) $shortCode = "KES";
+                                        elseif(str_contains($u, 'KEUANGAN')) $shortCode = "KEU";
+                                        elseif(str_contains($u, 'KADERISASI')) $shortCode = "KDR";
+                                        elseif(str_contains($u, 'SYIAR')) $shortCode = "SYR";
+                                        elseif(str_contains($u, 'MEDIA') || str_contains($u, 'MEDKOMINFO')) $shortCode = "MDK";
+                                        else {
+                                            $words = explode(' ', $unit);
+                                            $shortCode = "";
+                                            foreach($words as $w) { if(!empty($w)) $shortCode .= strtoupper($w[0]); }
+                                            $shortCode = substr($shortCode, 0, 3);
+                                        }
+                                    @endphp
+                                    <option value="{{ $shortCode }}">{{ $shortCode }} - {{ $unit }}</option>
+                                @endforeach
                             </select>
                         </div>
 
