@@ -12,4 +12,8 @@
 /vendor/**/test
 /vendor/**/docs
 /vendor/**/Documentation
-/vendor/google/apiclient-services/src/Google/Service/[!S,D]*
+/vendor/google/apiclient-services/src/*
+!/vendor/google/apiclient-services/src/Sheets/
+!/vendor/google/apiclient-services/src/Drive/
+!/vendor/google/apiclient-services/src/Sheets.php
+!/vendor/google/apiclient-services/src/Drive.php
