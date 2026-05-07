@@ -7,9 +7,9 @@
     <title>SIAP Dakwah | LDK Al-Fath</title>
 
     {{-- FAVICON --}}
-    <link rel="icon" href="{{ asset('img/LogoPusat.png') }}" type="image/png">
-    <link rel="shortcut icon" href="{{ asset('img/LogoPusat.png') }}" type="image/png">
-    <link rel="apple-touch-icon" href="{{ asset('img/LogoPusat.png') }}">
+    <link rel="icon" href="{{ asset('img/LogoPusat.png') }}?v=2" type="image/png">
+    <link rel="shortcut icon" href="{{ asset('img/LogoPusat.png') }}?v=2" type="image/png">
+    <link rel="apple-touch-icon" href="{{ asset('img/LogoPusat.png') }}?v=2">
     
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     
