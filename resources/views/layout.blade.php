@@ -7,6 +7,7 @@
     <title>SIAP Dakwah | LDK Al-Fath Telkom University</title>
     
     {{-- SEO META TAGS --}}
+    <meta name="google-site-verification" content="nXqaFPnYRKukZbpr4a_E_jLWwoWYgpVTLcw2sQaMrhM" />
     <meta name="description" content="Sistem Informasi Administrasi Pejuang (SIAP) Dakwah - Pusat kendali operasional dan layanan administrasi satu pintu LDK Al-Fath Telkom University.">
     <meta name="keywords" content="SIAP Dakwah, LDK Al-Fath, Telkom University, Administrasi Dakwah, Sekretariat Al-Fath, Pejuang Dakwah">
     <meta name="author" content="Biro Kesekretariatan LDK Al-Fath">
