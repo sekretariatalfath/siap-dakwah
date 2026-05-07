@@ -23,6 +23,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if (config('app.env') === 'production') {
+            \Illuminate\Support\Facades\URL::forceScheme('https');
+        }
+
         // 1. SET LOCALE CARBON KE INDONESIA
         config(['app.locale' => 'id']);
         Carbon::setLocale('id');
