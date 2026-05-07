@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b5f12b45d87f5a23e71a0cb663ff913e",
+    "content-hash": "dec2fa5dbf2fe8c9b062d26e284ad6c0",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -999,16 +999,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.424.0",
+            "version": "v0.440.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
-                "reference": "b368dcc5dce8043fed1b248a66020747d5cec353"
+                "reference": "f835f7a84611071ca2f58e8f44aac497d3aa7c44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/b368dcc5dce8043fed1b248a66020747d5cec353",
-                "reference": "b368dcc5dce8043fed1b248a66020747d5cec353",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/f835f7a84611071ca2f58e8f44aac497d3aa7c44",
+                "reference": "f835f7a84611071ca2f58e8f44aac497d3aa7c44",
                 "shasum": ""
             },
             "require": {
@@ -1037,9 +1037,9 @@
             ],
             "support": {
                 "issues": "https://github.com/googleapis/google-api-php-client-services/issues",
-                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.424.0"
+                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.440.0"
             },
-            "time": "2025-12-15T00:58:22+00:00"
+            "time": "2026-05-04T01:36:24+00:00"
         },
         {
             "name": "google/auth",
@@ -9581,5 +9581,5 @@
         "php": "^8.2"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.9.0"
 }

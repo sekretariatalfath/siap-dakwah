@@ -6,9 +6,10 @@
     {{-- GANTI TITLE DI SINI --}}
     <title>SIAP Dakwah | LDK Al-Fath</title>
 
-    {{-- TAMBAHKAN KODE INI UNTUK ICON --}}
-    <link rel="icon" href="{{ asset('img/LogoPusat.png') }}" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ asset('img/LogoPusat.png') }}" type="image/x-icon">
+    {{-- FAVICON --}}
+    <link rel="icon" href="{{ asset('img/LogoPusat.png') }}" type="image/png">
+    <link rel="shortcut icon" href="{{ asset('img/LogoPusat.png') }}" type="image/png">
+    <link rel="apple-touch-icon" href="{{ asset('img/LogoPusat.png') }}">
     
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     

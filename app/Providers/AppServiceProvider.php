@@ -66,18 +66,14 @@ class AppServiceProvider extends ServiceProvider
 
                 $dbUnits = array_map($formatUnit, $dbUnitsRaw);
                 
-                // Daftar Lembaga Luar / Tetangga (Hanya untuk Absen, bukan untuk Nomor Surat)
-                $externalUnitsRaw = ["DKM Syamsul 'Ulum", "Badan Mentoring (BM)", "MQ", "PRISMA", "LAZISSU"];
-                $externalUnits = array_map($formatUnit, $externalUnitsRaw);
-
-                // Gabungkan untuk Absen
-                $allUnits = array_unique(array_merge($dbUnits, $externalUnits));
+                // Gabungkan & Urutkan
+                $allUnits = array_unique($dbUnits);
                 sort($allUnits);
                 
-                // Pisahkan untuk Nomor Surat (Hanya yang dari DB / Al-Fath)
+                // Pisahkan untuk Nomor Surat
                 $pusatUnits = [];
                 $ldfUnits = [];
-                foreach($dbUnits as $u) {
+                foreach($allUnits as $u) {
                     if(str_contains(strtoupper($u), 'LDF') || str_contains(strtoupper($u), 'FAKULTAS')) {
                         $ldfUnits[] = $u;
                     } else {

@@ -54,7 +54,8 @@
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "Google\\Task\\ComposerInformation::cleanup"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
@@ -71,11 +72,6 @@
             "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
         ]
     },
-    "extra": {
-        "laravel": {
-            "dont-discover": []
-        }
-    },
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
@@ -84,6 +80,15 @@
             "pestphp/pest-plugin": true,
             "php-http/discovery": true
         }
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        },
+        "google/apiclient-services": [
+            "Drive",
+            "Sheets"
+        ]
     },
     "minimum-stability": "stable",
     "prefer-stable": true

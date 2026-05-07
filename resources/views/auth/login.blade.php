@@ -7,7 +7,7 @@
         {{-- HEADER BARU: SIAP DAKWAH --}}
         <div class="text-center mb-8">
             {{-- Kalau ada logo file, uncomment baris bawah ini --}}
-            <img src="{{ asset('img/logoPusat.png') }}" class="h-32 mx-auto mb-4">
+            <img src="{{ asset('img/LogoPusat.png') }}" class="h-32 mx-auto mb-4">
 
             <h1 class="text-4xl font-extrabold text-red-700 tracking-tight">SIAP Dakwah</h1>
             <p class="text-gray-500 font-medium mt-2 text-sm">
@@ -28,7 +28,7 @@
             @csrf
             <div>
                 <label class="block text-gray-700 text-xs font-bold uppercase mb-2 tracking-wide">Email Pengurus</label>
-                <input type="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 focus:outline-none transition shadow-sm placeholder-gray-400" placeholder="nama@alfath.com" required>
+                <input type="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 focus:outline-none transition shadow-sm placeholder-gray-400" placeholder="nama.unit@alfathunitel.org" required>
             </div>
             
             <div>

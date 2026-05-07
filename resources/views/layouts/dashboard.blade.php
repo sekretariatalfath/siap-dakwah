@@ -15,8 +15,8 @@
         </button>
 
         <div class="p-8 flex flex-col items-center border-b border-white/20 mt-4 md:mt-0">
-            <div class="bg-white p-3 rounded-full mb-4 shadow-lg">
-                <img src="{{ asset('img/' . $logoFile) }}" alt="Logo Unit" class="h-32 w-32 object-contain">
+            <div class="bg-white p-3 rounded-full mb-4 shadow-lg overflow-hidden flex items-center justify-center w-32 h-32">
+                <img src="{{ asset('img/' . ($logoFile ?? 'LogoPusat.png')) }}" alt="Logo Unit" class="max-h-full max-w-full object-contain">
             </div>
             
             <h2 class="font-bold text-lg leading-tight text-center px-2">{{ Auth::user()->unit }}</h2>
@@ -153,7 +153,7 @@
         {{-- Mobile Hamburger --}}
         <div class="md:hidden mb-6 flex justify-between items-center bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100">
             <div class="flex items-center gap-2 md:gap-3">
-                <img src="{{ asset('img/' . $logoFile) }}" class="h-8 w-8 md:h-9 md:w-9 object-contain bg-gray-50 p-1 rounded-full border border-gray-100">
+                <img src="{{ asset('img/' . ($logoFile ?? 'LogoPusat.png')) }}" class="h-8 w-8 md:h-9 md:w-9 object-contain bg-gray-50 p-1 rounded-full border border-gray-100">
                 <div class="flex flex-col">
                     <span class="font-bold text-gray-800 text-xs md:text-sm leading-tight">{{ $unitName }}</span>
                     <span class="text-[8px] md:text-[9px] text-gray-400 font-bold uppercase tracking-widest">{{ Auth::user()->role }}</span>
