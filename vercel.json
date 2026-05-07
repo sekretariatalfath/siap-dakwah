@@ -4,7 +4,7 @@
     "functions": {
         "api/index.php": {
             "runtime": "vercel-php@0.7.2",
-            "includeFiles": "config/**,resources/views/**,routes/**,app/**,bootstrap/**,database/**,vendor/**,public/build/**",
+            "includeFiles": "config/**,resources/views/**,routes/**,app/**,bootstrap/**,database/**,vendor/**,public/build/**,public/img/**,public/favicon.ico",
             "excludeFiles": "{node_modules,tests,vendor/**/tests,vendor/**/docs,vendor/google/apiclient-services/src/[!SD]*}/**"
         }
     },
@@ -12,6 +12,14 @@
         {
             "src": "/build/(.*)",
             "dest": "/build/$1"
+        },
+        {
+            "src": "/img/(.*)",
+            "dest": "/img/$1"
+        },
+        {
+            "src": "/favicon.ico",
+            "dest": "/favicon.ico"
         },
         {
             "src": "/(.*)",
