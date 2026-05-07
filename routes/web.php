@@ -13,6 +13,8 @@ use App\Http\Controllers\EvaluasiController;
 use App\Http\Controllers\LpjController;
 use App\Http\Controllers\PresensiPublicController;
 use App\Http\Controllers\AccountController;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 
 // ==========================================
 // 1. AREA PUBLIC
@@ -31,7 +33,7 @@ Route::get('/sop', function () {
     
     $sop = collect($rows)->filter(function($r) {
         $akses = $r[4] ?? 'Internal';
-        return $akses == 'Publik' || auth()->check();
+        return $akses == 'Publik' || Auth::check();
     })->map(fn($r) => (object)[
         'judul'     => $r[1] ?? 'Judul SOP',
         'deskripsi' => $r[2] ?? 'Panduan administrasi.',
@@ -48,7 +50,7 @@ Route::get('/template', function () {
     
     $templates = collect($rows)->filter(function($r) {
         $akses = $r[4] ?? 'Internal';
-        return $akses == 'Publik' || auth()->check();
+        return $akses == 'Publik' || Auth::check();
     })->map(fn($r) => (object)[
         'judul'     => $r[1] ?? 'Template',
         'deskripsi' => $r[2] ?? 'Unduh dokumen resmi.',
@@ -208,7 +210,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/gas-pol-storage', function () {
-    \Artisan::call('storage:link');
+    Artisan::call('storage:link');
     return "Selamat! Folder Storage sudah terhubung.";
 });
 
