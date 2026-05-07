@@ -27,13 +27,6 @@ class AppServiceProvider extends ServiceProvider
             \Illuminate\Support\Facades\URL::forceScheme('https');
         }
 
-        // Fix for Vercel: ensure public path is correct
-        if (isset($_SERVER['VERCEL_URL'])) {
-            $this->app->bind('path.public', function () {
-                return base_path();
-            });
-        }
-
         // 1. SET LOCALE CARBON KE INDONESIA
         config(['app.locale' => 'id']);
         Carbon::setLocale('id');
