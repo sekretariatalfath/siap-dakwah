@@ -17,3 +17,5 @@
 !/vendor/google/apiclient-services/src/Drive/
 !/vendor/google/apiclient-services/src/Sheets.php
 !/vendor/google/apiclient-services/src/Drive.php
+/vendor/fakerphp
+/vendor/phpunit
