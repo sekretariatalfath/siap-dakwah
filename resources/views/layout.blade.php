@@ -4,7 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{-- GANTI TITLE DI SINI --}}
-    <title>SIAP Dakwah | LDK Al-Fath</title>
+    <title>SIAP Dakwah | LDK Al-Fath Telkom University</title>
+    
+    {{-- SEO META TAGS --}}
+    <meta name="description" content="Sistem Informasi Administrasi Pejuang (SIAP) Dakwah - Pusat kendali operasional dan layanan administrasi satu pintu LDK Al-Fath Telkom University.">
+    <meta name="keywords" content="SIAP Dakwah, LDK Al-Fath, Telkom University, Administrasi Dakwah, Sekretariat Al-Fath, Pejuang Dakwah">
+    <meta name="author" content="Biro Kesekretariatan LDK Al-Fath">
+    
+    {{-- Open Graph / Facebook / WhatsApp --}}
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://siapdakwah.vercel.app/">
+    <meta property="og:title" content="SIAP Dakwah | LDK Al-Fath">
+    <meta property="og:description" content="Tertib Administrasi, Dakwah Berprestasi. Layanan administrasi digital LDK Al-Fath.">
+    <meta property="og:image" content="{{ asset('img/LogoPusat.png') }}">
+
+    {{-- Twitter --}}
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://siapdakwah.vercel.app/">
+    <meta property="twitter:title" content="SIAP Dakwah | LDK Al-Fath">
+    <meta property="twitter:description" content="Tertib Administrasi, Dakwah Berprestasi. Layanan administrasi digital LDK Al-Fath.">
+    <meta property="twitter:image" content="{{ asset('img/LogoPusat.png') }}">
 
     {{-- FAVICON --}}
     <link rel="icon" href="{{ asset('img/LogoPusat.png') }}?v=2" type="image/png">
