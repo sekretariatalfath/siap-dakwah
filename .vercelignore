@@ -8,6 +8,8 @@
 .git
 .github
 .env
-/vendor/phpunit
-/vendor/mockery
-/vendor/fakerphp
+/vendor/**/tests
+/vendor/**/test
+/vendor/**/docs
+/vendor/**/Documentation
+/vendor/google/apiclient-services/src/Google/Service/[!S,D]*
