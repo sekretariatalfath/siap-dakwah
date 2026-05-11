@@ -217,13 +217,13 @@ class SuratController extends Controller
         if ($request->lingkup == 'PUSAT') {
             if ($kategori == 'MSP') return "MSP";
             if ($kategori == 'PROKER_NON_KM') return $request->kode_departemen;
-            if ($kategori == 'PROKER_KM') return strtoupper(preg_replace("/[^A-Z0-9]/", "", $request->nama_acara));
+            if ($kategori == 'PROKER_KM') return preg_replace("/[^A-Z0-9]/", "", strtoupper($request->nama_acara));
             return "";
         } else {
             $fak = $request->kode_fakultas;
             if ($kategori == 'UMUM') return $fak;
             if ($kategori == 'PROKER_NON_KM') return $fak . "/" . ($request->kode_bidang ?? '00');
-            if ($kategori == 'PROKER_KM') return strtoupper(preg_replace("/[^A-Z0-9]/", "", $request->nama_acara)) . "/" . $fak;
+            if ($kategori == 'PROKER_KM') return preg_replace("/[^A-Z0-9]/", "", strtoupper($request->nama_acara)) . "/" . $fak;
             return $fak;
         }
     }
