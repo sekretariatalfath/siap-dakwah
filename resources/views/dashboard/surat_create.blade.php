@@ -97,10 +97,9 @@
                                         elseif(str_contains($u, 'ELEKTRO')) $shortCode = "FTE";
                                         elseif(str_contains($u, 'INDUSTRI')) $shortCode = "FRI";
                                         elseif(str_contains($u, 'EKONOMI')) $shortCode = "FEB";
-                                        elseif(str_contains($u, 'KOMUNIKASI')) $shortCode = "FKB";
+                                        elseif(str_contains($u, 'KOMUNIKASI') || str_contains($u, 'SOSIAL')) $shortCode = "FKS";
                                         elseif(str_contains($u, 'KREATIF')) $shortCode = "FIK";
                                         elseif(str_contains($u, 'TERAPAN')) $shortCode = "FIT";
-                                        elseif(str_contains($u, 'SOSIAL')) $shortCode = "FKB";
                                         elseif(str_contains($u, 'KEDOKTERAN')) $shortCode = "FKD";
                                         else {
                                             $words = explode(' ', $unit);
