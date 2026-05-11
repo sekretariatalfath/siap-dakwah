@@ -59,6 +59,22 @@ Route::get('/template', function () {
     return view('public.template', compact('templates'));
 })->name('public.template');
 
+Route::get('/informasi', function () {
+    $service = new \App\Services\GoogleSheetService();
+    $spreadsheetId = env('GSHEET_RESOURCE_ID');
+    $rows = $service->readSheet($spreadsheetId, "Informasi!A2:E") ?: [];
+    
+    $informasi = collect($rows)->filter(function($r) {
+        $akses = $r[4] ?? 'Internal';
+        return $akses == 'Publik' || Auth::check();
+    })->map(fn($r) => (object)[
+        'judul'     => $r[1] ?? 'Informasi',
+        'deskripsi' => $r[2] ?? 'Informasi penting Al-Fath.',
+        'link'      => $r[3] ?? '#'
+    ]);
+    return view('public.informasi', compact('informasi'));
+})->name('public.informasi');
+
 // AREA PUBLIC (Tanpa Login)
 Route::get('/p/{idSesi}', [PresensiPublicController::class, 'showForm'])->name('presensi.public');
 Route::post('/p/{idSesi}', [PresensiPublicController::class, 'submitHadir'])
