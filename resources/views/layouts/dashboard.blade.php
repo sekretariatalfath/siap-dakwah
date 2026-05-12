@@ -1,6 +1,28 @@
 @extends('layout')
 
 @section('content')
+<style>
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animasi-kotak {
+        opacity: 0;
+        animation: fadeInUp 0.5s ease-out forwards;
+    }
+
+    .delay-100 { animation-delay: 100ms; }
+    .delay-200 { animation-delay: 200ms; }
+    .delay-300 { animation-delay: 300ms; }
+    .delay-400 { animation-delay: 400ms; }
+</style>
 <div class="min-h-screen flex bg-gray-50 relative overflow-x-hidden">
     
     {{-- Mobile Overlay Backdrop --}}
