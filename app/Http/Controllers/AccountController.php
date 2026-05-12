@@ -17,7 +17,12 @@ class AccountController extends Controller
     {
         $users = User::all();
         $currentUser = Auth::user();
-        return view('dashboard.settings', compact('users', 'currentUser'));
+        
+        // Ambil status saklar langsung dari DB buat halaman pengaturan
+        $setting = \Illuminate\Support\Facades\DB::table('settings')->where('key', 'auth_source')->first();
+        $authSource = $setting ? $setting->value : 'database';
+        
+        return view('dashboard.settings', compact('users', 'currentUser', 'authSource'));
     }
 
     /**
@@ -25,6 +30,12 @@ class AccountController extends Controller
      */
     public function changePassword(Request $request)
     {
+        // Cek Saklar
+        $setting = \Illuminate\Support\Facades\DB::table('settings')->where('key', 'auth_source')->first();
+        if (($setting ? $setting->value : 'database') === 'hardcode') {
+            return back()->with('error', 'Fitur ganti password terkunci karena sistem sedang menggunakan mode Hardcode.');
+        }
+
         $request->validate([
             'current_password' => 'required',
             'new_password'     => 'required|min:6|confirmed',
@@ -50,6 +61,12 @@ class AccountController extends Controller
     {
         if (Auth::user()->role !== 'superadmin') {
             abort(403);
+        }
+
+        // Cek Saklar
+        $setting = \Illuminate\Support\Facades\DB::table('settings')->where('key', 'auth_source')->first();
+        if (($setting ? $setting->value : 'database') === 'hardcode') {
+            return back()->with('error', 'Fitur pendaftaran user terkunci karena sistem sedang menggunakan mode Hardcode.');
         }
 
         $request->validate([
@@ -168,5 +185,31 @@ class AccountController extends Controller
         } catch (\Exception $e) {
             return back()->with('error', 'Gagal Master Reset: ' . $e->getMessage());
         }
+    }
+
+    /**
+     * TOGGLE AUTH SOURCE (Hanya Superadmin)
+     */
+    public function toggleAuthSource(Request $request)
+    {
+        if (Auth::user()->role !== 'superadmin') {
+            abort(403);
+        }
+
+        $request->validate([
+            'source' => 'required|in:database,hardcode',
+        ]);
+
+        \Illuminate\Support\Facades\DB::table('settings')
+            ->where('key', 'auth_source')
+            ->update([
+                'value' => $request->source,
+                'updated_at' => now(),
+            ]);
+
+        // Hapus cache biar langsung ngefek
+        \Illuminate\Support\Facades\Cache::forget('auth_source');
+
+        return back()->with('success', 'Mode otentikasi berhasil diubah ke ' . $request->source);
     }
 }

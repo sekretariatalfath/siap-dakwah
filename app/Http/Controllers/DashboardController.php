@@ -17,51 +17,82 @@ class DashboardController extends Controller
      * Dashboard Utama: Menampilkan statistik performa organisasi.
      */
     public function index(Request $request)
-{
-    $user = Auth::user();
-    $filterUnit = $request->input('unit_filter');
-    
-    // Ambil data (Logika Sushi tetap sama seperti sebelumnya)
-    $semuaMasuk = \App\Models\SuratMasuk::all();
-    $semuaKeluar = Surat::all();
-    $semuaBA = BeritaAcara::all();
+    {
+        $user = Auth::user();
+        $filterUnit = $request->input('unit_filter');
+        
+        // Logika Filter (Kestari vs Unit)
+        $isKestari = ($user->role == 'superadmin' || $user->unit == 'Biro Kesekretariatan');
+        
+        // Buat kunci cache yang unik berdasarkan filter/unit biar gak ketuker
+        $cacheKey = 'dashboard_stats_' . ($isKestari ? ($filterUnit ?: 'all') : $user->unit);
+        $cacheKey = str_replace(' ', '_', strtolower($cacheKey)); // Bersihkan spasi
 
-    // Logika Filter (Kestari vs Unit)
-    $isKestari = ($user->role == 'superadmin' || $user->unit == 'Biro Kesekretariatan');
-    
-    if (!$isKestari) {
-        $unitLower = trim(strtolower($user->unit));
-        $semuaKeluar = $semuaKeluar->filter(fn($s) => trim(strtolower((string)$s->asal_pengisi)) == $unitLower);
-        $semuaBA = $semuaBA->filter(fn($s) => trim(strtolower((string)$s->asal_unit_akun)) == $unitLower);
-    } elseif ($filterUnit) {
-        $filterLower = trim(strtolower($filterUnit));
-        $semuaKeluar = $semuaKeluar->filter(fn($s) => trim(strtolower((string)$s->asal_pengisi)) == $filterLower);
-        $semuaBA = $semuaBA->filter(fn($s) => trim(strtolower((string)$s->asal_unit_akun)) == $filterLower);
+        // Simpan dalam cache selama 300 detik (5 menit)
+        $stats = \Illuminate\Support\Facades\Cache::remember($cacheKey, 300, function () use ($isKestari, $user, $filterUnit) {
+            // 1. SURAT MASUK
+            $totalMasuk = \App\Models\SuratMasuk::count();
+            $perluVerifikasi = \App\Models\SuratMasuk::where('is_checked', false)->count();
+
+            // 2. SURAT KELUAR
+            $semuaKeluarQuery = \App\Models\Surat::query();
+            
+            if (!$isKestari) {
+                $unitLower = trim(strtolower($user->unit));
+                $semuaKeluarQuery->whereRaw('LOWER(TRIM(asal_pengisi)) = ?', [$unitLower]);
+            } elseif ($filterUnit) {
+                $filterLower = trim(strtolower($filterUnit));
+                $semuaKeluarQuery->whereRaw('LOWER(TRIM(asal_pengisi)) = ?', [$filterLower]);
+            }
+
+            $totalKeluar = (clone $semuaKeluarQuery)->count();
+            $belumArsip = (clone $semuaKeluarQuery)->where(function($q) {
+                $q->whereNull('link_drive')->orWhere('link_drive', '')->orWhere('link_drive', '-');
+            })->count();
+            
+            $detailJenis = (clone $semuaKeluarQuery)->select('jenis', \Illuminate\Support\Facades\DB::raw('count(*) as count'))
+                ->groupBy('jenis')
+                ->pluck('count', 'jenis');
+
+            // 3. BERITA ACARA
+            $semuaBAQuery = \App\Models\BeritaAcara::query();
+            
+            if (!$isKestari) {
+                $unitLower = trim(strtolower($user->unit));
+                $semuaBAQuery->whereRaw('LOWER(TRIM(asal_unit_akun)) = ?', [$unitLower]);
+            } elseif ($filterUnit) {
+                $filterLower = trim(strtolower($filterUnit));
+                $semuaBAQuery->whereRaw('LOWER(TRIM(asal_unit_akun)) = ?', [$filterLower]);
+            }
+            
+            $totalBA = $semuaBAQuery->count();
+
+            return [
+                'totalMasuk' => $totalMasuk,
+                'perluVerifikasi' => $perluVerifikasi,
+                'totalKeluar' => $totalKeluar,
+                'belumArsip' => $belumArsip,
+                'detailJenis' => $detailJenis,
+                'totalBA' => $totalBA,
+            ];
+        });
+
+        // Ambil Link Kalender dari Cache/SPS (Dummy default jika kosong)
+        $calendarLink = cache()->get('calendar_link', 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT1.../pubhtml');
+
+        return view('dashboard.main', [
+            'user' => $user,
+            'isKestari' => $isKestari,
+            'totalMasuk' => $stats['totalMasuk'],
+            'perluVerifikasi' => $stats['perluVerifikasi'],
+            'totalBA' => $stats['totalBA'],
+            'totalKeluar' => $stats['totalKeluar'],
+            'belumArsip' => $stats['belumArsip'],
+            'detailJenis' => $stats['detailJenis'],
+            'calendarLink' => $calendarLink,
+            'filterUnit' => $filterUnit
+        ]);
     }
-
-    // Statistik
-    $totalMasuk = $semuaMasuk->count();
-    $perluVerifikasi = $semuaMasuk->where('is_checked', false)->count();
-    $totalKeluar = $semuaKeluar->count();
-    $detailJenis = $semuaKeluar->groupBy('jenis')->map->count();
-    $belumArsip = $semuaKeluar->filter(fn($s) => empty($s->link_drive) || $s->link_drive == '-')->count();
-
-    // Ambil Link Kalender dari Cache/SPS (Dummy default jika kosong)
-    $calendarLink = cache()->get('calendar_link', 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT1.../pubhtml');
-
-    return view('dashboard.main', [
-        'user' => $user,
-        'isKestari' => $isKestari,
-        'totalMasuk' => $totalMasuk,
-        'perluVerifikasi' => $perluVerifikasi,
-        'totalBA' => $semuaBA->count(),
-        'totalKeluar' => $totalKeluar,
-        'belumArsip' => $belumArsip,
-        'detailJenis' => $detailJenis,
-        'calendarLink' => $calendarLink,
-        'filterUnit' => $filterUnit
-    ]);
-}
 
     // Tambahkan di DashboardController
 

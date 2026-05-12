@@ -223,6 +223,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/dashboard/settings/user/{id}', [AccountController::class, 'deleteUser'])->name('settings.delete-user');
     Route::post('/dashboard/settings/purge-sps', [AccountController::class, 'purgeSps'])->name('settings.purge-sps');
     Route::post('/dashboard/settings/hard-reset', [AccountController::class, 'hardReset'])->name('settings.hard-reset');
+    Route::post('/dashboard/settings/toggle-auth', [AccountController::class, 'toggleAuthSource'])->name('settings.toggle-auth');
 });
 
 Route::get('/gas-pol-storage', function () {

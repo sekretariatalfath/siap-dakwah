@@ -61,13 +61,14 @@ return [
 
     'providers' => [
         'users' => [
-            'driver' => 'eloquent',
+            'driver' => 'hybrid',
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
 
+        // Mode Database Lama (Buka komen ini kalau mau balik full ke database)
         // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
+        //     'driver' => 'eloquent',
+        //     'model' => env('AUTH_MODEL', App\Models\User::class),
         // ],
     ],
 

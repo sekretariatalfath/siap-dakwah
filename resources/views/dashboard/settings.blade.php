@@ -9,8 +9,41 @@
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {{-- KIRI: Ganti Password Saya --}}
+        {{-- KIRI: Ganti Password Saya & Saklar --}}
         <div class="space-y-6">
+            {{-- SAKLAR OTENTIKASI (Hanya Superadmin) --}}
+            @if(Auth::user()->role == 'superadmin')
+            <div class="bg-white p-8 rounded-[40px] shadow-sm border border-gray-100 relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-indigo-50 rounded-full -mr-12 -mt-12 opacity-50 group-hover:scale-110 transition duration-500"></div>
+                
+                <h3 class="text-sm font-black text-gray-900 uppercase tracking-widest mb-4 flex items-center gap-2 relative z-10">
+                    <span class="w-2 h-5 bg-indigo-700 rounded-full"></span>
+                    Mode Otentikasi
+                </h3>
+
+                <form action="{{ route('settings.toggle-auth') }}" method="POST" class="relative z-10 space-y-4">
+                    @csrf
+                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-2xl">
+                        <div>
+                            <p class="text-[11px] font-black text-gray-700 uppercase">Sumber Akun</p>
+                            <p class="text-[9px] text-gray-400 font-bold uppercase mt-0.5">{{ $authSource }}</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <button type="submit" name="source" value="database" class="px-4 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all {{ $authSource === 'database' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-100' : 'bg-white text-gray-400 border border-gray-100 hover:bg-gray-50' }}">
+                                Database
+                            </button>
+                            <button type="submit" name="source" value="hardcode" class="px-4 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all {{ $authSource === 'hardcode' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-100' : 'bg-white text-gray-400 border border-gray-100 hover:bg-gray-50' }}">
+                                Hardcode
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-[9px] text-gray-400 font-medium leading-relaxed">
+                        *Mode **Hardcode** bikin login super cepat & anti-error database, tapi fitur ganti password & tambah user bakal dikunci.
+                    </p>
+                </form>
+            </div>
+            @endif
+
             <div class="bg-white p-8 rounded-[40px] shadow-sm border border-gray-100 relative overflow-hidden group">
                 <div class="absolute top-0 right-0 w-24 h-24 bg-red-50 rounded-full -mr-12 -mt-12 opacity-50 group-hover:scale-110 transition duration-500"></div>
                 
@@ -19,6 +52,12 @@
                     Keamanan Akun
                 </h3>
 
+                @if($authSource === 'hardcode')
+                <div class="p-6 bg-gray-50 rounded-2xl border border-gray-100 text-center relative z-10">
+                    <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">🔒 Fitur Terkunci</p>
+                    <p class="text-[9px] text-gray-400 font-medium mt-1">Ganti password dinonaktifkan di mode Hardcode.</p>
+                </div>
+                @else
                 <form action="{{ route('settings.password') }}" method="POST" class="space-y-4 relative z-10">
                     @csrf
                     <div>
@@ -38,6 +77,7 @@
                         <span class="md:hidden">Update Password</span>
                     </button>
                 </form>
+                @endif
             </div>
 
             {{-- DANGER ZONE: Reset SPS --}}
@@ -86,9 +126,15 @@
                         <span class="w-2 h-5 bg-gray-900 rounded-full"></span>
                         Daftar Pengguna Sistem
                     </h3>
+                    @if($authSource === 'hardcode')
+                    <span class="px-4 py-2 bg-gray-100 text-gray-400 rounded-xl text-[9px] font-black uppercase tracking-widest">
+                        Terkunci
+                    </span>
+                    @else
                     <button onclick="document.getElementById('modalRegister').classList.remove('hidden')" class="px-4 py-2 bg-emerald-600 text-white rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-emerald-700 transition shadow-lg shadow-emerald-100">
                         Tambah User Baru
                     </button>
+                    @endif
                 </div>
 
                 <div class="overflow-x-auto">
@@ -118,6 +164,9 @@
                                 </td>
                                 <td class="py-5 text-right">
                                     <div class="flex justify-end gap-2">
+                                        @if($authSource === 'hardcode')
+                                        <span class="text-[9px] font-bold text-gray-300 uppercase">No Action</span>
+                                        @else
                                         {{-- Modal Reset Password Button --}}
                                         <button onclick="openResetModal('{{ $user->id }}', '{{ $user->name }}')" class="p-2 text-gray-400 hover:text-red-700 transition-all opacity-0 group-hover:opacity-100">
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path></svg>
@@ -129,6 +178,7 @@
                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                                             </button>
                                         </form>
+                                        @endif
                                         @endif
                                     </div>
                                 </td>

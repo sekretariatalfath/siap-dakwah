@@ -27,6 +27,11 @@ class AppServiceProvider extends ServiceProvider
             \Illuminate\Support\Facades\URL::forceScheme('https');
         }
 
+        // Register custom user provider (Hybrid) untuk saklar login
+        Auth::provider('hybrid', function ($app, $config) {
+            return new \App\Auth\HybridUserProvider($app);
+        });
+
         // 1. SET LOCALE CARBON KE INDONESIA
         config(['app.locale' => 'id']);
         Carbon::setLocale('id');
