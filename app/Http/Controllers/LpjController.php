@@ -52,7 +52,7 @@ class LpjController extends Controller
             return ($user->role == 'superadmin') ? true : $l->pemohon == $user->unit;
         })->reverse();
 
-        $proposals = Proposal::where('is_checked', true)->get();
+        $proposals = Proposal::whereRaw('is_checked = ?', [true])->get();
 
         return view('lpj.lpj_index', compact('dataLpj', 'proposals'));
     }

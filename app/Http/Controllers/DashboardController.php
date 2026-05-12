@@ -32,7 +32,7 @@ class DashboardController extends Controller
         $stats = \Illuminate\Support\Facades\Cache::remember($cacheKey, 300, function () use ($isKestari, $user, $filterUnit) {
             // 1. SURAT MASUK
             $totalMasuk = \App\Models\SuratMasuk::count();
-            $perluVerifikasi = \App\Models\SuratMasuk::where('is_checked', false)->count();
+            $perluVerifikasi = \App\Models\SuratMasuk::whereRaw('is_checked = ?', [false])->count();
 
             // 2. SURAT KELUAR
             $semuaKeluarQuery = \App\Models\Surat::query();
