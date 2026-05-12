@@ -44,6 +44,27 @@
 <style>
     [x-cloak] { display: none !important; }
     
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animasi-kotak {
+        opacity: 0;
+        animation: fadeInUp 0.5s ease-out forwards;
+    }
+
+    .delay-100 { animation-delay: 100ms; }
+    .delay-200 { animation-delay: 200ms; }
+    .delay-300 { animation-delay: 300ms; }
+    .delay-400 { animation-delay: 400ms; }
+    
     /* Custom Scrollbar for better mobile UX */
     .overflow-x-auto::-webkit-scrollbar {
         height: 4px;
