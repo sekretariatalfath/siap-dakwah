@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <div class="bg-white rounded-3xl md:rounded-[2.5rem] shadow-xl shadow-red-900/5 border border-red-50 p-6 md:p-10">
+        <div class="bg-white rounded-3xl md:rounded-[2.5rem] shadow-xl shadow-red-900/5 border border-red-50 p-6 md:p-10 animasi-kotak">
             @if(session('error'))
                 <div class="mb-6 {{ $theme['light'] }} border border-red-200 {{ $theme['text'] }} px-6 py-4 rounded-2xl flex items-center gap-4 shadow-sm">
                     <div class="bg-red-100 p-2 rounded-full">

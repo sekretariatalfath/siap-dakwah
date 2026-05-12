@@ -35,7 +35,7 @@
 
     {{-- 3. MAIN TABLE CARD --}}
     <div class="max-w-7xl mx-auto">
-        <div class="bg-white rounded-[32px] shadow-2xl shadow-gray-200/50 border border-gray-100 overflow-hidden">
+        <div class="bg-white rounded-[32px] shadow-2xl shadow-gray-200/50 border border-gray-100 overflow-hidden animasi-kotak">
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse">
                     <thead>

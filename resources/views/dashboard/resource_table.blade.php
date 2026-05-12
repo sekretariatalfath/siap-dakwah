@@ -22,7 +22,7 @@
 </div>
 
 {{-- Tabel Sumber Daya --}}
-<div class="bg-white shadow-sm rounded-[32px] overflow-hidden border border-gray-100">
+<div class="bg-white shadow-sm rounded-[32px] overflow-hidden border border-gray-100 animasi-kotak">
     <div class="overflow-x-auto">
         <table class="w-full text-left border-collapse min-w-[700px] md:min-w-full">
             <thead class="bg-gray-50 text-gray-400 text-[10px] uppercase font-bold tracking-widest border-b border-gray-100">

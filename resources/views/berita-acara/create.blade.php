@@ -23,7 +23,7 @@
 
 
     {{-- FORM CONTAINER --}}
-    <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden mb-12">
+    <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden mb-12 animasi-kotak">
         <div class="{{ $theme['bg'] }} p-6 md:p-8 text-white">
             <h2 class="text-2xl md:text-3xl font-black tracking-tight uppercase">Formulir Digital</h2>
             <p class="text-white/80 mt-1 md:mt-2 font-bold text-[10px] md:text-sm uppercase tracking-widest">Auto-generate ke Google Docs.</p>
@@ -181,7 +181,7 @@
     </div>
 
     {{-- TABEL RIWAYAT --}}
-    <div class="mt-12 bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden">
+    <div class="mt-12 bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden animasi-kotak delay-100">
         <div class="bg-gray-800 p-4 text-white flex justify-between items-center">
             <h3 class="font-bold flex items-center">
                 <svg class="w-5 h-5 mr-2 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>

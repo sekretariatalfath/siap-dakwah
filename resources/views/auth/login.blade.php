@@ -1,8 +1,25 @@
 @extends('layout')
 
 @section('content')
+<style>
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animasi-kotak {
+        opacity: 0;
+        animation: fadeInUp 0.5s ease-out forwards;
+    }
+</style>
 <div class="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-    <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border border-gray-100">
+    <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border border-gray-100 animasi-kotak">
         
         {{-- HEADER BARU: SIAP DAKWAH --}}
         <div class="text-center mb-8">

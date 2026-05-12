@@ -42,7 +42,7 @@
         {{-- 4. STATISTIK --}}
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
             {{-- Kartu Surat Masuk --}}
-            <div class="bg-white rounded-[24px] md:rounded-[32px] shadow-sm border border-gray-100 p-5 md:p-8 flex flex-col justify-between hover:shadow-md transition-all">
+            <div class="bg-white rounded-[24px] md:rounded-[32px] shadow-sm border border-gray-100 p-5 md:p-8 flex flex-col justify-between hover:shadow-md transition-all animasi-kotak">
                 <div class="flex items-start justify-between">
                     <div>
                         <p class="text-gray-400 text-[10px] font-black uppercase tracking-widest">Surat Masuk</p>
@@ -60,7 +60,7 @@
             </div>
 
             {{-- Kartu Berita Acara --}}
-            <div class="bg-white rounded-[24px] md:rounded-[32px] shadow-sm border border-gray-100 p-5 md:p-8 flex flex-col justify-between hover:shadow-md transition-all">
+            <div class="bg-white rounded-[24px] md:rounded-[32px] shadow-sm border border-gray-100 p-5 md:p-8 flex flex-col justify-between hover:shadow-md transition-all animasi-kotak delay-100">
                 <div class="flex items-start justify-between">
                     <div>
                         <p class="text-gray-400 text-[10px] font-black uppercase tracking-widest">Berita Acara</p>
@@ -76,7 +76,7 @@
             </div>
 
             {{-- Kartu Surat Keluar --}}
-            <div class="bg-white rounded-[24px] md:rounded-[32px] shadow-sm border border-gray-100 p-5 md:p-8 flex flex-col justify-between hover:shadow-md transition-all">
+            <div class="bg-white rounded-[24px] md:rounded-[32px] shadow-sm border border-gray-100 p-5 md:p-8 flex flex-col justify-between hover:shadow-md transition-all animasi-kotak delay-200">
                 <div class="flex items-start justify-between">
                     <div>
                         <p class="text-gray-400 text-[10px] font-black uppercase tracking-widest">Surat Keluar</p>
@@ -99,7 +99,7 @@
             <h3 class="text-xs font-black text-gray-400 uppercase tracking-[3px] mb-6 px-2">Database & Berkas</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {{-- Template --}}
-                <a href="{{ route('resource.index', 'template') }}" class="flex items-center gap-4 md:gap-5 bg-white p-5 md:p-6 rounded-[24px] md:rounded-[32px] border border-gray-100 hover:border-red-200 transition group shadow-sm">
+                <a href="{{ route('resource.index', 'template') }}" class="flex items-center gap-4 md:gap-5 bg-white p-5 md:p-6 rounded-[24px] md:rounded-[32px] border border-gray-100 hover:border-red-200 transition group shadow-sm animasi-kotak delay-100">
                     <div class="bg-red-50 p-4 rounded-2xl text-red-600 group-hover:bg-red-600 group-hover:text-white transition shadow-inner">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
                     </div>
@@ -110,7 +110,7 @@
                 </a>
                 
                 {{-- Pedoman --}}
-                <a href="{{ route('resource.index', 'pedoman') }}" class="flex items-center gap-4 md:gap-5 bg-white p-5 md:p-6 rounded-[24px] md:rounded-[32px] border border-gray-100 hover:border-indigo-200 transition group shadow-sm">
+                <a href="{{ route('resource.index', 'pedoman') }}" class="flex items-center gap-4 md:gap-5 bg-white p-5 md:p-6 rounded-[24px] md:rounded-[32px] border border-gray-100 hover:border-indigo-200 transition group shadow-sm animasi-kotak delay-200">
                     <div class="bg-indigo-50 p-4 rounded-2xl text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition shadow-inner">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
                     </div>
@@ -121,7 +121,7 @@
                 </a>
                 
                 {{-- Informasi --}}
-                <a href="{{ route('resource.index', 'informasi') }}" class="flex items-center gap-4 md:gap-5 bg-white p-5 md:p-6 rounded-[24px] md:rounded-[32px] border border-gray-100 hover:border-emerald-200 transition group shadow-sm">
+                <a href="{{ route('resource.index', 'informasi') }}" class="flex items-center gap-4 md:gap-5 bg-white p-5 md:p-6 rounded-[24px] md:rounded-[32px] border border-gray-100 hover:border-emerald-200 transition group shadow-sm animasi-kotak delay-300">
                     <div class="bg-emerald-50 p-4 rounded-2xl text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition shadow-inner">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
@@ -162,7 +162,7 @@
 
             <div class="space-y-4">
                 {{-- Banner Card (Ukuran dikecilkan dari p-12 ke p-8) --}}
-                <div class="bg-gradient-to-r from-gray-900 via-gray-800 to-black p-6 md:p-8 rounded-[24px] md:rounded-[32px] shadow-xl flex flex-col md:flex-row justify-between items-center gap-6 relative overflow-hidden group">
+                <div class="bg-gradient-to-r from-gray-900 via-gray-800 to-black p-6 md:p-8 rounded-[24px] md:rounded-[32px] shadow-xl flex flex-col md:flex-row justify-between items-center gap-6 relative overflow-hidden group animasi-kotak delay-200">
                     {{-- Efek cahaya --}}
                     <div class="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -mr-24 -mt-24 blur-3xl group-hover:bg-white/10 transition-all duration-700"></div>
                     
@@ -176,7 +176,7 @@
                 </div>
 
                 {{-- Preview Iframe (Radius disamakan dengan kartu stat) --}}
-                <div class="bg-white rounded-[32px] p-2 border border-gray-100 shadow-sm overflow-hidden h-[550px] hidden md:block group">
+                <div class="bg-white rounded-[32px] p-2 border border-gray-100 shadow-sm overflow-hidden h-[550px] hidden md:block group animasi-kotak delay-300">
                     <iframe src="{{ $calendarLink }}" class="w-full h-full rounded-[24px] border-0 opacity-90 group-hover:opacity-100 transition-opacity" loading="lazy"></iframe>
                 </div>
             </div>

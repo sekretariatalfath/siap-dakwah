@@ -26,7 +26,7 @@
 
     {{-- Tabel Card --}}
     <div class="max-w-6xl mx-auto">
-        <div class="bg-white rounded-3xl shadow-xl shadow-red-900/5 border border-red-50 overflow-hidden">
+        <div class="bg-white rounded-3xl shadow-xl shadow-red-900/5 border border-red-50 overflow-hidden animasi-kotak">
             <div class="overflow-x-auto">
                 <table class="w-full text-left min-w-[700px] md:min-w-full">
                 <thead>

@@ -15,7 +15,7 @@
 
     
 
-    <div class="bg-white shadow-xl rounded-2xl border border-gray-100 overflow-hidden">
+    <div class="bg-white shadow-xl rounded-2xl border border-gray-100 overflow-hidden animasi-kotak">
         <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse min-w-[600px] md:min-w-full">
             <thead class="bg-gray-50 text-gray-400 text-[10px] uppercase tracking-widest font-black">

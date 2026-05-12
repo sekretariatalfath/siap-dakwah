@@ -32,11 +32,11 @@
 
     {{-- 2. STATS OVERVIEW (Optional but Cinematic) --}}
     <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <div class="bg-white p-5 rounded-[24px] border border-gray-100 shadow-sm">
+        <div class="bg-white p-5 rounded-[24px] border border-gray-100 shadow-sm animasi-kotak">
             <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest">Total Pengajuan</p>
             <p class="text-2xl font-black text-gray-900">{{ $dataProposal->count() }}</p>
         </div>
-        <div class="bg-white p-5 rounded-[24px] border border-gray-100 shadow-sm">
+        <div class="bg-white p-5 rounded-[24px] border border-gray-100 shadow-sm animasi-kotak delay-100">
             <p class="text-[9px] font-black text-emerald-500 uppercase tracking-widest">Terverifikasi</p>
             <p class="text-2xl font-black text-emerald-600">{{ $dataProposal->where('is_checked', true)->count() }}</p>
         </div>
@@ -44,7 +44,7 @@
 
     {{-- 3. MAIN TABLE CARD --}}
     <div class="max-w-7xl mx-auto">
-        <div class="bg-white rounded-[32px] shadow-2xl shadow-gray-200/50 border border-gray-100 overflow-hidden">
+        <div class="bg-white rounded-[32px] shadow-2xl shadow-gray-200/50 border border-gray-100 overflow-hidden animasi-kotak delay-200">
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse min-w-[800px] md:min-w-full">
                     <thead>

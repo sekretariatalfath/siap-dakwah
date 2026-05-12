@@ -22,7 +22,7 @@
             </div>
         @endif
 
-        <div class="bg-white rounded-3xl md:rounded-[2.5rem] shadow-xl shadow-red-900/5 border border-red-50 p-6 md:p-10">
+        <div class="bg-white rounded-3xl md:rounded-[2.5rem] shadow-xl shadow-red-900/5 border border-red-50 p-6 md:p-10 animasi-kotak">
             <form action="{{ route('notulensi.generate') }}" method="POST" id="generateForm" class="space-y-6">
                 @csrf
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

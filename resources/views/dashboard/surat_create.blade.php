@@ -24,7 +24,7 @@
 
         {{-- KOLOM KIRI: FORMULIR INPUT --}}
         <div class="lg:col-span-2 space-y-6">
-            <form action="{{ route('surat.store') }}" method="POST" class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+            <form action="{{ route('surat.store') }}" method="POST" class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 animasi-kotak">
                 @csrf
                 
                 <div class="{{ $theme['bg'] }} px-6 py-4 flex items-center gap-3">
@@ -246,7 +246,7 @@
 
 
             {{-- RIWAYAT LOKAL --}}
-            <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+            <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 animasi-kotak delay-100">
                 <div class="bg-gray-800 px-5 py-3 flex justify-between items-center text-white">
                     <h3 class="font-bold text-xs uppercase">Riwayat Lokal</h3>
                     <span class="bg-gray-700 text-[10px] px-2 py-0.5 rounded-full">{{ $riwayat->count() }}</span>

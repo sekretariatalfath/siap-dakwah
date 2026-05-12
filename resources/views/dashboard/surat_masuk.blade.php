@@ -25,7 +25,7 @@
         
         {{-- FORM INPUT (KIRI) --}}
         <div class="lg:col-span-2">
-            <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden sticky top-6">
+            <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden sticky top-6 animasi-kotak">
                 <div class="{{ $theme['bg'] }} px-6 py-4 flex items-center gap-3">
                     <div class="bg-white/20 p-2 rounded-lg text-white">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
@@ -112,7 +112,7 @@
 
         {{-- TABEL DATA (KANAN) --}}
         <div class="lg:col-span-3">
-            <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+            <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden animasi-kotak delay-100">
                 <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
                     <h3 class="font-bold text-gray-700 uppercase text-sm tracking-wider">Database Arsip Surat</h3>
                     <span class="{{ $theme['light'] }} {{ $theme['text'] }} text-[10px] px-2 py-1 rounded-full font-black">{{ $suratMasuk->count() }} DATA</span>

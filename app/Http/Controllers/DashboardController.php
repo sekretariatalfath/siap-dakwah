@@ -77,8 +77,10 @@ class DashboardController extends Controller
             ];
         });
 
-        // Ambil Link Kalender dari Cache/SPS (Dummy default jika kosong)
-        $calendarLink = cache()->get('calendar_link', 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT1.../pubhtml');
+        // Ambil Link Kalender dari Storage (Dummy default jika kosong)
+        $calendarLink = \Illuminate\Support\Facades\Storage::exists('calendar_link.txt') 
+            ? \Illuminate\Support\Facades\Storage::get('calendar_link.txt') 
+            : 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT1.../pubhtml';
 
         return view('dashboard.main', [
             'user' => $user,
@@ -202,7 +204,7 @@ class DashboardController extends Controller
 
     public function updateCalendarLink(Request $request) {
         $request->validate(['calendar_link' => 'required|url']);
-        cache()->put('calendar_link', $request->calendar_link);
+        \Illuminate\Support\Facades\Storage::put('calendar_link.txt', $request->calendar_link);
         return back()->with('success', 'Link Kalender diperbarui!');
     }
     /**

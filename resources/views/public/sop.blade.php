@@ -1,6 +1,27 @@
 @extends('layout')
 
 @section('content')
+<style>
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animasi-kotak {
+        opacity: 0;
+        animation: fadeInUp 0.5s ease-out forwards;
+    }
+
+    .delay-100 { animation-delay: 100ms; }
+    .delay-200 { animation-delay: 200ms; }
+    .delay-300 { animation-delay: 300ms; }
+</style>
 <div class="min-h-screen bg-gray-50/30 font-inter selection:bg-red-100 selection:text-red-700">
     {{-- NAVBAR --}}
     <nav class="bg-white/80 backdrop-blur-md border-b border-gray-100 sticky top-0 z-50">
@@ -34,7 +55,7 @@
 
     <main class="container mx-auto px-6 py-12 -mt-16 relative z-20">
         {{-- SEARCH BAR --}}
-        <div class="max-w-4xl mx-auto mb-10">
+        <div class="max-w-4xl mx-auto mb-10 animasi-kotak">
             <div class="bg-white p-2 rounded-[32px] shadow-2xl shadow-gray-200/40 border border-gray-100 flex items-center transition-all focus-within:ring-4 focus-within:ring-red-50">
                 <div class="pl-6 text-gray-300">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
@@ -45,7 +66,7 @@
         </div>
 
         {{-- TIPS SECTION --}}
-        <div class="max-w-4xl mx-auto mb-16">
+        <div class="max-w-4xl mx-auto mb-16 animasi-kotak delay-100">
             <div class="bg-white p-8 rounded-[40px] border border-gray-100 shadow-sm flex flex-col md:flex-row items-center gap-8 relative overflow-hidden group">
                 <div class="absolute top-0 right-0 w-32 h-32 bg-red-50 rounded-full -mr-16 -mt-16 opacity-50 group-hover:scale-110 transition duration-700"></div>
                 <div class="w-16 h-16 bg-red-50 text-red-600 rounded-2xl flex-shrink-0 flex items-center justify-center text-3xl shadow-inner relative z-10">📜</div>
@@ -66,7 +87,7 @@
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="sopGrid">
             @forelse($sop as $item)
-            <div class="sop-card bg-white p-8 rounded-[40px] border border-gray-100 hover:border-red-100 hover:shadow-2xl hover:shadow-red-100/30 transition-all duration-500 group flex flex-col justify-between transform hover:-translate-y-2">
+            <div class="sop-card bg-white p-8 rounded-[40px] border border-gray-100 hover:border-red-100 hover:shadow-2xl hover:shadow-red-100/30 transition-all duration-500 group flex flex-col justify-between transform hover:-translate-y-2 animasi-kotak delay-200">
                 <div>
                     <div class="flex justify-between items-start mb-8">
                         <div class="w-14 h-14 bg-gray-50 text-gray-900 rounded-2xl flex items-center justify-center text-2xl group-hover:bg-red-700 group-hover:text-white transition-all duration-500 shadow-sm">

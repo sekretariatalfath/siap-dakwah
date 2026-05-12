@@ -14,6 +14,26 @@
     .ghost-fix {
         max-width: 100vw;
     }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animasi-kotak {
+        opacity: 0;
+        animation: fadeInUp 0.5s ease-out forwards;
+    }
+
+    .delay-100 { animation-delay: 100ms; }
+    .delay-200 { animation-delay: 200ms; }
+    .delay-300 { animation-delay: 300ms; }
 </style>
 
 <div class="min-h-screen flex flex-col bg-white font-inter selection:bg-red-100 selection:text-red-900 ghost-fix">
@@ -63,28 +83,28 @@
         <div class="container mx-auto px-4 md:px-6 text-center">
             
             {{-- Badge --}}
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 border border-red-100 text-red-700 text-[11px] font-black uppercase tracking-widest mb-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 border border-red-100 text-red-700 text-[11px] font-black uppercase tracking-widest mb-10 animasi-kotak">
                 <span class="relative flex h-2 w-2">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
                 </span>
                 Integrated Digital Administration
             </div>
-
-            <h1 class="text-3xl md:text-7xl font-black text-gray-900 mb-6 md:mb-8 leading-[1.1] tracking-tight animate-in fade-in slide-in-from-bottom-8 duration-1000 px-2">
+ 
+            <h1 class="text-3xl md:text-7xl font-black text-gray-900 mb-6 md:mb-8 leading-[1.1] tracking-tight animasi-kotak delay-100 px-2">
                 Tertib Administrasi, <br class="hidden md:block"> 
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-800 to-red-500">
                     Dakwah Berprestasi
                 </span>
             </h1>
             
-            <p class="text-sm md:text-xl text-gray-500 mb-10 md:mb-14 max-w-3xl mx-auto leading-relaxed font-medium animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-200">
+            <p class="text-sm md:text-xl text-gray-500 mb-10 md:mb-14 max-w-3xl mx-auto leading-relaxed font-medium animasi-kotak delay-200">
                 Sistem Informasi Administrasi Pejuang (SIAP) Dakwah adalah pusat kendali operasional 
                 dan layanan administrasi satu pintu untuk mendukung efektivitas gerakan dakwah LDK Al-Fath.
             </p>
             
             {{-- CTAs --}}
-            <div class="flex flex-col md:flex-row justify-center gap-4 md:gap-6 animate-in fade-in slide-in-from-bottom-16 duration-1000 delay-300">
+            <div class="flex flex-col md:flex-row justify-center gap-4 md:gap-6 animasi-kotak delay-300">
                 <a href="{{ route('public.template') }}" class="min-w-[220px] px-6 md:px-8 py-3 md:py-4 bg-red-700 text-white font-black rounded-xl md:rounded-2xl shadow-xl shadow-red-200 hover:bg-red-800 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-3 tracking-wide text-[11px] md:text-base">
                     <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                     E-Library Template
@@ -105,14 +125,14 @@
 
     {{-- BRIEF SECTION (SIMPLIFIED & RELAXED) --}}
     <section class="py-16 md:py-24 bg-red-50/50 border-y border-red-100/50 w-full overflow-hidden">
-        <div class="container mx-auto px-5 md:px-6 max-w-4xl text-center">
+        <div class="container mx-auto px-5 md:px-6 max-w-4xl text-center animasi-kotak">
             <h2 class="text-[10px] font-black text-red-600 uppercase tracking-[0.3em] mb-4">Visi SIAP Dakwah</h2>
             <h3 class="text-2xl md:text-4xl font-black text-gray-900 mb-6 tracking-tight uppercase leading-tight">Mewujudkan Ekosistem Dakwah yang Profesional & Terintegrasi</h3>
             <p class="text-gray-600 leading-relaxed font-medium text-sm md:text-lg">
                 Administrasi bukan sekadar tumpukan kertas, melainkan bukti keseriusan kita dalam mengelola amanah dakwah. SIAP Dakwah hadir sebagai solusi digital untuk menyederhanakan alur birokrasi, memastikan data tersimpan rapi, dan memudahkan setiap pejuang dakwah dalam mengakses kebutuhan administratif secara mandiri.
             </p>
             
-            <div class="flex flex-col md:flex-row justify-center gap-6 md:gap-12 mt-10 md:mt-12">
+            <div class="flex flex-col md:flex-row justify-center gap-6 md:gap-12 mt-10 md:mt-12 animasi-kotak delay-100">
                 <div class="flex items-center gap-4">
                     <div class="w-2 h-8 bg-red-700 rounded-full"></div>
                     <div class="text-left">
@@ -142,7 +162,7 @@
             <div class="grid md:grid-cols-3 gap-6 md:gap-10">
                 
                 {{-- Modul 1 --}}
-                <div class="group p-6 md:p-10 rounded-[32px] md:rounded-[40px] bg-white border border-gray-100 hover:border-red-100 hover:shadow-2xl hover:shadow-red-100/50 transition-all duration-500 text-left relative">
+                <div class="group p-6 md:p-10 rounded-[32px] md:rounded-[40px] bg-white border border-gray-100 hover:border-red-100 hover:shadow-2xl hover:shadow-red-100/50 transition-all duration-500 text-left relative animasi-kotak">
                     <div class="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:scale-110 group-hover:bg-red-700 group-hover:text-white transition-all duration-500">
                         📄
                     </div>
@@ -156,7 +176,7 @@
                 </div>
 
                 {{-- Modul 2 --}}
-                <div class="group p-6 md:p-10 rounded-[32px] md:rounded-[40px] bg-white border border-gray-100 hover:border-orange-100 hover:shadow-2xl hover:shadow-orange-100/50 transition-all duration-500 text-left relative">
+                <div class="group p-6 md:p-10 rounded-[32px] md:rounded-[40px] bg-white border border-gray-100 hover:border-orange-100 hover:shadow-2xl hover:shadow-orange-100/50 transition-all duration-500 text-left relative animasi-kotak delay-100">
                     <div class="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:scale-110 group-hover:bg-orange-600 group-hover:text-white transition-all duration-500">
                         ⚖️
                     </div>
@@ -170,7 +190,7 @@
                 </div>
 
                 {{-- Modul 3 --}}
-                <div class="group p-6 md:p-10 rounded-[32px] md:rounded-[40px] bg-white border border-gray-100 hover:border-indigo-100 hover:shadow-2xl hover:shadow-indigo-100/50 transition-all duration-500 text-left relative">
+                <div class="group p-6 md:p-10 rounded-[32px] md:rounded-[40px] bg-white border border-gray-100 hover:border-indigo-100 hover:shadow-2xl hover:shadow-indigo-100/50 transition-all duration-500 text-left relative animasi-kotak delay-200">
                     <div class="w-16 h-16 bg-indigo-50 rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:scale-110 group-hover:bg-indigo-700 group-hover:text-white transition-all duration-500">
                         💻
                     </div>

@@ -13,7 +13,7 @@
         <div class="space-y-6">
             {{-- SAKLAR OTENTIKASI (Hanya Superadmin) --}}
             @if(Auth::user()->role == 'superadmin')
-            <div class="bg-white p-8 rounded-[40px] shadow-sm border border-gray-100 relative overflow-hidden group">
+            <div class="bg-white p-8 rounded-[40px] shadow-sm border border-gray-100 relative overflow-hidden group animasi-kotak">
                 <div class="absolute top-0 right-0 w-24 h-24 bg-indigo-50 rounded-full -mr-12 -mt-12 opacity-50 group-hover:scale-110 transition duration-500"></div>
                 
                 <h3 class="text-sm font-black text-gray-900 uppercase tracking-widest mb-4 flex items-center gap-2 relative z-10">
@@ -44,7 +44,7 @@
             </div>
             @endif
 
-            <div class="bg-white p-8 rounded-[40px] shadow-sm border border-gray-100 relative overflow-hidden group">
+            <div class="bg-white p-8 rounded-[40px] shadow-sm border border-gray-100 relative overflow-hidden group animasi-kotak delay-100">
                 <div class="absolute top-0 right-0 w-24 h-24 bg-red-50 rounded-full -mr-12 -mt-12 opacity-50 group-hover:scale-110 transition duration-500"></div>
                 
                 <h3 class="text-sm font-black text-gray-900 uppercase tracking-widest mb-6 flex items-center gap-2 relative z-10">
@@ -82,7 +82,7 @@
 
             {{-- DANGER ZONE: Reset SPS --}}
             @if(Auth::user()->role == 'superadmin' || Auth::user()->unit == 'Kestari')
-            <div class="bg-amber-50 p-8 rounded-[40px] border border-amber-100 mb-6">
+            <div class="bg-amber-50 p-8 rounded-[40px] border border-amber-100 mb-6 animasi-kotak delay-200">
                 <h3 class="text-sm font-black text-amber-900 uppercase tracking-widest mb-2 flex items-center gap-2">
                     🧹 Reset Resources
                 </h3>
@@ -100,7 +100,7 @@
 
             {{-- MASTER RESET: Full System --}}
             @if(Auth::user()->role == 'superadmin')
-            <div class="bg-red-50 p-8 rounded-[40px] border border-red-100">
+            <div class="bg-red-50 p-8 rounded-[40px] border border-red-100 animasi-kotak delay-300">
                 <h3 class="text-sm font-black text-red-900 uppercase tracking-widest mb-2 flex items-center gap-2">
                     💀 Master System Reset
                 </h3>
@@ -120,7 +120,7 @@
         {{-- KANAN: Manajemen User --}}
         <div class="lg:col-span-2 space-y-6">
             @if(Auth::user()->role == 'superadmin')
-            <div class="bg-white p-8 rounded-[40px] shadow-sm border border-gray-100">
+            <div class="bg-white p-8 rounded-[40px] shadow-sm border border-gray-100 animasi-kotak delay-100">
                 <div class="flex justify-between items-center mb-8">
                     <h3 class="text-sm font-black text-gray-900 uppercase tracking-widest flex items-center gap-2">
                         <span class="w-2 h-5 bg-gray-900 rounded-full"></span>
