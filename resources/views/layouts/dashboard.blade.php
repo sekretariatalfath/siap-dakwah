@@ -1,3 +1,5 @@
+@extends('layout')
+
 @section('content')
 <div class="min-h-screen flex bg-gray-50 relative overflow-x-hidden">
     
