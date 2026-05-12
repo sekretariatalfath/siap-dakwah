@@ -66,7 +66,7 @@ class EvaluasiController extends Controller
     
     public function create()
     {
-        $proposals = Proposal::whereRaw('is_checked = ?', [true])->get();
+        $proposals = Proposal::whereRaw('is_checked = true')->get();
         
         // Daftar unit sesuai mapping getUnitCode kamu
         $units = [
