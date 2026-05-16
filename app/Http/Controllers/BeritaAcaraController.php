@@ -91,26 +91,26 @@ class BeritaAcaraController extends Controller
 
             // 1. MAPPING FOLDER & DATA
             $folderMapping = [
-                'Syiar Pusat' => '1nqCuLaEnZaaK1gK6iAfxSLxxw0sOZTTg',
-                'Medkominfo'  => '1ADkamu36keT_4ZM4jeHA8M9G2c9zATS7',
-                'Kaderisasi Pusat' => '1faKg2OEz5sUaLs0YS6gIWnAwWX0gRFIB',
-                'Keuangan'    => '1NTrTBbGQUyL0RMbvoZ5-oMw1kU5U2lAU',
-                'Kesekretariatan' => '1vgkcxj8axq8YT9bk7B-YZTTkp8rvl0Wh',
-                'Fakultas Teknik Elektro' => '1GC5o2NZ5zuXfpLnL9hVxulmkaS04Z92u',
-                'Fakultas Informatika'    => '15laaaiJZU3NQGSIFVML15bJkqrNHunok',
-                'Fakultas Rekayasa Industri' => '1eeDKVLLJ8TRitJ3jPsZkmx4qEN9qPrYR',
-                'Fakultas Ekonomi Bisnis'    => '1ac3HudHOVVylBIWlYYAtfnkCfEoV0OOH',
-                'Fakultas Komunikasi dan Ilmu Sosial' => '1_OJ9NvIcOxd7zYoygl01kLWVFXo1-1KC',
-                'Fakultas Industri Kreatif'  => '1TU9wKlvlrB8ingM8UJqvGRLadJmUg-1e',
-                'Fakultas Ilmu Terapan'      => '1oOtZHVEw1L313SpJF5crzg62uVILzZfw',
+                'Departemen Syiar Pusat' => '1nqCuLaEnZaaK1gK6iAfxSLxxw0sOZTTg',
+                'Departemen MedKomInfo'  => '1ADkamu36keT_4ZM4jeHA8M9G2c9zATS7',
+                'Departemen Kaderisasi Pusat' => '1faKg2OEz5sUaLs0YS6gIWnAwWX0gRFIB',
+                'Biro Keuangan'    => '1NTrTBbGQUyL0RMbvoZ5-oMw1kU5U2lAU',
+                'Biro Kesekretariatan' => '1vgkcxj8axq8YT9bk7B-YZTTkp8rvl0Wh',
+                'LDF Al-Fath Fakultas Teknik Elektro' => '1GC5o2NZ5zuXfpLnL9hVxulmkaS04Z92u',
+                'LDF Al-Fath Fakultas Informatika'    => '15laaaiJZU3NQGSIFVML15bJkqrNHunok',
+                'LDF Al-Fath Fakultas Rekayasa Industri' => '1eeDKVLLJ8TRitJ3jPsZkmx4qEN9qPrYR',
+                'LDF Al-Fath Fakultas Ekonomi dan Bisnis'    => '1ac3HudHOVVylBIWlYYAtfnkCfEoV0OOH',
+                'LDF Al-Fath Fakultas Komunikasi dan Ilmu Sosial' => '1_OJ9NvIcOxd7zYoygl01kLWVFXo1-1KC',
+                'LDF Al-Fath Fakultas Industri Kreatif'  => '1TU9wKlvlrB8ingM8UJqvGRLadJmUg-1e',
+                'LDF Al-Fath Fakultas Ilmu Terapan'      => '1oOtZHVEw1L313SpJF5crzg62uVILzZfw',
             ];
 
             $singkatanMapping = [
-                'Keuangan' => 'Keang', 'Kesekretariatan' => 'Kestari', 'Syiar Pusat' => 'Syiar Pusat',
-                'Kaderisasi Pusat' => 'KDRP', 'Medkominfo' => 'Medkom', 'Fakultas Teknik Elektro' => 'FTE',
-                'Fakultas Informatika' => 'FIF', 'Fakultas Rekayasa Industri' => 'FRI',
-                'Fakultas Ekonomi Bisnis' => 'FEB', 'Fakultas Komunikasi dan Ilmu Sosial' => 'FKS',
-                'Fakultas Industri Kreatif' => 'FIK', 'Fakultas Ilmu Terapan' => 'FIT',
+                'Biro Keuangan' => 'Keang', 'Biro Kesekretariatan' => 'Kestari', 'Departemen Syiar Pusat' => 'Syiar Pusat',
+                'Departemen Kaderisasi Pusat' => 'KDRP', 'Departemen MedKomInfo' => 'Medkom', 'LDF Al-Fath Fakultas Teknik Elektro' => 'FTE',
+                'LDF Al-Fath Fakultas Informatika' => 'FIF', 'LDF Al-Fath Fakultas Rekayasa Industri' => 'FRI',
+                'LDF Al-Fath Fakultas Ekonomi dan Bisnis' => 'FEB', 'LDF Al-Fath Fakultas Komunikasi dan Ilmu Sosial' => 'FKS',
+                'LDF Al-Fath Fakultas Industri Kreatif' => 'FIK', 'LDF Al-Fath Fakultas Ilmu Terapan' => 'FIT',
             ];
 
             $inisial = $singkatanMapping[$request->asal_departemen] ?? 'LDK';
@@ -128,8 +128,8 @@ class BeritaAcaraController extends Controller
 
             // 3. LOGIKA JABATAN & TANGGAL
             $jabatanKoordinator = str_contains($request->asal_departemen, 'Fakultas') 
-                ? "Koordinator LDF Al-Fath " . str_replace('Fakultas ', '', $request->asal_departemen)
-                : "Ketua Departemen " . $request->asal_departemen;
+                ? "Koordinator " . str_replace('Fakultas ', '', $request->asal_departemen)
+                : "Ketua " . $request->asal_departemen;
 
             Carbon::setLocale('id'); 
             $tgl = Carbon::parse($request->tanggal_kegiatan);

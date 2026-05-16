@@ -44,8 +44,8 @@
                             <h4 class="font-bold text-gray-700 text-xs uppercase tracking-wider">Wajihah Penyelenggara</h4>
                         </div>
 
-                        @if(Auth::user()->role === 'superadmin')
-                            {{-- Jika Superadmin: Tampilkan Dropdown --}}
+                        @if($isKestari)
+                            {{-- Jika Superadmin/Kestari: Tampilkan Dropdown --}}
                             <select name="unit_host" class="w-full border-gray-300 rounded-lg {{ $theme['ring'] }} focus:{{ $theme['border'] }} py-2 px-3 text-sm transition bg-white" required>
                                 <option value="" disabled selected>-- Pilih Unit Penyelenggara --</option>
                                 @foreach($allUnits as $unit)
