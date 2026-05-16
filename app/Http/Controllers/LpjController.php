@@ -96,24 +96,6 @@ class LpjController extends Controller
 
         // 2. Sync ke Google Sheets (Cloud)
         try {
-            // 1. Simpan ke Database Lokal (SQLite)[cite: 10]
-            $lpj = Lpj::create([
-                'id_lpj'              => $lpjId,
-                'tgl_input'           => now()->format('d/m/Y H:i'),
-                'nama_proker'         => $request->nama_proker,
-                'pemohon'             => $user->unit,
-                'realisasi_peserta'   => (int)$request->realisasi_peserta,
-                'ketercapaian_tujuan' => $request->ketercapaian_tujuan,
-                'realisasi_sasaran'   => $request->realisasi_sasaran,
-                'anggaran_sponsor'    => (int)$request->anggaran_sponsor ?? 0,
-                'realisasi_anggaran'  => (int)$request->realisasi_anggaran,
-                'link_lpj_pdf'        => $request->link_lpj_pdf,
-                'link_dokumentasi'    => $request->link_dokumentasi,
-                'link_evaluasi'       => $request->link_evaluasi,
-                'is_checked'          => false
-            ]);
-
-            // 2. Sync ke Google Sheets (Cloud)[cite: 10]
             $this->syncToSheets($lpj);
 
             return back()->with('success', 'LPJ Berhasil Diarsipkan & Sinkron ke Cloud!');
