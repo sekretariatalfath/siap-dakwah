@@ -77,10 +77,11 @@ class DashboardController extends Controller
             ];
         });
 
-        // Ambil Link Kalender dari Storage (Dummy default jika kosong)
-        $calendarLink = \Illuminate\Support\Facades\Storage::exists('calendar_link.txt') 
-            ? \Illuminate\Support\Facades\Storage::get('calendar_link.txt') 
-            : 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT1.../pubhtml';
+        // Ambil Link Kalender dari Database (Dummy default jika kosong)
+        $calendarLink = \Illuminate\Support\Facades\Cache::rememberForever('calendar_link', function () {
+            $setting = \Illuminate\Support\Facades\DB::table('settings')->where('key', 'calendar_link')->first();
+            return $setting ? $setting->value : 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT1.../pubhtml';
+        });
 
         return view('dashboard.main', [
             'user' => $user,
@@ -204,7 +205,11 @@ class DashboardController extends Controller
 
     public function updateCalendarLink(Request $request) {
         $request->validate(['calendar_link' => 'required|url']);
-        \Illuminate\Support\Facades\Storage::put('calendar_link.txt', $request->calendar_link);
+        \Illuminate\Support\Facades\DB::table('settings')->updateOrInsert(
+            ['key' => 'calendar_link'],
+            ['value' => $request->calendar_link, 'updated_at' => now()]
+        );
+        \Illuminate\Support\Facades\Cache::forget('calendar_link');
         return back()->with('success', 'Link Kalender diperbarui!');
     }
     /**
@@ -218,8 +223,9 @@ class DashboardController extends Controller
         // Ambil data melalui model Sushi dengan query builder
         $query = SesiPresensi::query();
 
-        // Filter unit jika bukan superadmin
-        if ($user->role !== 'superadmin') {
+        // Filter unit jika bukan superadmin atau Kestari
+        $isKestari = ($user->role == 'superadmin' || $user->unit == 'Biro Kesekretariatan');
+        if (!$isKestari) {
             $query->where('unit_host', $user->unit);
         }
 

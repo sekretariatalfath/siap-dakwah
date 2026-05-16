@@ -49,7 +49,8 @@ class LpjController extends Controller
                 'is_checked'          => strtoupper($row[12] ?? 'FALSE') == 'TRUE'
             ];
         })->filter(function($l) use ($user) {
-            return ($user->role == 'superadmin') ? true : $l->pemohon == $user->unit;
+            $isKestari = ($user->role == 'superadmin' || $user->unit == 'Biro Kesekretariatan');
+            return $isKestari ? true : $l->pemohon == $user->unit;
         })->reverse();
 
         $proposals = Proposal::whereRaw('is_checked = true')->get();

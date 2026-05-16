@@ -47,7 +47,8 @@ class ProposalController extends Controller
                 'is_checked'     => strtoupper($row[15] ?? 'FALSE') == 'TRUE'
             ];
         })->filter(function($p) use ($user) {
-            return ($user->role == 'superadmin') ? true : $p->pemohon == $user->unit;
+            $isKestari = ($user->role == 'superadmin' || $user->unit == 'Biro Kesekretariatan');
+            return $isKestari ? true : $p->pemohon == $user->unit;
         })->reverse();
 
         return view('dashboard.proposal_index', compact('dataProposal'));

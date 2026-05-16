@@ -157,8 +157,9 @@ class SuratController extends Controller
                 'tanggal'       => $row[9] ?? '-',
             ];
         })->filter(function($s) use ($user) {
-            // Filter unit (Admin Unit cuma liat unitnya, Superadmin liat semua)
-            return ($user->role == 'superadmin') ? true : trim($s->asal_pengisi) == trim($user->unit);
+            // Filter unit (Admin Unit cuma liat unitnya, Superadmin dan Kestari liat semua)
+            $isKestari = ($user->role == 'superadmin' || $user->unit == 'Biro Kesekretariatan');
+            return $isKestari ? true : trim($s->asal_pengisi) == trim($user->unit);
         })->groupBy('batch_id')->map(function ($batch) {
             return $batch->groupBy('perihal');
         })->reverse(); // Urutan terbaru di atas

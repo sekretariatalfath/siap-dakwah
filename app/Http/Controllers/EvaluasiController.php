@@ -53,7 +53,8 @@ class EvaluasiController extends Controller
         $query = \App\Models\Evaluasi::query();
 
         // Logika Personalisasi Unit
-        if (Auth::user()->role !== 'superadmin') {
+        $isKestari = (Auth::user()->role == 'superadmin' || Auth::user()->unit == 'Biro Kesekretariatan');
+        if (!$isKestari) {
             $unitCode = $this->getUnitCode(Auth::user()->unit);
             $query->where('pemohon', $unitCode);
         }

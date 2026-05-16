@@ -31,7 +31,8 @@ class NotulensiController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $notulensis = ($user->role == 'superadmin') 
+        $isKestari = ($user->role == 'superadmin' || $user->unit == 'Biro Kesekretariatan');
+        $notulensis = $isKestari 
             ? Notulensi::latest()->get() 
             : Notulensi::where('unit_owner', $user->unit)->latest()->get();
 
