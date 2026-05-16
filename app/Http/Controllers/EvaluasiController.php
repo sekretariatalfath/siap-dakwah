@@ -76,13 +76,13 @@ class EvaluasiController extends Controller
             'Departemen Syiar Pusat',
             'Departemen Kaderisasi Pusat',
             'Departemen MedKomInfo',
-            'LDF Fakultas Ilmu Terapan',
-            'LDF Fakultas Informatika',
-            'LDF Fakultas Ekonomi dan Bisnis',
-            'LDF Fakultas Komunikasi dan Ilmu Sosial',
-            'LDF Fakultas Industri Kreatif',
-            'LDF Fakultas Rekayasa Industri',
-            'LDF Fakultas Teknik Elektro',
+            'LDF Al-Fath Fakultas Ilmu Terapan',
+            'LDF Al-Fath Fakultas Informatika',
+            'LDF Al-Fath Fakultas Ekonomi dan Bisnis',
+            'LDF Al-Fath Fakultas Komunikasi dan Ilmu Sosial',
+            'LDF Al-Fath Fakultas Industri Kreatif',
+            'LDF Al-Fath Fakultas Rekayasa Industri',
+            'LDF Al-Fath Fakultas Teknik Elektro',
         ];
 
         return view('evaluasi.evaluasi_generate', compact('proposals', 'units'));
@@ -214,13 +214,13 @@ class EvaluasiController extends Controller
             'Departemen Syiar Pusat' => 'SYR',
             'Departemen Kaderisasi Pusat' => 'KDR',
             'Departemen MedKomInfo' => 'MDK',
-            'LDF Fakultas Ilmu Terapan' => 'FIT',
-            'LDF Fakultas Informatika' => 'FIF',
-            'LDF Fakultas Ekonomi dan Bisnis' => 'FEB',
-            'LDF Fakultas Komunikasi dan Ilmu Sosial' => 'FKS',
-            'LDF Fakultas Industri Kreatif' => 'FIK',
-            'LDF Fakultas Rekayasa Industri' => 'FRI',
-            'LDF Fakultas Teknik Elektro' => 'FTE',
+            'LDF Al-Fath Fakultas Ilmu Terapan' => 'FIT',
+            'LDF Al-Fath Fakultas Informatika' => 'FIF',
+            'LDF Al-Fath Fakultas Ekonomi dan Bisnis' => 'FEB',
+            'LDF Al-Fath Fakultas Komunikasi dan Ilmu Sosial' => 'FKS',
+            'LDF Al-Fath Fakultas Industri Kreatif' => 'FIK',
+            'LDF Al-Fath Fakultas Rekayasa Industri' => 'FRI',
+            'LDF Al-Fath Fakultas Teknik Elektro' => 'FTE',
         ];
         return $map[$namaUnit] ?? 'UNIT';
     }
