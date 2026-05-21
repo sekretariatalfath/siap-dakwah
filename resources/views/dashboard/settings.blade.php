@@ -83,41 +83,68 @@
             {{-- DANGER ZONE: Reset SPS --}}
             {{-- MANAJEMEN KONTAK PERSON (FOOTER) --}}
             @if(Auth::user()->role == 'superadmin' || Auth::user()->unit == 'Kestari')
-            <div class="bg-indigo-50 p-8 rounded-[40px] border border-indigo-100 mb-6 animasi-kotak delay-150">
+            <div class="bg-indigo-50/50 p-8 rounded-[40px] border border-indigo-100 mb-6 animasi-kotak delay-150">
                 <div class="flex justify-between items-center mb-6">
                     <h3 class="text-sm font-black text-indigo-900 uppercase tracking-widest flex items-center gap-2">
                         📞 Kontak Person (Footer)
                     </h3>
-                    <button onclick="document.getElementById('modalTambahCp').classList.remove('hidden')" class="px-3 py-1.5 bg-indigo-600 text-white rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-indigo-700 transition shadow-lg shadow-indigo-200">
+                    <button onclick="document.getElementById('modalTambahCp').classList.remove('hidden')" class="px-3 py-1.5 bg-indigo-600 text-white rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-indigo-700 transition duration-300 shadow-lg shadow-indigo-200 active:scale-95">
                         Tambah CP
                     </button>
                 </div>
                 
-                <div class="space-y-4">
-                    @foreach(['PUSAT', 'FAKULTAS'] as $kategori)
-                        @if(isset($contactPersons[$kategori]) && count($contactPersons[$kategori]) > 0)
-                            <div>
-                                <span class="text-[9px] font-black text-indigo-700 bg-indigo-100 px-2 py-0.5 rounded-full uppercase">{{ $kategori }}</span>
-                                <div class="mt-2 space-y-2">
-                                    @foreach($contactPersons[$kategori] as $cp)
-                                        <div class="flex justify-between items-center bg-white p-3 rounded-2xl border border-indigo-100 shadow-sm group">
-                                            <div>
-                                                <p class="text-[11px] font-black text-gray-900">{{ $cp['nama'] }}</p>
-                                                <p class="text-[9px] text-gray-500 font-bold">+{{ $cp['wa'] }}</p>
+                @php
+                    $hasCp = false;
+                    foreach(['PUSAT', 'FAKULTAS'] as $cat) {
+                        if(isset($contactPersons[$cat]) && count($contactPersons[$cat]) > 0) {
+                            $hasCp = true;
+                        }
+                    }
+                @endphp
+
+                @if(!$hasCp)
+                    <div class="text-center py-8 bg-white/40 border border-dashed border-indigo-200 rounded-3xl p-6">
+                        <p class="text-3xl mb-2">💬</p>
+                        <p class="text-[10px] text-indigo-900/60 font-black uppercase tracking-wider">Belum ada kontak terdaftar</p>
+                        <p class="text-[9px] text-indigo-500/50 mt-1 font-bold">Silakan tambahkan Kontak Person Pusat atau Fakultas melalui tombol di atas.</p>
+                    </div>
+                @else
+                    <div class="space-y-6">
+                        @foreach(['PUSAT', 'FAKULTAS'] as $kategori)
+                            @if(isset($contactPersons[$kategori]) && count($contactPersons[$kategori]) > 0)
+                                <div>
+                                    <span class="text-[9px] font-black text-indigo-800 bg-indigo-100/80 px-3 py-1 rounded-full uppercase tracking-wider">{{ $kategori }}</span>
+                                    <div class="mt-3 space-y-2.5">
+                                        @foreach($contactPersons[$kategori] as $cp)
+                                            <div class="flex justify-between items-center bg-white p-3.5 rounded-2xl border border-indigo-100 shadow-sm hover:border-indigo-300 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group">
+                                                <div class="flex items-center gap-3">
+                                                    <div class="w-8 h-8 rounded-full bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-700 text-[11px] font-black uppercase shadow-inner">
+                                                        {{ strtoupper(substr($cp['nama'], 0, 1)) }}
+                                                    </div>
+                                                    <div>
+                                                        <p class="text-[11px] font-black text-gray-900 leading-tight">{{ $cp['nama'] }}</p>
+                                                        <div class="flex items-center gap-1.5 mt-0.5">
+                                                            <svg class="w-3 h-3 text-emerald-500 fill-current" viewBox="0 0 24 24">
+                                                                <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 0 0 1.333 4.982L2 22l5.209-1.367a9.923 9.923 0 0 0 4.798 1.233h.005c5.505 0 9.99-4.477 9.99-9.983a9.957 9.957 0 0 0-2.927-7.06A9.963 9.963 0 0 0 12.012 2zm5.827 14.195c-.24.675-1.4 1.272-1.928 1.332-.479.055-.99.278-3.093-.548-2.529-.993-4.148-3.566-4.275-3.733-.126-.168-1.018-1.354-1.018-2.578 0-1.224.634-1.827.859-2.073.226-.247.49-.308.653-.308.163 0 .326.002.467.009.146.007.34-.055.534.408.2.477.674 1.644.733 1.764.06.12.1.26.02.42-.08.16-.12.26-.24.4-.12.14-.25.312-.358.42-.119.117-.243.245-.104.482.138.238.614 1.01 1.314 1.633.902.802 1.66 1.05 1.895 1.168.236.118.373.1.512-.06.14-.163.6-1.002.76-1.344.16-.34.32-.284.54-.202.22.082 1.393.656 1.632.776.24.12.4.18.458.283.06.103.06.6-.18 1.275z"/>
+                                                            </svg>
+                                                            <span class="text-[9px] text-gray-500 font-bold tracking-wider">+{{ $cp['wa'] }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <form action="{{ route('settings.destroy-cp', $cp['row_index']) }}" method="POST" onsubmit="return confirm('Hapus Kontak Person ini dari website dan Google Sheets?')">
+                                                    @csrf @method('DELETE')
+                                                    <button type="submit" class="p-2 text-gray-300 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all duration-200 opacity-40 md:opacity-0 group-hover:opacity-100 focus:opacity-100 active:scale-90">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                                                    </button>
+                                                </form>
                                             </div>
-                                            <form action="{{ route('settings.destroy-cp', $cp['row_index']) }}" method="POST" onsubmit="return confirm('Hapus Kontak Person ini dari website dan Google Sheets?')">
-                                                @csrf @method('DELETE')
-                                                <button type="submit" class="p-2 text-gray-400 hover:text-red-600 transition-all opacity-0 group-hover:opacity-100">
-                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    @endforeach
+                                        @endforeach
+                                    </div>
                                 </div>
-                            </div>
-                        @endif
-                    @endforeach
-                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                @endif
             </div>
 
             <div class="bg-amber-50 p-8 rounded-[40px] border border-amber-100 mb-6 animasi-kotak delay-200">
