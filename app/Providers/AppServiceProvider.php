@@ -99,11 +99,58 @@ class AppServiceProvider extends ServiceProvider
                 $view->with(['allUnits' => $allUnits, 'pusatUnits' => [], 'ldfUnits' => []]);
             }
 
-            // Bagikan Contact Person Footer
-            $contactPersons = \Illuminate\Support\Facades\Cache::get('contact_persons_footer', [
-                'PUSAT' => [['row_index' => 2, 'nama' => 'Naufal (Admin Kestari)', 'wa' => '6289655512211']],
-                'FAKULTAS' => []
-            ]);
+            // Bagikan Contact Person Footer (Auto-sync dari Google Sheets tiap 30 menit jika cache kosong/expired)
+            $contactPersons = \Illuminate\Support\Facades\Cache::remember('contact_persons_footer', now()->addMinutes(30), function () {
+                try {
+                    $service = new \App\Services\GoogleSheetService();
+                    $spreadsheetId = env('GSHEET_CP_ID');
+                    if (!$spreadsheetId) {
+                        return [
+                            'PUSAT' => [['row_index' => 2, 'nama' => 'Naufal (Admin Kestari)', 'wa' => '6289655512211']],
+                            'FAKULTAS' => []
+                        ];
+                    }
+
+                    $response = $service->getService()->spreadsheets_values->get($spreadsheetId, 'CP_siapdakwah_db!A2:C');
+                    $rows = $response->getValues() ?? [];
+
+                    $cpPusat = [];
+                    $cpFakultas = [];
+
+                    foreach ($rows as $index => $row) {
+                        $kategori = strtoupper(trim($row[0] ?? ''));
+                        $nama = trim($row[1] ?? '');
+                        $wa = trim($row[2] ?? '');
+                        $rowIndex = $index + 2; // Karena A2 mulai dari baris 2
+
+                        if ($nama && $wa) {
+                            $wa = preg_replace('/[^0-9]/', '', $wa);
+
+                            $cpData = [
+                                'row_index' => $rowIndex,
+                                'nama' => $nama,
+                                'wa' => $wa
+                            ];
+
+                            if ($kategori === 'PUSAT') {
+                                $cpPusat[] = $cpData;
+                            } elseif ($kategori === 'FAKULTAS') {
+                                $cpFakultas[] = $cpData;
+                            }
+                        }
+                    }
+
+                    return [
+                        'PUSAT' => $cpPusat,
+                        'FAKULTAS' => $cpFakultas
+                    ];
+                } catch (\Exception $e) {
+                    return [
+                        'PUSAT' => [['row_index' => 2, 'nama' => 'Naufal (Admin Kestari)', 'wa' => '6289655512211']],
+                        'FAKULTAS' => []
+                    ];
+                }
+            });
             $view->with('contactPersons', $contactPersons);
 
             // 4. THEME & LOGO (Khusus User Login)

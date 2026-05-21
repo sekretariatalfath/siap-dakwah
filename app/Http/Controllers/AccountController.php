@@ -18,6 +18,13 @@ class AccountController extends Controller
         $users = User::all();
         $currentUser = Auth::user();
         
+        // Auto-sync CP dari Google Sheets ketika masuk ke halaman pengaturan
+        try {
+            $this->syncCp();
+        } catch (\Exception $e) {
+            // Silently ignore agar tidak merusak halaman jika API error / offline
+        }
+        
         // Ambil status saklar langsung dari DB buat halaman pengaturan
         $setting = \Illuminate\Support\Facades\DB::table('settings')->where('key', 'auth_source')->first();
         $authSource = $setting ? $setting->value : 'database';
