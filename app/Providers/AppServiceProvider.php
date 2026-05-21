@@ -101,7 +101,7 @@ class AppServiceProvider extends ServiceProvider
 
             // Bagikan Contact Person Footer
             $contactPersons = \Illuminate\Support\Facades\Cache::get('contact_persons_footer', [
-                'PUSAT' => [['nama' => 'Naufal (Admin Kestari)', 'wa' => '6289655512211']],
+                'PUSAT' => [['row_index' => 2, 'nama' => 'Naufal (Admin Kestari)', 'wa' => '6289655512211']],
                 'FAKULTAS' => []
             ]);
             $view->with('contactPersons', $contactPersons);

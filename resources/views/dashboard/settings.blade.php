@@ -81,20 +81,43 @@
             </div>
 
             {{-- DANGER ZONE: Reset SPS --}}
+            {{-- MANAJEMEN KONTAK PERSON (FOOTER) --}}
             @if(Auth::user()->role == 'superadmin' || Auth::user()->unit == 'Kestari')
             <div class="bg-indigo-50 p-8 rounded-[40px] border border-indigo-100 mb-6 animasi-kotak delay-150">
-                <h3 class="text-sm font-black text-indigo-900 uppercase tracking-widest mb-2 flex items-center gap-2">
-                    🔄 Sync Kontak Person (Footer)
-                </h3>
-                <p class="text-[10px] text-indigo-700/70 font-medium leading-relaxed mb-6">
-                    Ambil data Kontak Person terbaru dari sheet <b>CP_siapdakwah_db</b> untuk memperbarui footer di semua halaman.
-                </p>
-                <form action="{{ route('settings.sync-cp') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="w-full py-4 bg-indigo-600 text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-xl shadow-indigo-200 hover:bg-indigo-700 transition-all">
-                        Sync Kontak
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-sm font-black text-indigo-900 uppercase tracking-widest flex items-center gap-2">
+                        📞 Kontak Person (Footer)
+                    </h3>
+                    <button onclick="document.getElementById('modalTambahCp').classList.remove('hidden')" class="px-3 py-1.5 bg-indigo-600 text-white rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-indigo-700 transition shadow-lg shadow-indigo-200">
+                        Tambah CP
                     </button>
-                </form>
+                </div>
+                
+                <div class="space-y-4">
+                    @foreach(['PUSAT', 'FAKULTAS'] as $kategori)
+                        @if(isset($contactPersons[$kategori]) && count($contactPersons[$kategori]) > 0)
+                            <div>
+                                <span class="text-[9px] font-black text-indigo-700 bg-indigo-100 px-2 py-0.5 rounded-full uppercase">{{ $kategori }}</span>
+                                <div class="mt-2 space-y-2">
+                                    @foreach($contactPersons[$kategori] as $cp)
+                                        <div class="flex justify-between items-center bg-white p-3 rounded-2xl border border-indigo-100 shadow-sm group">
+                                            <div>
+                                                <p class="text-[11px] font-black text-gray-900">{{ $cp['nama'] }}</p>
+                                                <p class="text-[9px] text-gray-500 font-bold">+{{ $cp['wa'] }}</p>
+                                            </div>
+                                            <form action="{{ route('settings.destroy-cp', $cp['row_index']) }}" method="POST" onsubmit="return confirm('Hapus Kontak Person ini dari website dan Google Sheets?')">
+                                                @csrf @method('DELETE')
+                                                <button type="submit" class="p-2 text-gray-400 hover:text-red-600 transition-all opacity-0 group-hover:opacity-100">
+                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
             </div>
 
             <div class="bg-amber-50 p-8 rounded-[40px] border border-amber-100 mb-6 animasi-kotak delay-200">
@@ -281,4 +304,37 @@
         document.getElementById('modalReset').classList.remove('hidden');
     }
 </script>
+
+{{-- MODAL TAMBAH CP --}}
+<div id="modalTambahCp" class="fixed inset-0 bg-gray-900/40 backdrop-blur-md hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-[40px] p-10 w-full max-w-md shadow-2xl border border-gray-100">
+        <h3 class="text-xl font-black text-gray-900 uppercase tracking-tight mb-2">Tambah Kontak Person</h3>
+        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-8">Otomatis sinkron dengan Google Sheets</p>
+        
+        <form action="{{ route('settings.store-cp') }}" method="POST" class="space-y-4">
+            @csrf
+            <div>
+                <label class="text-[10px] font-bold text-gray-400 uppercase ml-1 tracking-widest">Kategori Kontak</label>
+                <select name="kategori" required class="w-full mt-1.5 p-4 rounded-2xl bg-gray-50 border-none focus:ring-2 focus:ring-indigo-600 transition-all outline-none text-sm font-bold">
+                    <option value="PUSAT">Pusat Bantuan Utama</option>
+                    <option value="FAKULTAS">Bantuan Fakultas</option>
+                </select>
+            </div>
+            <div>
+                <label class="text-[10px] font-bold text-gray-400 uppercase ml-1 tracking-widest">Nama Lengkap / Jabatan</label>
+                <input type="text" name="nama" required placeholder="Contoh: Naufal (Admin)" class="w-full mt-1.5 p-4 rounded-2xl bg-gray-50 border-none focus:ring-2 focus:ring-indigo-600 transition-all outline-none text-sm font-bold">
+            </div>
+            <div>
+                <label class="text-[10px] font-bold text-gray-400 uppercase ml-1 tracking-widest">Nomor WhatsApp</label>
+                <input type="text" name="wa" required placeholder="Contoh: 628123456789" class="w-full mt-1.5 p-4 rounded-2xl bg-gray-50 border-none focus:ring-2 focus:ring-indigo-600 transition-all outline-none text-sm font-bold">
+                <p class="text-[9px] text-gray-400 mt-2 ml-1">* Awali dengan 62 tanpa tanda plus (+).</p>
+            </div>
+            
+            <div class="flex gap-4 pt-6">
+                <button type="button" onclick="document.getElementById('modalTambahCp').classList.add('hidden')" class="flex-1 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest hover:bg-gray-50 rounded-2xl transition">Batal</button>
+                <button type="submit" class="flex-1 py-4 bg-indigo-600 text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-xl hover:bg-indigo-700 transition-all">Simpan CP</button>
+            </div>
+        </form>
+    </div>
+</div>
 @endsection

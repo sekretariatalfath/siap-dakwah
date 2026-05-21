@@ -224,7 +224,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/dashboard/settings/purge-sps', [AccountController::class, 'purgeSps'])->name('settings.purge-sps');
     Route::post('/dashboard/settings/hard-reset', [AccountController::class, 'hardReset'])->name('settings.hard-reset');
     Route::post('/dashboard/settings/toggle-auth', [AccountController::class, 'toggleAuthSource'])->name('settings.toggle-auth');
-    Route::post('/dashboard/settings/sync-cp', [AccountController::class, 'syncCp'])->name('settings.sync-cp');
+    Route::post('/dashboard/settings/cp/store', [AccountController::class, 'storeCp'])->name('settings.store-cp');
+    Route::delete('/dashboard/settings/cp/{rowIndex}', [AccountController::class, 'destroyCp'])->name('settings.destroy-cp');
 });
 
 Route::get('/gas-pol-storage', function () {

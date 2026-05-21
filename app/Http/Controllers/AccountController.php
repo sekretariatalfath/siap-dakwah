@@ -216,9 +216,9 @@ class AccountController extends Controller
     /**
      * SYNC CONTACT PERSON (CP) DARI GOOGLE SHEETS
      */
-    public function syncCp(Request $request)
+    public function syncCp(Request $request = null)
     {
-        if (Auth::user()->role !== 'superadmin' && Auth::user()->unit !== 'Biro Kesekretariatan') {
+        if ($request && Auth::user()->role !== 'superadmin' && Auth::user()->unit !== 'Biro Kesekretariatan') {
             abort(403);
         }
 
@@ -226,23 +226,23 @@ class AccountController extends Controller
             $service = new GoogleSheetService();
             $spreadsheetId = env('GSHEET_CP_ID');
 
-            // Ambil data dari sheet CP_siapdakwah_db
             $response = $service->getService()->spreadsheets_values->get($spreadsheetId, 'CP_siapdakwah_db!A2:C');
             $rows = $response->getValues() ?? [];
 
             $cpPusat = [];
             $cpFakultas = [];
 
-            foreach ($rows as $row) {
+            foreach ($rows as $index => $row) {
                 $kategori = strtoupper(trim($row[0] ?? ''));
                 $nama = trim($row[1] ?? '');
                 $wa = trim($row[2] ?? '');
+                $rowIndex = $index + 2; // Karena A2 mulai dari baris 2
 
                 if ($nama && $wa) {
-                    // Pastikan format WA benar
                     $wa = preg_replace('/[^0-9]/', '', $wa);
 
                     $cpData = [
+                        'row_index' => $rowIndex,
                         'nama' => $nama,
                         'wa' => $wa
                     ];
@@ -260,12 +260,73 @@ class AccountController extends Controller
                 'FAKULTAS' => $cpFakultas
             ];
 
-            // Simpan ke Cache selama 1 Bulan (atau sampai tombol ditekan lagi)
             \Illuminate\Support\Facades\Cache::put('contact_persons_footer', $contactPersons, now()->addDays(30));
 
-            return back()->with('success', 'Kontak Person berhasil disinkronisasi dari Google Sheets!');
+            if ($request) {
+                return back()->with('success', 'Kontak Person berhasil disinkronisasi dari Google Sheets!');
+            }
         } catch (\Exception $e) {
-            return back()->with('error', 'Gagal sinkronisasi CP: ' . $e->getMessage());
+            if ($request) {
+                return back()->with('error', 'Gagal sinkronisasi CP: ' . $e->getMessage());
+            }
+        }
+    }
+
+    /**
+     * STORE CP BARU
+     */
+    public function storeCp(Request $request)
+    {
+        if (Auth::user()->role !== 'superadmin' && Auth::user()->unit !== 'Biro Kesekretariatan') {
+            abort(403);
+        }
+
+        $request->validate([
+            'kategori' => 'required|in:PUSAT,FAKULTAS',
+            'nama' => 'required|string',
+            'wa' => 'required|string'
+        ]);
+
+        try {
+            $service = new GoogleSheetService();
+            $spreadsheetId = env('GSHEET_CP_ID');
+
+            // Append to Google Sheets
+            $values = [$request->kategori, $request->nama, $request->wa];
+            $service->appendSheet($spreadsheetId, 'CP_siapdakwah_db!A2:C', $values);
+
+            // Resync cache
+            $this->syncCp();
+
+            return back()->with('success', 'Kontak Person berhasil ditambahkan dan disimpan ke SPS!');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Gagal menyimpan CP: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * HAPUS CP
+     */
+    public function destroyCp($rowIndex)
+    {
+        if (Auth::user()->role !== 'superadmin' && Auth::user()->unit !== 'Biro Kesekretariatan') {
+            abort(403);
+        }
+
+        try {
+            $service = new GoogleSheetService();
+            $spreadsheetId = env('GSHEET_CP_ID');
+
+            // Hapus isi baris tersebut dengan mengosongkan cell-nya (A-C)
+            // Menggunakan updateCell untuk mereplace dengan string kosong
+            $service->updateCell($spreadsheetId, "CP_siapdakwah_db!A{$rowIndex}:C{$rowIndex}", ['', '', '']);
+
+            // Resync cache (baris kosong otomatis di-skip oleh syncCp)
+            $this->syncCp();
+
+            return back()->with('success', 'Kontak Person berhasil dihapus!');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Gagal menghapus CP: ' . $e->getMessage());
         }
     }
 }
