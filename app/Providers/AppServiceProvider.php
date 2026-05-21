@@ -72,7 +72,7 @@ class AppServiceProvider extends ServiceProvider
                 $dbUnits = array_map($formatUnit, $dbUnitsRaw);
                 
                 // Tambahan wajihah manual
-                $manualWajihah = ['PRISMA', 'Badan Mentoring (BM)', 'DKM Syamsul \'Ulum', 'LAZISSU', 'MQ'];
+                $manualWajihah = ['PRISMA', 'Badan Mentoring (BM)', 'DKM Syamsul \'Ulum', 'LAZISSU', 'MQ', 'Departemen Inti'];
                 $allUnits = array_unique(array_merge($dbUnits, $manualWajihah));
                 sort($allUnits);
                 
