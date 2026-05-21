@@ -12,7 +12,7 @@
             {{-- Statistik Realisasi --}}
             <div class="grid grid-cols-3 gap-4">
                 <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100">
-                    <p class="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">Peserta Hadir</p>
+                    <p class="text-[8px] font-black text-gray-700 uppercase tracking-widest mb-1">Peserta Hadir</p>
                     <p id="pre_peserta" class="text-sm font-black text-gray-900">0</p>
                 </div>
                 <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-100">
@@ -28,11 +28,11 @@
             {{-- Narasi --}}
             <div class="space-y-4">
                 <div>
-                    <label class="text-[9px] font-black text-gray-400 uppercase tracking-widest">Ketercapaian Tujuan</label>
+                    <label class="text-[9px] font-black text-gray-700 uppercase tracking-widest">Ketercapaian Tujuan</label>
                     <p id="pre_tujuan" class="mt-1 text-xs font-bold text-gray-700 leading-relaxed bg-gray-50 p-4 rounded-2xl">--</p>
                 </div>
                 <div>
-                    <label class="text-[9px] font-black text-gray-400 uppercase tracking-widest">Realisasi Sasaran</label>
+                    <label class="text-[9px] font-black text-gray-700 uppercase tracking-widest">Realisasi Sasaran</label>
                     <p id="pre_sasaran" class="mt-1 text-xs font-bold text-gray-700 leading-relaxed bg-gray-50 p-4 rounded-2xl">--</p>
                 </div>
             </div>

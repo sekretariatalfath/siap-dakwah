@@ -129,7 +129,7 @@ class EvaluasiController extends Controller
                 '[tgl Mulai Acara] - [tgl Akhir Acara]' => $periode,
                 '[Lokasi Kegiatan]' => strtoupper($request->tempat_kegiatan ?? '-'),
                 '[Tempat Evaluasi]' => strtoupper($request->tempat_evaluasi),
-                '[Nama Lengkap Pimpinan Evaluasi]' => $request->pimpinan_evaluasi,
+                '[Nama Lengkap Pimpinan Evaluasi]' => strtoupper($request->pimpinan_evaluasi),
                 '[Nama Lengkap Ketua Pelaksana]' => strtoupper($request->ketuplak),
                 '[Nama Lengkap Sekretaris Proker]' => strtoupper($request->sekre_proker),
             ];

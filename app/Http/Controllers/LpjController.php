@@ -90,8 +90,7 @@ class LpjController extends Controller
             'realisasi_anggaran'  => (int)$request->realisasi_anggaran,
             'link_lpj_pdf'        => $request->link_lpj_pdf,
             'link_dokumentasi'    => $request->link_dokumentasi,
-            'link_evaluasi'       => $request->link_evaluasi,
-            'is_checked'          => false
+            'link_evaluasi'       => $request->link_evaluasi
         ]);
 
         // 2. Sync ke Google Sheets (Cloud)
@@ -131,8 +130,8 @@ class LpjController extends Controller
             $body = new ValueRange(['values' => [['TRUE']]]);
             $service->spreadsheets_values->update($this->spreadsheetId, "Lpj_db!M$targetRow", $body, ['valueInputOption' => 'RAW']);
 
-            // Sync ke lokal (Opsional)
-            Lpj::where('id_lpj', $id_lpj)->update(['is_checked' => true]);
+            // Update status lokal
+            Lpj::where('id_lpj', $id_lpj)->update(['is_checked' => \Illuminate\Support\Facades\DB::raw('true')]);
 
             return back()->with('success', 'LPJ Berhasil Diverifikasi!');
         } catch (\Exception $e) {

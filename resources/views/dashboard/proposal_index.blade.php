@@ -8,7 +8,7 @@
     {{-- 1. HEADER AREA --}}
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
         <div>
-            <nav class="flex gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-gray-400 mb-3">
+            <nav class="flex gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-gray-600 mb-3">
                 
                 <span>/</span>
                 <span class="{{ $theme['text'] }}">Proposal Management</span>
@@ -33,7 +33,7 @@
     {{-- 2. STATS OVERVIEW (Optional but Cinematic) --}}
     <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <div class="bg-white p-5 rounded-[24px] border border-gray-100 shadow-sm animasi-kotak">
-            <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest">Total Pengajuan</p>
+            <p class="text-[9px] font-black text-gray-600 uppercase tracking-widest">Total Pengajuan</p>
             <p class="text-2xl font-black text-gray-900">{{ $dataProposal->count() }}</p>
         </div>
         <div class="bg-white p-5 rounded-[24px] border border-gray-100 shadow-sm animasi-kotak delay-100">
@@ -60,7 +60,7 @@
                         <tr class="hover:bg-gray-50/80 transition-all group">
                             {{-- Kolom Status --}}
                             <td class="px-8 py-7">
-                                <p class="text-[10px] font-bold text-gray-400 mb-2">{{ $p->tgl_input }}</p>
+                                <p class="text-[10px] font-bold text-gray-600 mb-2">{{ $p->tgl_input }}</p>
                                 @if($p->is_checked)
                                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-black bg-emerald-100 text-emerald-700 border border-emerald-200 uppercase tracking-tighter">
                                         <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -85,14 +85,14 @@
                                     <span class="text-[8px] font-black px-2 py-0.5 rounded bg-gray-900 text-white tracking-[0.2em] uppercase">
                                         {{ $p->bentuk_kegiatan }}
                                     </span>
-                                    <span class="text-[9px] text-gray-400 font-bold uppercase tracking-tighter italic">
+                                    <span class="text-[9px] text-gray-600 font-bold uppercase tracking-tighter italic">
                                         dilaksanakan di {{ $p->tempat }}
                                     </span>
                                 </div>
 
                                 <div class="mt-4 flex items-center gap-3">
-                                    <span class="text-[9px] font-black text-gray-400 bg-gray-100 px-2 py-1 rounded-lg uppercase">Target: {{ $p->target_peserta }} Mhs</span>
-                                    <span class="text-[9px] font-black text-gray-400 bg-gray-100 px-2 py-1 rounded-lg uppercase">{{ $p->pemohon }}</span>
+                                    <span class="text-[9px] font-black text-gray-600 bg-gray-100 px-2 py-1 rounded-lg uppercase">Target: {{ $p->target_peserta }} Mhs</span>
+                                    <span class="text-[9px] font-black text-gray-600 bg-gray-100 px-2 py-1 rounded-lg uppercase">{{ $p->pemohon }}</span>
                                 </div>
                             </td>
 
@@ -119,7 +119,7 @@
                                     @if(Auth::user()->role == 'superadmin')
                                     <form action="{{ route('proposal.toggle', $p->proposal_id) }}" method="POST" class="inline">
                                         @csrf
-                                        <button type="submit" class="p-2.5 rounded-xl transition-all {{ $p->is_checked ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-900/20' : 'bg-gray-100 text-gray-400 hover:bg-emerald-600 hover:text-white' }}">
+                                        <button type="submit" class="p-2.5 rounded-xl transition-all {{ $p->is_checked ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-900/20' : 'bg-gray-100 text-gray-600 hover:bg-emerald-600 hover:text-white' }}">
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
                                         </button>
                                     </form>
@@ -148,7 +148,7 @@
                                     </div>
                                     <div class="space-y-2">
                                         <h3 class="text-xl font-black text-gray-900 uppercase tracking-tighter">Arsip Masih Kosong</h3>
-                                        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em]">Belum ada pengajuan proposal yang tercatat di sistem.</p>
+                                        <p class="text-[10px] text-gray-600 font-bold uppercase tracking-[0.2em]">Belum ada pengajuan proposal yang tercatat di sistem.</p>
                                     </div>
                                     <button onclick="openProposalModal()" class="px-6 py-3 bg-gray-900 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-red-900 transition-all shadow-lg shadow-gray-900/20 active:scale-95">
                                         Mulai Ajukan Sekarang

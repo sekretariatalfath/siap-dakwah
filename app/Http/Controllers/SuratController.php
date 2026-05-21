@@ -111,7 +111,7 @@ class SuratController extends Controller
                     'bulan_romawi' => $bulanRomawi,
                     'tahun' => $tahun,
                     'perihal' => $request->perihal,
-                    'penyelenggara' => $request->penyelenggara,
+                    'penyelenggara' => strtoupper($request->penyelenggara),
                     'catatan' => $request->catatan ?? '',
                     'link_drive' => '-',
                     'batch_id' => $batchId
@@ -123,7 +123,7 @@ class SuratController extends Controller
                     $detail,
                     $nama_acara, $fakultas, $bidang,
                     Auth::user()->unit, $nama_pengisi, date('d/m/Y H:i'),
-                    $currentGlobal, $bulanRomawi, $tahun, $request->perihal, $request->penyelenggara,
+                    $currentGlobal, $bulanRomawi, $tahun, $request->perihal, strtoupper($request->penyelenggara),
                     $request->catatan ?? '', '-', $batchId
                 ];
             }

@@ -71,8 +71,9 @@ class AppServiceProvider extends ServiceProvider
 
                 $dbUnits = array_map($formatUnit, $dbUnitsRaw);
                 
-                // Gabungkan & Urutkan
-                $allUnits = array_unique($dbUnits);
+                // Tambahan wajihah manual
+                $manualWajihah = ['PRISMA', 'Badan Mentoring (BM)', 'DKM Syamsul \'Ulum', 'LAZISSU', 'MQ'];
+                $allUnits = array_unique(array_merge($dbUnits, $manualWajihah));
                 sort($allUnits);
                 
                 // Pisahkan untuk Nomor Surat
@@ -81,7 +82,7 @@ class AppServiceProvider extends ServiceProvider
                 foreach($allUnits as $u) {
                     if(str_contains(strtoupper($u), 'LDF') || str_contains(strtoupper($u), 'FAKULTAS')) {
                         $ldfUnits[] = $u;
-                    } else {
+                    } else if (!in_array($u, $manualWajihah)) {
                         $pusatUnits[] = $u;
                     }
                 }

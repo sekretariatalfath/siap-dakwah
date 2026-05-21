@@ -30,7 +30,7 @@
             <p class="text-gray-500 font-medium mt-2 text-sm">
                 Sistem Informasi Administrasi <span class="text-red-600 font-bold bg-red-50 px-2 py-0.5 rounded">Pejuang Dakwah</span>
             </p>
-            <p class="text-[10px] text-gray-400 mt-2 uppercase tracking-widest font-bold">LDK Al-Fath Telkom University</p>
+            <p class="text-[10px] text-gray-600 mt-2 uppercase tracking-widest font-bold">LDK Al-Fath Telkom University</p>
         </div>
 
         {{-- ALERT ERROR --}}
@@ -60,7 +60,7 @@
         </form>
 
         <div class="mt-8 pt-6 border-t border-gray-100 text-center">
-            <a href="/" class="text-xs text-gray-400 hover:text-red-600 transition font-medium flex items-center justify-center gap-1 group">
+            <a href="/" class="text-xs text-gray-600 hover:text-red-600 transition font-medium flex items-center justify-center gap-1 group">
                 <span class="group-hover:-translate-x-1 transition">←</span> Kembali ke Halaman Depan
             </a>
         </div>

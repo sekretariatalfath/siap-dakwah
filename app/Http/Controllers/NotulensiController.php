@@ -114,8 +114,8 @@ class NotulensiController extends Controller
                 '[JUDUL SYURO]'           => strtoupper($request->judul_syuro),
                 '[Hari, Tgl Bulan Tahun]'  => $tgl->isoFormat('dddd, D MMMM Y'),
                 '[XX.XX s.d. XX.XX WIB]'  => $tgl->format('H:i') . ' s.d. Selesai WIB',
-                '[Tempat/Platfom]'        => $request->tempat,
-                '[Nama Pimpinan]'         => $request->pimpinan_rapat,
+                '[Tempat/Platfom]'        => strtoupper($request->tempat),
+                '[Nama Pimpinan]'         => strtoupper($request->pimpinan_rapat),
                 '[Link Drive PDF]'        => '[Link Drive PDF]', 
             ];
 
@@ -135,11 +135,11 @@ class NotulensiController extends Controller
 
             Notulensi::create([
                 'unit_owner' => $user->unit,
-                'judul_syuro' => $request->judul_syuro,
-                'pimpinan_rapat' => $request->pimpinan_rapat,
-                'kategori' => $request->kategori,
+                'judul_syuro' => strtoupper($request->judul_syuro),
+                'pimpinan_rapat' => strtoupper($request->pimpinan_rapat),
+                'kategori' => strtoupper($request->kategori),
                 'waktu_mulai' => $request->waktu_mulai,
-                'tempat' => $request->tempat,
+                'tempat' => strtoupper($request->tempat),
                 'link_google_docs' => "https://docs.google.com/document/d/$newFileId/edit",
                 'google_drive_file_id' => $newFileId,
             ]);

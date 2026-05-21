@@ -38,20 +38,20 @@
                     
                     <div>
                         <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Nomor Surat Asli <span class="text-red-500">*</span></label>
-                        <input type="text" name="no_surat" value="{{ old('no_surat') }}" placeholder="Contoh: 001/A/ALFATH/X/2026" class="w-full border-gray-300 rounded-lg text-sm {{ $theme['ring'] }} py-2.5 @error('no_surat') border-red-500 @enderror" required>
+                        <input type="text" name="no_surat" value="{{ old('no_surat') }}" placeholder="Contoh: 001/A/ALFATH/X/2026" class="w-full bg-gray-50 border border-gray-200 rounded-lg text-sm {{ $theme['ring'] }} py-2.5 @error('no_surat') border-red-500 @enderror" required>
                         @error('no_surat') <p class="text-red-600 text-[10px] mt-1 font-bold">{{ $message }}</p> @enderror
                     </div>
 
                     <div>
                         <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Pengirim / Instansi <span class="text-red-500">*</span></label>
-                        <input type="text" name="pengirim" value="{{ old('pengirim') }}" placeholder="Sebutkan nama instansi pengirim" class="w-full border-gray-300 rounded-lg text-sm {{ $theme['ring'] }} py-2.5" required>
+                        <input type="text" name="pengirim" value="{{ old('pengirim') }}" placeholder="Sebutkan Nama Instansi Pengirim" class="w-full bg-gray-50 border border-gray-200 rounded-lg text-sm {{ $theme['ring'] }} py-2.5 uppercase" required>
                     </div>
 
                     {{-- KONTAK DINAMIS --}}
                     <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
                         <label class="block text-xs font-bold text-gray-700 uppercase mb-2">Kontak Pengirim <span class="text-red-500">*</span></label>
                         
-                        <select name="jenis_kontak" id="jenis_kontak" onchange="toggleKontak()" class="w-full border-gray-300 rounded-lg text-sm mb-3 cursor-pointer {{ $theme['ring'] }} py-2.5" required>
+                        <select name="jenis_kontak" id="jenis_kontak" onchange="toggleKontak()" class="w-full bg-white border border-gray-200 rounded-lg text-sm mb-3 cursor-pointer {{ $theme['ring'] }} py-2.5" required>
                             <option value="" disabled {{ old('jenis_kontak') == '' ? 'selected' : '' }}>-- Pilih Jenis Kontak --</option>
                             <option value="WHATSAPP" {{ old('jenis_kontak') == 'WHATSAPP' ? 'selected' : '' }}>WhatsApp / Telepon</option>
                             <option value="EMAIL" {{ old('jenis_kontak') == 'EMAIL' ? 'selected' : '' }}>Email</option>
@@ -60,43 +60,43 @@
                         </select>
 
                         <div id="box-wa" class="{{ in_array(old('jenis_kontak'), ['WHATSAPP', 'KEDUANYA']) ? '' : 'hidden' }} mb-3">
-                            <input type="number" name="input_wa" value="{{ old('input_wa') }}" placeholder="Nomor WhatsApp (Misal: 0812xxxxxxxx)" class="w-full border-gray-300 rounded text-sm bg-white {{ $theme['ring'] }} py-2">
+                            <input type="number" name="input_wa" value="{{ old('input_wa') }}" placeholder="Nomor WhatsApp (Misal: 0812xxxxxxxx)" class="w-full border border-gray-200 rounded text-sm bg-white {{ $theme['ring'] }} py-2">
                         </div>
                         
                         <div id="box-email" class="{{ in_array(old('jenis_kontak'), ['EMAIL', 'KEDUANYA']) ? '' : 'hidden' }}">
-                            <input type="email" name="input_email" value="{{ old('input_email') }}" placeholder="Alamat Email Aktif" class="w-full border-gray-300 rounded text-sm bg-white {{ $theme['ring'] }} py-2">
+                            <input type="email" name="input_email" value="{{ old('input_email') }}" placeholder="Alamat Email Aktif" class="w-full border border-gray-200 rounded text-sm bg-white {{ $theme['ring'] }} py-2">
                         </div>
                     </div>
 
                     <div>
                         <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Nama Kegiatan (Opsional)</label>
-                        <input type="text" name="nama_kegiatan" value="{{ old('nama_kegiatan') }}" placeholder="Sebutkan nama kegiatan jika ada" class="w-full border-gray-300 rounded-lg text-sm {{ $theme['ring'] }} py-2.5">
+                        <input type="text" name="nama_kegiatan" value="{{ old('nama_kegiatan') }}" placeholder="Sebutkan Nama Kegiatan Jika Ada" class="w-full bg-gray-50 border border-gray-200 rounded-lg text-sm {{ $theme['ring'] }} py-2.5 uppercase">
                     </div>
 
                     <div>
                         <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Perihal Surat <span class="text-red-500">*</span></label>
-                        <textarea name="perihal" placeholder="Jelaskan secara ringkas maksud surat yang diterima..." rows="2" class="w-full border-gray-300 rounded-lg text-sm {{ $theme['ring'] }} @error('perihal') border-red-500 @enderror" required>{{ old('perihal') }}</textarea>
+                        <textarea name="perihal" placeholder="Jelaskan secara ringkas maksud surat yang diterima..." rows="2" class="w-full bg-gray-50 border border-gray-200 rounded-lg text-sm {{ $theme['ring'] }} @error('perihal') border-red-500 @enderror" required>{{ old('perihal') }}</textarea>
                     </div>
 
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1">Ditujukan Kepada <span class="text-red-500">*</span></label>
-                            <input type="text" name="ditujukan_kepada" value="{{ old('ditujukan_kepada', 'LDK Al-Fath') }}" class="w-full border-gray-300 rounded-lg text-xs py-2" required>
+                            <input type="text" name="ditujukan_kepada" value="{{ old('ditujukan_kepada', 'LDK Al-Fath') }}" class="w-full bg-gray-50 border border-gray-200 rounded-lg text-xs py-2 uppercase" required>
                         </div>
                         <div>
                             <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1">Tanggal Terima <span class="text-red-500">*</span></label>
-                            <input type="date" name="tgl_terima" value="{{ old('tgl_terima', date('Y-m-d')) }}" class="w-full border-gray-300 rounded-lg text-xs py-2" required>
+                            <input type="date" name="tgl_terima" value="{{ old('tgl_terima', date('Y-m-d')) }}" class="w-full bg-gray-50 border border-gray-200 rounded-lg text-xs py-2" required>
                         </div>
                     </div>
 
                     <div>
                         <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Penerima Surat <span class="text-red-500">*</span></label>
-                        <input type="text" name="penerima_fisik" value="{{ old('penerima_fisik', Auth::user()->name) }}" class="w-full border-gray-300 rounded-lg text-sm bg-gray-50 py-2.5" required>
+                        <input type="text" name="penerima_fisik" value="{{ old('penerima_fisik', Auth::user()->name) }}" class="w-full bg-gray-50 border border-gray-200 rounded-lg text-sm py-2.5 uppercase" required>
                     </div>
 
                     <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
                         <label class="block text-xs font-bold text-blue-800 uppercase mb-1">Tautan (Link) Google Drive <span class="text-red-500">*</span></label>
-                        <input type="url" name="link_drive" value="{{ old('link_drive') }}" placeholder="Tempelkan link folder atau file hasil scan surat" class="w-full border-blue-300 rounded-lg text-sm focus:ring-blue-500 py-2.5" required>
+                        <input type="url" name="link_drive" value="{{ old('link_drive') }}" placeholder="Tempelkan Link Folder atau File Hasil Scan Surat" class="w-full bg-white border border-blue-300 rounded-lg text-sm focus:ring-blue-500 py-2.5" required>
                         <p class="text-[9px] text-blue-600 mt-2 font-bold italic">💡 Tips: Pastikan akses file di Drive sudah diatur ke "Anyone with the link".</p>
                         @error('link_drive') <p class="text-red-600 text-[10px] mt-1 font-bold">{{ $message }}</p> @enderror
                     </div>

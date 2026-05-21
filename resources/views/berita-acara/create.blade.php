@@ -39,12 +39,12 @@
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
-                        <label class="block text-[10px] font-black text-gray-400 uppercase mb-1.5 ml-1 tracking-widest">Email Pembuat <span class="text-red-500">*</span></label>
-                        <input type="email" name="email_pembuat" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-xl {{ $theme['ring'] }} focus:border-red-500 transition shadow-sm text-xs md:text-sm py-2.5 px-4" placeholder="Email" required>
+                        <label class="block text-[10px] font-black text-gray-700 uppercase mb-1.5 ml-1 tracking-widest">Email Pembuat <span class="text-red-500">*</span></label>
+                        <input type="email" name="email_pembuat" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-xl focus:ring-2 focus:ring-red-800 focus:border-red-500 transition shadow-sm text-xs md:text-sm py-2.5 px-4" placeholder="Email" required>
                     </div>
                     <div>
-                        <label class="block text-[10px] font-black text-gray-400 uppercase mb-1.5 ml-1 tracking-widest">Departemen <span class="text-red-500">*</span></label>
-                        <select name="asal_departemen" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-xl {{ $theme['ring'] }} focus:border-red-500 transition shadow-sm text-xs md:text-sm py-2.5 px-4" required>
+                        <label class="block text-[10px] font-black text-gray-700 uppercase mb-1.5 ml-1 tracking-widest">Departemen <span class="text-red-500">*</span></label>
+                        <select name="asal_departemen" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-xl focus:ring-2 focus:ring-red-800 focus:border-red-500 transition shadow-sm text-xs md:text-sm py-2.5 px-4" required>
                             <option value="" disabled selected>-- Pilih --</option>
                             @foreach($allUnits as $unit)
                                 <option value="{{ $unit }}">{{ $unit }}</option>
@@ -52,8 +52,8 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-[10px] font-black text-gray-400 uppercase mb-1.5 ml-1 tracking-widest">Penyelenggara <span class="text-red-500">*</span></label>
-                        <input type="text" name="penyelenggara" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-xl {{ $theme['ring'] }} focus:border-red-500 transition shadow-sm text-xs md:text-sm py-3 px-4" placeholder="Panitia Pelaksana" required>
+                        <label class="block text-[10px] font-black text-gray-700 uppercase mb-1.5 ml-1 tracking-widest">Penyelenggara <span class="text-red-500">*</span></label>
+                        <input type="text" name="penyelenggara" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-xl focus:ring-2 focus:ring-red-800 focus:border-red-500 transition shadow-sm text-xs md:text-sm py-3 px-4 uppercase" placeholder="Panitia Pelaksana" required>
                     </div>
                 </div>
             </div>
@@ -66,46 +66,46 @@
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div class="md:col-span-2 lg:col-span-4">
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Nama Kegiatan <span class="text-red-500">*</span></label>
-                        <input type="text" name="nama_kegiatan" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-lg" placeholder="Masukkan nama lengkap kegiatan" required>
+                        <label class="block text-[10px] font-black text-gray-700 uppercase mb-1.5 ml-1 tracking-widest">Nama Kegiatan <span class="text-red-500">*</span></label>
+                        <input type="text" name="nama_kegiatan" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-lg py-3 px-4 focus:ring-2 focus:ring-red-800 text-xs md:text-sm uppercase" placeholder="Masukkan nama lengkap kegiatan" required>
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Tanggal Kegiatan <span class="text-red-500">*</span></label>
-                        <input type="date" name="tanggal_kegiatan" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-lg" required>
+                        <label class="block text-[10px] font-black text-gray-700 uppercase mb-1.5 ml-1 tracking-widest">Tanggal Kegiatan <span class="text-red-500">*</span></label>
+                        <input type="date" name="tanggal_kegiatan" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-lg py-3 px-4 focus:ring-2 focus:ring-red-800 text-xs md:text-sm" required>
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Jam Selesai <span class="text-red-500">*</span></label>
-                        <input type="time" name="jam_selesai" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-lg" required>
+                        <label class="block text-[10px] font-black text-gray-700 uppercase mb-1.5 ml-1 tracking-widest">Jam Selesai <span class="text-red-500">*</span></label>
+                        <input type="time" name="jam_selesai" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-lg py-3 px-4 focus:ring-2 focus:ring-red-800 text-xs md:text-sm" required>
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Kota Pelaksanaan</label>
-                        <input type="text" name="kota" value="Bandung" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-lg" required>
+                        <label class="block text-[10px] font-black text-gray-700 uppercase mb-1.5 ml-1 tracking-widest">Kota Pelaksanaan</label>
+                        <input type="text" name="kota" value="Bandung" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-lg py-3 px-4 focus:ring-2 focus:ring-red-800 text-xs md:text-sm uppercase" required>
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Jml Peserta (Org)</label>
-                        <input type="number" name="jumlah_peserta" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-lg" placeholder="0" required>
+                        <label class="block text-[10px] font-black text-gray-700 uppercase mb-1.5 ml-1 tracking-widest">Jml Peserta (Org)</label>
+                        <input type="number" name="jumlah_peserta" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-lg py-3 px-4 focus:ring-2 focus:ring-red-800 text-xs md:text-sm" placeholder="0" required>
                     </div>
                     <div class="md:col-span-2 lg:col-span-4">
-                        <label class="block text-[10px] font-black text-gray-400 uppercase mb-1.5 ml-1 tracking-widest">Tempat Pelaksanaan <span class="text-red-500">*</span></label>
-                        <input type="text" name="tempat" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-xl text-xs md:text-sm py-3 px-4" placeholder="GSG / Zoom" required>
+                        <label class="block text-[10px] font-black text-gray-700 uppercase mb-1.5 ml-1 tracking-widest">Tempat Pelaksanaan <span class="text-red-500">*</span></label>
+                        <input type="text" name="tempat" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-xl focus:ring-2 focus:ring-red-800 text-xs md:text-sm py-3 px-4 uppercase" placeholder="GSG / Zoom" required>
                     </div>
                 </div>
             </div>
 
             {{-- C. ISI & DOKUMENTASI --}}
             <div class="space-y-6">
-                <h3 class="text-lg font-bold text-gray-800 border-b-2 border-red-100 pb-2 flex items-center">
-                    <span class="bg-red-100 {{ $theme['text'] }} py-1 px-3 rounded-md text-sm font-extrabold mr-3">C</span> 
+                <h3 class="text-base md:text-lg font-black text-gray-800 border-b-2 border-red-100 pb-2 flex items-center uppercase tracking-tight">
+                    <span class="bg-red-100 {{ $theme['text'] }} py-1 px-3 rounded-md text-xs font-black mr-3">C</span> 
                     Isi & Dokumentasi
                 </h3>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div>
-                        <label class="block text-[10px] font-black text-gray-500 uppercase mb-2 tracking-widest">Tautan Rundown <span class="text-red-500">*</span></label>
-                        <input type="url" name="rangkaian_kegiatan" class="w-full bg-white border-gray-300 text-gray-900 rounded-xl text-xs md:text-sm py-3 px-4" placeholder="Link Drive/Spreadsheet" required>
+                        <label class="block text-[10px] font-black text-gray-700 uppercase mb-1.5 ml-1 tracking-widest">Tautan Rundown <span class="text-red-500">*</span></label>
+                        <input type="url" name="rangkaian_kegiatan" class="w-full bg-white border-gray-300 text-gray-900 rounded-xl focus:ring-2 focus:ring-red-800 text-xs md:text-sm py-3 px-4" placeholder="Link Drive/Spreadsheet" required>
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Tautan Dokumentasi <span class="text-red-500">*</span></label>
-                        <input type="url" name="link_dokumentasi" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-xl text-xs md:text-sm" placeholder="Link folder dokumentasi" required>
+                        <label class="block text-[10px] font-black text-gray-700 uppercase mb-1.5 ml-1 tracking-widest">Tautan Dokumentasi <span class="text-red-500">*</span></label>
+                        <input type="url" name="link_dokumentasi" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-xl focus:ring-2 focus:ring-red-800 text-xs md:text-sm py-3 px-4" placeholder="Link folder dokumentasi" required>
                         <p class="text-[9px] text-emerald-600 mt-2 font-bold italic uppercase tracking-wider">💡 Pastikan akses "Anyone with the link".</p>
                     </div>
                 </div>
@@ -122,12 +122,12 @@
                         <h4 class="font-bold text-red-700 border-b border-gray-100 pb-2 mb-4">Ketua Pelaksana</h4>
                         <div class="space-y-4">
                             <div>
-                                <label class="block text-[10px] font-black text-gray-400 uppercase mb-1.5 ml-1 tracking-widest">Nama Lengkap <span class="text-red-500">*</span></label>
-                                <input type="text" name="nama_ketua" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-xl {{ $theme['ring'] }} focus:border-red-500 transition shadow-sm text-xs md:text-sm py-2.5 px-4" placeholder="Nama Ketua" required>
+                                <label class="block text-[10px] font-black text-gray-700 uppercase mb-1.5 ml-1 tracking-widest">Nama Lengkap <span class="text-red-500">*</span></label>
+                                <input type="text" name="nama_ketua" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-xl focus:ring-2 focus:ring-red-800 focus:border-red-500 transition shadow-sm text-xs md:text-sm py-2.5 px-4 uppercase" placeholder="Nama Ketua" required>
                             </div>
                             <div>
-                                <label class="block text-[10px] font-black text-gray-400 uppercase mb-1.5 ml-1 tracking-widest">NIM Ketua <span class="text-red-500">*</span></label>
-                                <input type="text" name="nim_ketua" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-xl text-xs md:text-sm py-2.5 px-4" placeholder="NIM" required>
+                                <label class="block text-[10px] font-black text-gray-700 uppercase mb-1.5 ml-1 tracking-widest">NIM Ketua <span class="text-red-500">*</span></label>
+                                <input type="text" name="nim_ketua" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-xl focus:ring-2 focus:ring-red-800 text-xs md:text-sm py-2.5 px-4 uppercase" placeholder="NIM" required>
                             </div>
                         </div>
                     </div>
@@ -136,12 +136,12 @@
                         <h4 class="font-bold text-red-700 border-b border-gray-100 pb-2 mb-4">Sekretaris Pelaksana</h4>
                         <div class="space-y-4">
                             <div>
-                                <label class="block text-[10px] font-black text-gray-400 uppercase mb-1.5 ml-1 tracking-widest">Nama Sekretaris <span class="text-red-500">*</span></label>
-                                <input type="text" name="nama_sekretaris" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-xl text-xs md:text-sm py-2.5 px-4" placeholder="Nama Sekretaris" required>
+                                <label class="block text-[10px] font-black text-gray-700 uppercase mb-1.5 ml-1 tracking-widest">Nama Sekretaris <span class="text-red-500">*</span></label>
+                                <input type="text" name="nama_sekretaris" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-xl focus:ring-2 focus:ring-red-800 text-xs md:text-sm py-2.5 px-4 uppercase" placeholder="Nama Sekretaris" required>
                             </div>
                             <div>
-                                <label class="block text-[10px] font-black text-gray-400 uppercase mb-1.5 ml-1 tracking-widest">NIM Sekretaris <span class="text-red-500">*</span></label>
-                                <input type="text" name="nim_sekretaris" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-xl text-xs md:text-sm py-2.5 px-4" placeholder="NIM" required>
+                                <label class="block text-[10px] font-black text-gray-700 uppercase mb-1.5 ml-1 tracking-widest">NIM Sekretaris <span class="text-red-500">*</span></label>
+                                <input type="text" name="nim_sekretaris" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-xl focus:ring-2 focus:ring-red-800 text-xs md:text-sm py-2.5 px-4 uppercase" placeholder="NIM" required>
                             </div>
                         </div>
                     </div>
@@ -150,12 +150,12 @@
                         <h4 class="font-bold text-red-700 border-b border-gray-100 pb-2 mb-4">Koordinator / Mengetahui</h4>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-[10px] font-black text-gray-400 uppercase mb-1.5 ml-1 tracking-widest">Nama Koordinator (Kadept/Masul Fkt) <span class="text-red-500">*</span></label>
-                                <input type="text" name="nama_koordinator" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-xl text-xs md:text-sm py-2.5 px-4" placeholder="Nama Koordinator" required>
+                                <label class="block text-[10px] font-black text-gray-700 uppercase mb-1.5 ml-1 tracking-widest">Nama Koordinator (Kadept/Masul Fkt) <span class="text-red-500">*</span></label>
+                                <input type="text" name="nama_koordinator" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-xl focus:ring-2 focus:ring-red-800 text-xs md:text-sm py-2.5 px-4 uppercase" placeholder="Nama Koordinator" required>
                             </div>
                             <div>
-                                <label class="block text-[10px] font-black text-gray-400 uppercase mb-1.5 ml-1 tracking-widest">NIM Koordinator <span class="text-red-500">*</span></label>
-                                <input type="text" name="nim_koordinator" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-xl text-xs md:text-sm py-2.5 px-4" placeholder="NIM" required>
+                                <label class="block text-[10px] font-black text-gray-700 uppercase mb-1.5 ml-1 tracking-widest">NIM Koordinator <span class="text-red-500">*</span></label>
+                                <input type="text" name="nim_koordinator" class="w-full bg-gray-50 border-gray-300 text-gray-900 rounded-xl focus:ring-2 focus:ring-red-800 text-xs md:text-sm py-2.5 px-4 uppercase" placeholder="NIM" required>
                             </div>
                         </div>
                     </div>

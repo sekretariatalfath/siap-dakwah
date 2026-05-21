@@ -32,10 +32,10 @@
                 {{-- SECTION 1: IDENTITAS PROKER --}}
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="md:col-span-1">
-                        <label class="text-[10px] font-bold {{ $theme['text'] }} uppercase ml-2 tracking-widest">Dept / Fakultas / Unit</label>
+                        <label class="text-[10px] font-bold text-gray-700 uppercase ml-2 tracking-widest">Dept / Fakultas / Unit</label>
                         {{-- LOGIKA LOCK UNIT --}}
                         @if(Auth::user()->role == 'superadmin')
-                            <select name="dept_fakultas" required class="w-full mt-2 p-4 rounded-2xl {{ $theme['light'] }} border border-red-100 focus:bg-white focus:ring-2 {{ $theme['ring'] }} transition-all outline-none text-sm font-bold text-gray-800 uppercase">
+                            <select name="dept_fakultas" required class="w-full mt-2 p-4 rounded-2xl bg-gray-50 border border-gray-300 focus:bg-white focus:ring-2 focus:ring-red-800 transition-all outline-none text-sm font-bold text-gray-800 uppercase">
                                 @foreach($units as $u)
                                     <option value="{{ $u }}" {{ Auth::user()->unit == $u ? 'selected' : '' }}>{{ $u }}</option>
                                 @endforeach
@@ -50,17 +50,17 @@
                     </div>
 
                     <div class="md:col-span-1">
-                        <label class="text-[10px] font-bold {{ $theme['text'] }} uppercase ml-2 tracking-widest">Kategori Proker</label>
-                        <select name="kategori" class="w-full mt-2 p-4 rounded-2xl {{ $theme['light'] }} border border-red-100 focus:bg-white focus:ring-2 {{ $theme['ring'] }} transition-all outline-none text-sm font-bold text-gray-800">
+                        <label class="text-[10px] font-bold text-gray-700 uppercase ml-2 tracking-widest">Kategori Proker</label>
+                        <select name="kategori" class="w-full mt-2 p-4 rounded-2xl bg-gray-50 border border-gray-300 focus:bg-white focus:ring-2 focus:ring-red-800 transition-all outline-none text-sm font-bold text-gray-800">
                             <option value="KM">KM (DITMAWA)</option>
                             <option value="NON-KM">NON-KM (LD PUSAT)</option>
                         </select>
                     </div>
 
                     <div class="md:col-span-1">
-                        <label class="text-[10px] font-bold {{ $theme['text'] }} uppercase ml-2 tracking-widest">Nama Program Kerja</label>
+                        <label class="text-[10px] font-bold text-gray-700 uppercase ml-2 tracking-widest">Nama Program Kerja</label>
                         <input type="text" name="nama_proker" required placeholder="Misal: TRAINING 2026" 
-                               class="w-full mt-2 p-4 rounded-2xl {{ $theme['light'] }} border border-red-100 focus:bg-white focus:ring-2 {{ $theme['ring'] }} transition-all outline-none text-xs md:text-sm font-black uppercase text-gray-800">
+                               class="w-full mt-2 p-4 rounded-2xl bg-gray-50 border border-gray-300 focus:bg-white focus:ring-2 focus:ring-red-800 transition-all outline-none text-xs md:text-sm font-black uppercase text-gray-800">
                     </div>
                 </div>
 
@@ -72,43 +72,43 @@
                     {{-- Mulai & Selesai Acara --}}
                     <div class="md:col-span-2 grid grid-cols-2 gap-3">
                         <div>
-                            <label class="text-[10px] font-bold {{ $theme['text'] }} uppercase ml-2 tracking-widest">Mulai Acara</label>
+                            <label class="text-[10px] font-bold text-gray-700 uppercase ml-2 tracking-widest">Mulai Acara</label>
                             <input type="date" name="tgl_mulai" required 
-                                class="w-full mt-2 p-4 rounded-2xl {{ $theme['light'] }} border border-red-100 focus:bg-white focus:ring-2 {{ $theme['ring'] }} transition-all outline-none text-sm font-bold text-gray-800">
+                                class="w-full mt-2 p-4 rounded-2xl bg-gray-50 border border-gray-300 focus:bg-white focus:ring-2 focus:ring-red-800 transition-all outline-none text-sm font-bold text-gray-800">
                         </div>
                         <div>
-                            <label class="text-[10px] font-bold {{ $theme['text'] }} uppercase ml-2 tracking-widest">Selesai Acara</label>
+                            <label class="text-[10px] font-bold text-gray-700 uppercase ml-2 tracking-widest">Selesai Acara</label>
                             <input type="date" name="tgl_selesai" required 
-                                class="w-full mt-2 p-4 rounded-2xl {{ $theme['light'] }} border border-red-100 focus:bg-white focus:ring-2 {{ $theme['ring'] }} transition-all outline-none text-sm font-bold text-gray-800">
+                                class="w-full mt-2 p-4 rounded-2xl bg-gray-50 border border-gray-300 focus:bg-white focus:ring-2 focus:ring-red-800 transition-all outline-none text-sm font-bold text-gray-800">
                         </div>
                     </div>
 
                     {{-- Tempat Kegiatan --}}
                     <div class="md:col-span-1">
-                        <label class="text-[10px] font-bold {{ $theme['text'] }} uppercase ml-2 tracking-widest">Tempat Kegiatan</label>
+                        <label class="text-[10px] font-bold text-gray-700 uppercase ml-2 tracking-widest">Tempat Kegiatan</label>
                         <input type="text" name="tempat_kegiatan" required placeholder="Misal: Aula / Zoom" 
-                            class="w-full mt-2 p-4 rounded-2xl {{ $theme['light'] }} border border-red-100 focus:bg-white focus:ring-2 {{ $theme['ring'] }} transition-all outline-none text-xs md:text-sm font-bold text-gray-800 uppercase">
+                            class="w-full mt-2 p-4 rounded-2xl bg-gray-50 border border-gray-300 focus:bg-white focus:ring-2 focus:ring-red-800 transition-all outline-none text-xs md:text-sm font-bold text-gray-800 uppercase">
                     </div>
 
-                    {{-- KOLOM BARU: TEMPAT EVALUASI --}}
+                    {{-- Tempat Evaluasi --}}
                     <div class="md:col-span-1">
-                        <label class="text-[10px] font-bold {{ $theme['text'] }} uppercase ml-2 tracking-widest">Tempat Evaluasi</label>
-                        <input type="text" name="tempat_evaluasi" required placeholder="Sekre Al-Fath" 
-                            class="w-full mt-2 p-4 rounded-2xl bg-white border border-red-200 focus:ring-2 {{ $theme['ring'] }} transition-all outline-none text-xs md:text-sm font-bold text-gray-800 uppercase">
+                        <label class="text-[10px] font-bold text-gray-700 uppercase ml-2 tracking-widest">Tempat Evaluasi</label>
+                        <input type="text" name="tempat_evaluasi" required placeholder="Misal: Sekre Al-Fath" 
+                            class="w-full mt-2 p-4 rounded-2xl bg-gray-50 border border-gray-300 focus:bg-white focus:ring-2 focus:ring-red-800 transition-all outline-none text-xs md:text-sm font-bold text-gray-800 uppercase">
                     </div>
 
                     {{-- Tgl Evaluasi --}}
                     <div class="md:col-span-1">
-                        <label class="text-[10px] font-bold {{ $theme['text'] }} uppercase ml-2 tracking-widest">Tgl Evaluasi</label>
+                        <label class="text-[10px] font-bold text-gray-700 uppercase ml-2 tracking-widest">Tgl Evaluasi</label>
                         <input type="date" name="tgl_evaluasi" required 
-                            class="w-full mt-2 p-4 rounded-2xl {{ $theme['light'] }} border border-red-100 focus:bg-white focus:ring-2 {{ $theme['ring'] }} transition-all outline-none text-sm font-bold text-gray-800">
+                            class="w-full mt-2 p-4 rounded-2xl bg-gray-50 border border-gray-300 focus:bg-white focus:ring-2 focus:ring-red-800 transition-all outline-none text-sm font-bold text-gray-800">
                     </div>
 
                     {{-- Pimpinan Evaluasi --}}
                     <div class="md:col-span-1">
-                        <label class="text-[10px] font-bold {{ $theme['text'] }} uppercase ml-2 tracking-widest">Pimpinan Evaluasi</label>
-                        <input type="text" name="pimpinan_evaluasi" required placeholder="Nama pimpinan" 
-                            class="w-full mt-2 p-4 rounded-2xl {{ $theme['light'] }} border border-red-100 focus:bg-white focus:ring-2 {{ $theme['ring'] }} transition-all outline-none text-xs md:text-sm font-bold text-gray-800">
+                        <label class="text-[10px] font-bold text-gray-700 uppercase ml-2 tracking-widest">Pimpinan Evaluasi</label>
+                        <input type="text" name="pimpinan_evaluasi" required placeholder="Nama Lengkap Pimpinan" 
+                            class="w-full mt-2 p-4 rounded-2xl bg-gray-50 border border-gray-300 focus:bg-white focus:ring-2 focus:ring-red-800 transition-all outline-none text-xs md:text-sm font-bold text-gray-800 uppercase">
                     </div>
                     
                 </div>
@@ -118,14 +118,14 @@
                 {{-- SECTION 3: PENANGGUNG JAWAB --}}
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label class="text-[10px] font-bold {{ $theme['text'] }} uppercase ml-2 tracking-widest">Ketua Pelaksana</label>
-                        <input type="text" name="ketuplak" required placeholder="Nama Lengkap" 
-                               class="w-full mt-2 p-4 rounded-2xl {{ $theme['light'] }} border border-red-100 focus:bg-white focus:ring-2 {{ $theme['ring'] }} transition-all outline-none text-sm font-bold text-gray-800 uppercase">
+                        <label class="text-[10px] font-bold text-gray-700 uppercase ml-2 tracking-widest">Ketua Pelaksana</label>
+                        <input type="text" name="ketuplak" required placeholder="Nama Lengkap Ketua" 
+                               class="w-full mt-2 p-4 rounded-2xl bg-gray-50 border border-gray-300 focus:bg-white focus:ring-2 focus:ring-red-800 transition-all outline-none text-sm font-bold text-gray-800 uppercase">
                     </div>
                     <div>
-                        <label class="text-[10px] font-bold {{ $theme['text'] }} uppercase ml-2 tracking-widest">Sekretaris Proker</label>
-                        <input type="text" name="sekre_proker" required placeholder="Nama Lengkap" 
-                               class="w-full mt-2 p-4 rounded-2xl {{ $theme['light'] }} border border-red-100 focus:bg-white focus:ring-2 {{ $theme['ring'] }} transition-all outline-none text-sm font-bold text-gray-800 uppercase">
+                        <label class="text-[10px] font-bold text-gray-700 uppercase ml-2 tracking-widest">Sekretaris Proker</label>
+                        <input type="text" name="sekre_proker" required placeholder="Nama Lengkap Sekretaris" 
+                               class="w-full mt-2 p-4 rounded-2xl bg-gray-50 border border-gray-300 focus:bg-white focus:ring-2 focus:ring-red-800 transition-all outline-none text-sm font-bold text-gray-800 uppercase">
                     </div>
                 </div>
 

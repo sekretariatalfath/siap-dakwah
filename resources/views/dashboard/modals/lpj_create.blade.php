@@ -21,8 +21,8 @@
                 {{-- KIRI: DATA PROGRAM & NARASI --}}
                 <div class="space-y-6">
                     <div class="space-y-2">
-                        <label class="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">Pilih Program Kerja</label>
-                        <select name="nama_proker" required class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50 text-xs font-bold text-gray-800 focus:ring-2 focus:ring-red-800 outline-none appearance-none cursor-pointer">
+                        <label class="text-[10px] font-black uppercase text-gray-700 tracking-widest ml-1">Pilih Program Kerja</label>
+                        <select name="nama_proker" required class="w-full px-5 py-4 rounded-2xl border border-gray-300 bg-gray-50 text-xs font-bold text-gray-800 focus:ring-2 focus:ring-red-800 outline-none appearance-none cursor-pointer">
                             <option value="" disabled selected>-- PILIH PROKER --</option>
                             @foreach($proposals as $p)
                                 <option value="{{ $p->nama_proker }}">{{ $p->nama_proker }}</option>
@@ -31,18 +31,18 @@
                     </div>
 
                     <div class="space-y-2">
-                        <label class="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">Realisasi Jumlah Peserta Hadir</label>
-                        <input type="number" name="realisasi_peserta" required placeholder="Contoh: 50" class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50 text-xs font-bold focus:ring-2 focus:ring-red-800 outline-none transition-all">
+                        <label class="text-[10px] font-black uppercase text-gray-700 tracking-widest ml-1">Realisasi Jumlah Peserta Hadir</label>
+                        <input type="number" name="realisasi_peserta" required placeholder="Contoh: 50" class="w-full px-5 py-4 rounded-2xl border border-gray-300 bg-gray-50 text-xs font-bold focus:ring-2 focus:ring-red-800 outline-none transition-all">
                     </div>
 
                     <div class="space-y-2">
-                        <label class="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">Ketercapaian Tujuan</label>
-                        <textarea name="ketercapaian_tujuan" rows="3" required placeholder="Jelaskan secara ringkas bagaimana tujuan program kerja telah tercapai (Misal: Materi tersampaikan dengan baik kepada 50 peserta)." class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50 text-xs font-bold focus:ring-2 focus:ring-red-800 outline-none transition-all"></textarea>
+                        <label class="text-[10px] font-black uppercase text-gray-700 tracking-widest ml-1">Ketercapaian Tujuan</label>
+                        <textarea name="ketercapaian_tujuan" rows="3" required placeholder="Jelaskan secara ringkas bagaimana tujuan program kerja telah tercapai (Misal: Materi tersampaikan dengan baik kepada 50 peserta)." class="w-full px-5 py-4 rounded-2xl border border-gray-300 bg-gray-50 text-xs font-bold focus:ring-2 focus:ring-red-800 outline-none transition-all"></textarea>
                     </div>
 
                     <div class="space-y-2">
-                        <label class="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">Realisasi Sasaran Kegiatan</label>
-                        <textarea name="realisasi_sasaran" rows="3" required placeholder="Sebutkan siapa saja yang hadir, misal: Pengurus LDF, Mahasiswa FIT angkatan 2023, dsb." class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50 text-xs font-bold focus:ring-2 focus:ring-red-800 outline-none transition-all"></textarea>
+                        <label class="text-[10px] font-black uppercase text-gray-700 tracking-widest ml-1">Realisasi Sasaran Kegiatan</label>
+                        <textarea name="realisasi_sasaran" rows="3" required placeholder="Sebutkan siapa saja yang hadir, misal: Pengurus LDF, Mahasiswa FIT angkatan 2023, dsb." class="w-full px-5 py-4 rounded-2xl border border-gray-300 bg-gray-50 text-xs font-bold focus:ring-2 focus:ring-red-800 outline-none transition-all"></textarea>
                     </div>
                 </div>
 
@@ -61,17 +61,20 @@
                     </div>
 
                     <div class="space-y-4">
+                        {{-- LINK EVALUASI --}}
                         <div class="space-y-2">
-                            <label class="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">Tautan (Link) PDF Hasil Evaluasi</label>
-                            <input type="url" name="link_evaluasi" required placeholder="Tempelkan link Google Docs hasil evaluasi" class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50 text-[10px] font-bold text-blue-600 focus:ring-2 focus:ring-red-800 outline-none transition-all">
+                            <label class="text-[10px] font-black uppercase text-gray-700 tracking-widest ml-1">Tautan Google Docs Evaluasi</label>
+                            <input type="url" name="link_evaluasi" required placeholder="Tempelkan Link Google Docs Hasil Evaluasi" class="w-full px-5 py-4 rounded-2xl border border-gray-300 bg-gray-50 text-[10px] font-bold text-blue-600 focus:ring-2 focus:ring-red-800 outline-none transition-all">
                         </div>
+                        {{-- LINK LPJ --}}
                         <div class="space-y-2">
-                            <label class="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">Tautan (Link) PDF LPJ (Final)</label>
-                            <input type="url" name="link_lpj_pdf" required placeholder="Tempelkan link Google Drive PDF LPJ yang sudah ditandatangani" class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50 text-[10px] font-bold text-blue-600 focus:ring-2 focus:ring-red-800 outline-none transition-all">
+                            <label class="text-[10px] font-black uppercase text-gray-700 tracking-widest ml-1">Tautan PDF LPJ (Final)</label>
+                            <input type="url" name="link_lpj_pdf" required placeholder="Tempelkan Link Google Drive PDF LPJ" class="w-full px-5 py-4 rounded-2xl border border-gray-300 bg-gray-50 text-[10px] font-bold text-blue-600 focus:ring-2 focus:ring-red-800 outline-none transition-all">
                         </div>
+                        {{-- LINK DOKUMENTASI --}}
                         <div class="space-y-2">
-                            <label class="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">Tautan (Link) Folder Dokumentasi</label>
-                            <input type="url" name="link_dokumentasi" required placeholder="Tempelkan link folder Google Drive dokumentasi" class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50 text-[10px] font-bold text-blue-600 focus:ring-2 focus:ring-red-800 outline-none transition-all">
+                            <label class="text-[10px] font-black uppercase text-gray-700 tracking-widest ml-1">Tautan Folder Dokumentasi</label>
+                            <input type="url" name="link_dokumentasi" required placeholder="Tempelkan Link Folder Google Drive Dokumentasi" class="w-full px-5 py-4 rounded-2xl border border-gray-300 bg-gray-50 text-[10px] font-bold text-blue-600 focus:ring-2 focus:ring-red-800 outline-none transition-all">
                         </div>
                         <div class="flex items-center gap-2 mt-1 ml-1 bg-amber-50 p-2 rounded-lg border border-amber-100">
                             <svg class="w-3 h-3 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>

@@ -46,7 +46,7 @@
 
                         @if($isKestari)
                             {{-- Jika Superadmin/Kestari: Tampilkan Dropdown --}}
-                            <select name="unit_host" class="w-full border-gray-300 rounded-lg {{ $theme['ring'] }} focus:{{ $theme['border'] }} py-2 px-3 text-sm transition bg-white" required>
+                            <select name="unit_host" class="w-full bg-white border border-gray-200 rounded-lg {{ $theme['ring'] }} focus:{{ $theme['border'] }} py-2 px-3 text-sm transition" required>
                                 <option value="" disabled selected>-- Pilih Unit Penyelenggara --</option>
                                 @foreach($allUnits as $unit)
                                     <option value="{{ $unit }}">{{ $unit }}</option>
@@ -55,7 +55,7 @@
                         @else
                             {{-- Jika Unit Biasa: Kunci Input (Readonly) --}}
                             <input type="text" name="unit_host" value="{{ Auth::user()->unit }}" 
-                                class="w-full border-gray-300 rounded-lg bg-gray-100 text-gray-500 cursor-not-allowed py-2 px-3 text-sm font-semibold" 
+                                class="w-full border border-gray-200 rounded-lg bg-gray-200 text-gray-500 cursor-not-allowed py-2 px-3 text-sm font-semibold" 
                                 readonly>
                         @endif
                     </div>
@@ -63,12 +63,12 @@
                     <div>
                         <label class="block text-sm font-bold text-gray-700 mb-2">Nama Kegiatan / Syuro <span class="{{ $theme['text'] }}">*</span></label>
                         <input type="text" name="nama_kegiatan" placeholder="Misal: Syuro Mingguan Kestari" 
-                               class="w-full border-gray-300 rounded-xl {{ $theme['ring'] }} focus:{{ $theme['border'] }} py-2.5 px-4 text-xs md:text-sm transition" required>
+                               class="w-full bg-gray-50 border border-gray-200 rounded-xl {{ $theme['ring'] }} focus:{{ $theme['border'] }} py-2.5 px-4 text-xs md:text-sm transition" required>
                     </div>
 
                     <div>
                         <label class="block text-sm font-bold text-gray-700 mb-2">Kategori <span class="{{ $theme['text'] }}">*</span></label>
-                        <select name="kategori" class="w-full border-gray-300 rounded-lg {{ $theme['ring'] }} focus:{{ $theme['border'] }} py-2.5 px-4 bg-white transition" required>
+                        <select name="kategori" class="w-full bg-gray-50 border border-gray-200 rounded-lg {{ $theme['ring'] }} focus:{{ $theme['border'] }} py-2.5 px-4 transition" required>
                             <option value="Syuro Rutin/Koordinasi">Syuro Rutin/Koordinasi</option>
                             <option value="Syuro Proker KM">Syuro Proker KM</option>
                             <option value="Kehadiran Event/Acara">Kehadiran Event/Acara</option>

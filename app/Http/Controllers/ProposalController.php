@@ -73,8 +73,7 @@ class ProposalController extends Controller
             'cp_nama'        => strtoupper($request->cp_nim_nama),
             'cp_wa'          => $request->cp_wa,
             'cp_email'       => $request->cp_email,
-            'cp_line'        => $request->cp_line ?? '-',
-            'is_checked'     => false
+            'cp_line'        => $request->cp_line ?? '-'
         ];
 
         try {
@@ -135,8 +134,8 @@ class ProposalController extends Controller
             $body = new ValueRange(['values' => [[$newStatus]]]);
             $service->spreadsheets_values->update($this->spreadsheetId, "Proposal_db!P$targetRow", $body, ['valueInputOption' => 'RAW']);
 
-            // Sync ke lokal (Opsional)
-            Proposal::where('proposal_id', $proposal_id)->update(['is_checked' => ($newStatus == 'TRUE')]);
+            // Update lokal (Opsional)
+            Proposal::where('proposal_id', $proposal_id)->update(['is_checked' => \Illuminate\Support\Facades\DB::raw($newStatus == 'TRUE' ? 'true' : 'false')]);
 
             return back()->with('success', 'Status Verifikasi Diperbarui!');
         } catch (\Exception $e) {

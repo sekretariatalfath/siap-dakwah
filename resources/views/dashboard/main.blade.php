@@ -14,7 +14,7 @@
             <div class="relative group">
                 {{-- Kontainer Dropdown yang Lebih Estetik --}}
                 <div class="flex items-center gap-3 bg-white px-5 py-3 rounded-2xl shadow-sm border border-gray-100 hover:border-gray-300 transition-all duration-300">
-                    <span class="text-[10px] font-black uppercase text-gray-400 tracking-widest border-r border-gray-100 pr-3">Filter Unit</span>
+                    <span class="text-[10px] font-black uppercase text-gray-700 tracking-widest border-r border-gray-100 pr-3">Filter Unit</span>
                     
                     <form action="{{ route('dashboard') }}" method="GET" class="flex items-center">
                         <select name="unit_filter" onchange="this.form.submit()" 
@@ -45,7 +45,7 @@
             <div class="bg-white rounded-[24px] md:rounded-[32px] shadow-sm border border-gray-100 p-5 md:p-8 flex flex-col justify-between hover:shadow-md transition-all animasi-kotak">
                 <div class="flex items-start justify-between">
                     <div>
-                        <p class="text-gray-400 text-[10px] font-black uppercase tracking-widest">Surat Masuk</p>
+                        <p class="text-gray-700 text-[10px] font-black uppercase tracking-widest">Surat Masuk</p>
                         <h2 class="text-3xl md:text-4xl font-black text-gray-900 mt-1">{{ $totalMasuk }}</h2>
                     </div>
                     <div class="{{ $theme['light'] }} p-4 rounded-2xl {{ $theme['text'] }}">
@@ -63,7 +63,7 @@
             <div class="bg-white rounded-[24px] md:rounded-[32px] shadow-sm border border-gray-100 p-5 md:p-8 flex flex-col justify-between hover:shadow-md transition-all animasi-kotak delay-100">
                 <div class="flex items-start justify-between">
                     <div>
-                        <p class="text-gray-400 text-[10px] font-black uppercase tracking-widest">Berita Acara</p>
+                        <p class="text-gray-700 text-[10px] font-black uppercase tracking-widest">Berita Acara</p>
                         <h2 class="text-3xl md:text-4xl font-black text-indigo-700 mt-1">{{ $totalBA }}</h2>
                     </div>
                     <div class="bg-indigo-50 p-4 rounded-2xl text-indigo-600">
@@ -79,7 +79,7 @@
             <div class="bg-white rounded-[24px] md:rounded-[32px] shadow-sm border border-gray-100 p-5 md:p-8 flex flex-col justify-between hover:shadow-md transition-all animasi-kotak delay-200">
                 <div class="flex items-start justify-between">
                     <div>
-                        <p class="text-gray-400 text-[10px] font-black uppercase tracking-widest">Surat Keluar</p>
+                        <p class="text-gray-700 text-[10px] font-black uppercase tracking-widest">Surat Keluar</p>
                         <h2 class="text-3xl md:text-4xl font-black text-yellow-600 mt-1">{{ $totalKeluar }}</h2>
                     </div>
                     <div class="bg-yellow-50 p-4 rounded-2xl text-yellow-600">
@@ -96,7 +96,7 @@
 
         {{-- 5. AKSES CEPAT --}}
         <div class="mb-12">
-            <h3 class="text-xs font-black text-gray-400 uppercase tracking-[3px] mb-6 px-2">Database & Berkas</h3>
+            <h3 class="text-xs font-black text-gray-700 uppercase tracking-[3px] mb-6 px-2">Database & Berkas</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {{-- Template --}}
                 <a href="{{ route('resource.index', 'template') }}" class="flex items-center gap-4 md:gap-5 bg-white p-5 md:p-6 rounded-[24px] md:rounded-[32px] border border-gray-100 hover:border-red-200 transition group shadow-sm animasi-kotak delay-100">
@@ -105,7 +105,7 @@
                     </div>
                     <div>
                         <h4 class="text-sm font-black text-gray-900 uppercase">Template Berkas</h4>
-                        <p class="text-[10px] text-gray-400 font-bold uppercase mt-0.5 tracking-tighter">Format Dokumen</p>
+                        <p class="text-[10px] text-gray-700 font-bold uppercase mt-0.5 tracking-tighter">Format Dokumen</p>
                     </div>
                 </a>
                 
@@ -116,7 +116,7 @@
                     </div>
                     <div>
                         <h4 class="text-sm font-black text-gray-900 uppercase">Pedoman & SOP</h4>
-                        <p class="text-[10px] text-gray-400 font-bold uppercase mt-0.5 tracking-tighter">Panduan Administrasi</p>
+                        <p class="text-[10px] text-gray-700 font-bold uppercase mt-0.5 tracking-tighter">Panduan Administrasi</p>
                     </div>
                 </a>
                 
@@ -127,7 +127,7 @@
                     </div>
                     <div>
                         <h4 class="text-sm font-black text-gray-900 uppercase">Pusat Informasi</h4>
-                        <p class="text-[10px] text-gray-400 font-bold uppercase mt-0.5 tracking-tighter">Berita & Pengumuman</p>
+                        <p class="text-[10px] text-gray-700 font-bold uppercase mt-0.5 tracking-tighter">Berita & Pengumuman</p>
                     </div>
                 </a>
             </div>
@@ -141,7 +141,7 @@
                     <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-[3px]">Kalender Kegiatan</h3>
                 </div>
                 @if($isKestari)
-                    <button onclick="document.getElementById('formKalender').classList.toggle('hidden')" class="text-[9px] font-bold text-gray-400 bg-gray-100 px-3 py-1.5 rounded-lg hover:bg-gray-200 transition">
+                    <button onclick="document.getElementById('formKalender').classList.toggle('hidden')" class="text-[9px] font-bold text-gray-700 bg-gray-100 px-3 py-1.5 rounded-lg hover:bg-gray-200 transition">
                         Sesuaikan Link
                     </button>
                 @endif

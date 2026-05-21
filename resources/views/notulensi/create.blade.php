@@ -27,20 +27,20 @@
                 @csrf
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="md:col-span-2">
-                        <label class="text-[10px] font-bold {{ $theme['text'] }}/50 uppercase ml-2 tracking-widest">Judul Syuro / Rapat</label>
+                        <label class="text-[10px] font-bold text-gray-700 uppercase ml-2 tracking-widest">Judul Syuro / Rapat</label>
                         <input type="text" name="judul_syuro" required placeholder="Misal: Syuro Mingguan" 
-                               class="w-full mt-2 p-4 rounded-2xl {{ $theme['light'] }} border border-red-100 focus:bg-white focus:ring-2 {{ $theme['ring'] }} transition-all outline-none text-xs md:text-sm font-black uppercase text-gray-800">
+                               class="w-full mt-2 p-4 rounded-2xl bg-gray-50 border border-gray-300 focus:bg-white focus:ring-2 focus:ring-red-800 transition-all outline-none text-xs md:text-sm font-black uppercase text-gray-800">
                     </div>
 
                     <div>
-                        <label class="text-[10px] font-bold {{ $theme['text'] }}/50 uppercase ml-2 tracking-widest">Pimpinan Rapat</label>
-                        <input type="text" name="pimpinan_rapat" required placeholder="Nama pimpinan" 
-                               class="w-full mt-2 p-4 rounded-2xl {{ $theme['light'] }} border border-red-100 focus:bg-white focus:ring-2 {{ $theme['ring'] }} transition-all outline-none text-xs md:text-sm font-bold text-gray-800">
+                        <label class="text-[10px] font-bold text-gray-700 uppercase ml-2 tracking-widest">Pimpinan Rapat</label>
+                        <input type="text" name="pimpinan_rapat" required placeholder="Nama Lengkap Pimpinan" 
+                               class="w-full mt-2 p-4 rounded-2xl bg-gray-50 border border-gray-300 focus:bg-white focus:ring-2 focus:ring-red-800 transition-all outline-none text-xs md:text-sm font-bold text-gray-800 uppercase">
                     </div>
 
                     <div>
-                        <label class="text-[10px] font-bold {{ $theme['text'] }}/50 uppercase ml-2 tracking-widest">Kategori Syuro</label>
-                        <select name="kategori" class="w-full mt-2 p-4 rounded-2xl {{ $theme['light'] }} border border-red-100 focus:bg-white focus:ring-2 {{ $theme['ring'] }} transition-all outline-none text-sm font-bold text-gray-800">
+                        <label class="text-[10px] font-bold text-gray-700 uppercase ml-2 tracking-widest">Kategori Syuro</label>
+                        <select name="kategori" class="w-full mt-2 p-4 rounded-2xl bg-gray-50 border border-gray-300 focus:bg-white focus:ring-2 focus:ring-red-800 transition-all outline-none text-sm font-bold text-gray-800 uppercase">
                             <option value="Rutin/Koordinasi">Rutin/Koordinasi</option>
                             <option value="Proker KM">Proker KM</option>
                             <option value="Proker Non KM">Proker Non KM</option>
@@ -48,15 +48,15 @@
                     </div>
 
                     <div>
-                        <label class="text-[10px] font-bold {{ $theme['text'] }}/50 uppercase ml-2 tracking-widest">Waktu Mulai</label>
+                        <label class="text-[10px] font-bold text-gray-700 uppercase ml-2 tracking-widest">Waktu Mulai</label>
                         <input type="datetime-local" name="waktu_mulai" value="{{ date('Y-m-d\TH:i') }}" 
-                               class="w-full mt-2 p-4 rounded-2xl {{ $theme['light'] }} border border-red-100 focus:bg-white focus:ring-2 {{ $theme['ring'] }} transition-all outline-none text-sm font-bold text-gray-800">
+                               class="w-full mt-2 p-4 rounded-2xl bg-gray-50 border border-gray-300 focus:bg-white focus:ring-2 focus:ring-red-800 transition-all outline-none text-sm font-bold text-gray-800 uppercase">
                     </div>
 
                     <div>
-                        <label class="text-[10px] font-bold {{ $theme['text'] }}/50 uppercase ml-2 tracking-widest">Tempat / Platform</label>
+                        <label class="text-[10px] font-bold text-gray-700 uppercase ml-2 tracking-widest">Tempat / Platform</label>
                         <input type="text" name="tempat" required placeholder="Misal: Sekretariat / Zoom" 
-                               class="w-full mt-2 p-4 rounded-2xl {{ $theme['light'] }} border border-red-100 focus:bg-white focus:ring-2 {{ $theme['ring'] }} transition-all outline-none text-xs md:text-sm font-bold text-gray-800">
+                               class="w-full mt-2 p-4 rounded-2xl bg-gray-50 border border-gray-300 focus:bg-white focus:ring-2 focus:ring-red-800 transition-all outline-none text-xs md:text-sm font-bold text-gray-800 uppercase">
                     </div>
                 </div>
 

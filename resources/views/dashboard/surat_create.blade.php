@@ -47,11 +47,11 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <div>
                                 <label class="block text-sm font-bold text-gray-700 mb-2">Nama Pengisi <span class="{{ $theme['text'] }}">*</span></label>
-                                <input type="text" name="nama_pengisi" value="{{ Auth::user()->name }}" class="w-full border-gray-300 rounded-lg {{ $theme['ring'] }} py-2 px-3 text-sm transition" required>
+                                <input type="text" name="nama_pengisi" value="{{ Auth::user()->name }}" class="w-full bg-gray-50 border border-gray-200 rounded-lg {{ $theme['ring'] }} py-2 px-3 text-sm transition" required>
                             </div>
                             <div>
                                 <label class="block text-sm font-bold text-gray-700 mb-2">Unit / LDF (Terkunci)</label>
-                                <input type="text" value="{{ Auth::user()->unit }}" class="w-full border-gray-300 rounded-lg bg-gray-100 text-gray-500 cursor-not-allowed py-2 px-3 text-sm" readonly>
+                                <input type="text" value="{{ Auth::user()->unit }}" class="w-full border border-gray-200 rounded-lg bg-gray-100 text-gray-500 cursor-not-allowed py-2 px-3 text-sm" readonly>
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                     {{-- 1. JENIS SURAT --}}
                     <div>
                         <label class="block text-sm font-bold text-gray-700 mb-2">Pilih Jenis Surat <span class="{{ $theme['text'] }}">*</span></label>
-                        <select name="jenis" class="w-full border-gray-300 rounded-lg {{ $theme['ring'] }} py-2.5 px-4 bg-white transition" required>
+                        <select name="jenis" class="w-full border border-gray-200 rounded-lg {{ $theme['ring'] }} py-2.5 px-4 bg-gray-50 transition" required>
                             <option value="" disabled selected>-- Pilih Jenis --</option>
                             <option value="SK">SK - Surat Keputusan</option>
                             <option value="UND">UND - Undangan</option>
@@ -78,16 +78,22 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-sm font-bold text-gray-700 mb-2">Lingkup Surat <span class="{{ $theme['text'] }}">*</span></label>
-                            <select name="lingkup" id="lingkup" onchange="updateForm()" class="w-full border-gray-300 rounded-lg {{ $theme['ring'] }} py-2.5 px-4 bg-white transition" required>
+                            <select name="lingkup" id="lingkup" onchange="updateForm()" class="w-full border border-gray-200 rounded-lg {{ $theme['ring'] }} py-2.5 px-4 bg-gray-50 transition" required>
                                 <option value="" disabled selected>-- Pilih Lingkup --</option>
-                                <option value="PUSAT">PUSAT (Biro/Departemen)</option>
-                                <option value="FAKULTAS">FAKULTAS (LDF)</option>
+                                @if(Auth::user()->role == 'superadmin' || Auth::user()->unit == 'Biro Kesekretariatan')
+                                    <option value="PUSAT">PUSAT (Biro/Departemen)</option>
+                                    <option value="FAKULTAS">FAKULTAS (LDF)</option>
+                                @elseif(str_contains(Auth::user()->unit, 'Fakultas') || str_contains(Auth::user()->unit, 'LDF'))
+                                    <option value="FAKULTAS">FAKULTAS (LDF)</option>
+                                @else
+                                    <option value="PUSAT">PUSAT (Biro/Departemen)</option>
+                                @endif
                             </select>
                         </div>
 
                         <div id="wrapper-fakultas" class="hidden animate-fade-in">
                             <label class="block text-sm font-bold text-gray-700 mb-2">Asal Fakultas <span class="{{ $theme['text'] }}">*</span></label>
-                            <select name="kode_fakultas" id="kode_fakultas" class="w-full border-gray-300 rounded-lg {{ $theme['ring'] }} py-2.5 px-4 bg-white shadow-sm">
+                            <select name="kode_fakultas" id="kode_fakultas" class="w-full border border-gray-200 rounded-lg {{ $theme['ring'] }} py-2.5 px-4 bg-gray-50 shadow-sm">
                                 <option value="" disabled selected>-- Pilih Fakultas --</option>
                                 @foreach($ldfUnits as $unit)
                                     @php
@@ -117,7 +123,7 @@
                     {{-- 3. KATEGORI --}}
                     <div>
                         <label class="block text-sm font-bold text-gray-700 mb-2">Kategori Format <span class="{{ $theme['text'] }}">*</span></label>
-                        <select name="kategori_pusat" id="kategori_pusat" onchange="toggleDetails('PUSAT')" class="hidden w-full border-gray-300 rounded-lg {{ $theme['ring'] }} py-2.5 px-4 bg-gray-50">
+                        <select name="kategori_pusat" id="kategori_pusat" onchange="toggleDetails('PUSAT')" class="hidden w-full border border-gray-200 rounded-lg {{ $theme['ring'] }} py-2.5 px-4 bg-gray-50">
                             <option value="" disabled selected>-- Kategori Pusat --</option>
                             <option value="MSP">MSP - Majelis Musyawarah Pusat</option>
                             <option value="UMUM">UMUM - Administrasi Umum</option>
@@ -125,7 +131,7 @@
                             <option value="PROKER_KM">PROKER KM (Acara Besar)</option>
                         </select>
 
-                        <select name="kategori_fakultas" id="kategori_fakultas" onchange="toggleDetails('FAKULTAS')" class="hidden w-full border-gray-300 rounded-lg {{ $theme['ring'] }} py-2.5 px-4 bg-gray-50">
+                        <select name="kategori_fakultas" id="kategori_fakultas" onchange="toggleDetails('FAKULTAS')" class="hidden w-full border border-gray-200 rounded-lg {{ $theme['ring'] }} py-2.5 px-4 bg-gray-50">
                             <option value="" disabled selected>-- Kategori Fakultas --</option>
                             <option value="UMUM">UMUM - Administrasi Umum LDF</option>
                             <option value="PROKER_NON_KM">PROKER NON KM (Bidang)</option>
@@ -137,12 +143,12 @@
                     <div class="bg-yellow-50 p-6 rounded-xl border border-yellow-200 hidden animate-fade-in" id="wrapper-details">
                         <div id="input-acara" class="hidden">
                             <label class="block text-xs font-bold text-yellow-800 uppercase mb-2">Nama Acara (Otomatis Kapital)</label>
-                            <input type="text" name="nama_acara" placeholder="Contoh: ECAFEST" class="w-full border-yellow-300 rounded-lg py-2 px-3 text-sm uppercase focus:ring-yellow-500">
+                            <input type="text" name="nama_acara" placeholder="Contoh: ECAFEST" class="w-full bg-gray-50 border border-yellow-300 rounded-lg py-2 px-3 text-sm uppercase focus:ring-yellow-500">
                         </div>
 
                         <div id="input-dept" class="hidden">
                             <label class="block text-xs font-bold text-blue-800 uppercase mb-2">Pilih Departemen</label>
-                            <select name="kode_departemen" class="w-full border-blue-300 rounded-lg py-2 px-3 text-sm">
+                            <select name="kode_departemen" class="w-full bg-gray-50 border border-blue-300 rounded-lg py-2 px-3 text-sm">
                                 @foreach($pusatUnits as $unit)
                                     @php
                                         $u = strtoupper($unit);
@@ -166,7 +172,7 @@
 
                         <div id="input-bidang" class="hidden">
                             <label class="block text-xs font-bold text-purple-800 uppercase mb-2">Pilih Bidang LDF</label>
-                            <select name="kode_bidang" class="w-full border-purple-300 rounded-lg py-2 px-3 text-sm">
+                            <select name="kode_bidang" class="w-full bg-gray-50 border border-purple-300 rounded-lg py-2 px-3 text-sm">
                                 <option value="01">01 - Kaderisasi</option>
                                 <option value="02">02 - Syiar</option>
                                 <option value="03">03 - Media</option>
@@ -179,18 +185,18 @@
                     <div class="space-y-6 pt-6 border-t border-gray-100">
                         <div>
                             <label class="block text-sm font-bold text-gray-700 mb-2">Perihal / Keterangan <span class="{{ $theme['text'] }}">*</span></label>
-                            <textarea name="perihal" rows="2" placeholder="Misal: Peminjaman Ruangan GSG" class="w-full border-gray-300 rounded-xl {{ $theme['ring'] }} text-xs md:text-sm py-3 px-4 shadow-sm" required></textarea>
+                            <textarea name="perihal" rows="2" placeholder="Misal: Peminjaman Ruangan GSG" class="w-full bg-gray-50 border border-gray-200 rounded-xl {{ $theme['ring'] }} text-xs md:text-sm py-3 px-4 shadow-sm" required></textarea>
                             <p class="text-[9px] text-gray-400 mt-1 font-medium italic uppercase tracking-wider">Bahasa singkat & jelas.</p>
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-sm font-bold text-gray-700 mb-2">Penyelenggara <span class="{{ $theme['text'] }}">*</span></label>
-                                <input type="text" name="penyelenggara" placeholder="Contoh: Panitia Syiar" class="w-full border-gray-300 rounded-xl py-2.5 px-4 text-xs md:text-sm {{ $theme['ring'] }}" required>
+                                <input type="text" name="penyelenggara" placeholder="Contoh: Panitia Syiar" class="w-full bg-gray-50 border border-gray-200 rounded-xl py-2.5 px-4 text-xs md:text-sm {{ $theme['ring'] }} uppercase" required>
                             </div>
                             <div>
                                 <label class="block text-sm font-bold text-gray-700 mb-2">Jumlah Nomor <span class="{{ $theme['text'] }}">*</span></label>
-                                <input type="number" name="jumlah" value="1" min="1" max="20" class="w-full border-gray-300 rounded-lg py-2 px-3 text-sm {{ $theme['ring'] }}" required>
+                                <input type="number" name="jumlah" value="1" min="1" max="20" class="w-full bg-gray-50 border border-gray-200 rounded-lg py-2 px-3 text-sm {{ $theme['ring'] }}" required>
                                 <p class="text-[9px] text-gray-400 mt-1 italic">Maksimal 20 nomor sekali generate.</p>
                             </div>
                         </div>

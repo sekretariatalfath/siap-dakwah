@@ -64,18 +64,17 @@ class SuratMasukController extends Controller
         elseif ($request->jenis_kontak == 'KEDUANYA') $detailKontak = $request->input_email . ' | ' . $request->input_wa;
 
         $data = [
-            'no_surat'         => $request->no_surat,
-            'pengirim'         => $request->pengirim,
-            'jenis_kontak'     => $request->jenis_kontak,
+            'no_surat'         => strtoupper($request->no_surat),
+            'pengirim'         => strtoupper($request->pengirim),
+            'jenis_kontak'     => strtoupper($request->jenis_kontak),
             'detail_kontak'    => $detailKontak,
             'perihal'          => $request->perihal,
-            'nama_kegiatan'    => $request->nama_kegiatan ?? '-',
-            'ditujukan_kepada' => $request->ditujukan_kepada ?? '-',
+            'nama_kegiatan'    => strtoupper($request->nama_kegiatan ?? '-'),
+            'ditujukan_kepada' => strtoupper($request->ditujukan_kepada ?? '-'),
             'tgl_terima'       => $request->tgl_terima,
-            'penerima_fisik'   => $request->penerima_fisik,
+            'penerima_fisik'   => strtoupper($request->penerima_fisik),
             'link_drive'       => $request->link_drive,
-            'uploader'         => Auth::user()->name . ' (' . Auth::user()->unit . ')',
-            'is_checked'       => false
+            'uploader'         => Auth::user()->name . ' (' . Auth::user()->unit . ')'
         ];
 
         try {
@@ -123,7 +122,7 @@ class SuratMasukController extends Controller
             );
 
             // Update Lokal jika ada (Opsional, agar sinkron jika local dipanggil)
-            SuratMasuk::where('no_surat', $no_surat)->update(['is_checked' => ($newStatus == '1')]);
+            SuratMasuk::where('no_surat', $no_surat)->update(['is_checked' => \Illuminate\Support\Facades\DB::raw($newStatus == '1' ? 'true' : 'false')]);
             \Illuminate\Support\Facades\Cache::flush();
 
             return back()->with('success', 'Status Verifikasi Berhasil Diperbarui!');

@@ -20,10 +20,10 @@
             <div class="space-y-5">
                 {{-- KATEGORI --}}
                 <div class="space-y-2">
-                    <label class="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">Kategori Proposal</label>
+                    <label class="text-[10px] font-black uppercase text-gray-700 tracking-widest ml-1">Kategori Proposal</label>
                     <div class="relative">
                         <select id="kategoriSelect" name="kategori" required onchange="toggleFormLogic()" 
-                                class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50 text-xs font-bold text-gray-800 focus:ring-2 focus:ring-red-800 outline-none transition-all appearance-none cursor-pointer">
+                                class="w-full px-5 py-4 rounded-2xl border border-gray-300 bg-gray-50 text-xs font-bold text-gray-800 focus:ring-2 focus:ring-red-800 outline-none transition-all appearance-none cursor-pointer">
                             <option value="" disabled selected>-- PILIH KATEGORI --</option>
                             <option value="KM">KM (untuk ke DITMAWA)</option>
                             <option value="NON-KM">NON-KM (untuk ke Keuangan PUSAT)</option>
@@ -33,17 +33,17 @@
 
                 {{-- NAMA PROKER --}}
                 <div class="space-y-2">
-                    <label id="label_nama" class="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">Nama Program Kerja</label>
+                    <label id="label_nama" class="text-[10px] font-black uppercase text-gray-700 tracking-widest ml-1">Nama Program Kerja</label>
                     <input type="text" name="nama_proker" required placeholder="Contoh: SEMINAR NASIONAL TEKNOLOGI 2026" 
-                           class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50 text-xs font-bold focus:ring-2 focus:ring-red-800 outline-none transition-all uppercase placeholder:text-gray-300">
+                           class="w-full px-5 py-4 rounded-2xl border border-gray-300 bg-gray-50 text-xs font-bold focus:ring-2 focus:ring-red-800 outline-none transition-all uppercase placeholder:text-gray-300">
                 </div>
 
                 {{-- DESKRIPSI (Dinamis) --}}
                 <div class="space-y-2">
-                    <label class="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">Bentuk Kegiatan</label>
+                    <label class="text-[10px] font-black uppercase text-gray-700 tracking-widest ml-1">Bentuk Kegiatan</label>
                     <div class="relative">
                         <select name="bentuk_kegiatan" required 
-                                class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50 text-xs font-bold text-gray-800 focus:ring-2 focus:ring-red-800 outline-none transition-all appearance-none cursor-pointer">
+                                class="w-full px-5 py-4 rounded-2xl border border-gray-300 bg-gray-50 text-xs font-bold text-gray-800 focus:ring-2 focus:ring-red-800 outline-none transition-all appearance-none cursor-pointer">
                             <option value="" disabled selected>-- PILIH BENTUK --</option>
                             <option value="KAJIAN">KAJIAN / SYIAR</option>
                             <option value="SEMINAR/WORKSHOP">SEMINAR / WORKSHOP</option>
@@ -57,44 +57,44 @@
 
                 {{-- TEMPAT --}}
                 <div class="space-y-2">
-                    <label class="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">Tempat Kegiatan</label>
+                    <label class="text-[10px] font-black uppercase text-gray-700 tracking-widest ml-1">Tempat Kegiatan</label>
                     <input type="text" name="tempat_kegiatan" required placeholder="Misal: Gedung TULT Lantai 2 / Aula FIT / Online Zoom" 
-                           class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50 text-xs font-bold focus:ring-2 focus:ring-red-800 outline-none transition-all uppercase">
+                           class="w-full px-5 py-4 rounded-2xl border border-gray-300 bg-gray-50 text-xs font-bold focus:ring-2 focus:ring-red-800 outline-none transition-all uppercase">
                 </div>
 
                 {{-- ANGGARAN & TARGET --}}
                 <div class="grid grid-cols-2 gap-4">
                     <div class="space-y-2">
-                        <label class="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">Pengajuan Anggaran (Rp)</label>
+                        <label class="text-[10px] font-black uppercase text-gray-700 tracking-widest ml-1">Pengajuan Anggaran (Rp)</label>
                         <input type="number" name="anggaran" required placeholder="0" 
-                               class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50 text-xs font-black focus:ring-2 focus:ring-red-800 outline-none transition-all font-mono">
+                               class="w-full px-5 py-4 rounded-2xl border border-gray-300 bg-gray-50 text-xs font-black focus:ring-2 focus:ring-red-800 outline-none transition-all font-mono">
                     </div>
                     <div class="space-y-2">
-                        <label class="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">Target Peserta</label>
+                        <label class="text-[10px] font-black uppercase text-gray-700 tracking-widest ml-1">Target Peserta</label>
                         <input type="number" name="target_peserta" required placeholder="0" 
-                               class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50 text-xs font-black focus:ring-2 focus:ring-red-800 outline-none transition-all">
+                               class="w-full px-5 py-4 rounded-2xl border border-gray-300 bg-gray-50 text-xs font-black focus:ring-2 focus:ring-red-800 outline-none transition-all">
                     </div>
                 </div>
 
                 {{-- KONTAK PERSON SECTION --}}
                 <div class="bg-gray-50 p-6 rounded-[24px] border border-gray-100 space-y-4">
-                    <p class="text-[9px] font-black text-gray-400 uppercase tracking-[0.3em] mb-2 text-center">Data Narahubung</p>
-                    <input type="text" name="cp_nim_nama" required placeholder="NIM - NAMA LENGKAP" class="w-full px-4 py-3.5 rounded-xl border border-white bg-white text-[10px] font-bold focus:ring-2 focus:ring-red-800 outline-none uppercase shadow-sm">
+                    <p class="text-[9px] font-black text-gray-700 uppercase tracking-[0.3em] mb-2 text-center">Data Narahubung</p>
+                    <input type="text" name="cp_nim_nama" required placeholder="NIM - Nama Lengkap" class="w-full px-4 py-3.5 rounded-xl border border-gray-200 bg-white text-[10px] font-bold focus:ring-2 focus:ring-red-800 outline-none uppercase shadow-sm">
                     <div class="grid grid-cols-2 gap-3">
-                        <input type="text" name="cp_wa" required placeholder="WHATSAPP" class="w-full px-4 py-3.5 rounded-xl border border-white bg-white text-[10px] font-bold focus:ring-2 focus:ring-red-800 outline-none shadow-sm">
-                        <input type="text" name="cp_line" id="input_line" placeholder="ID LINE" class="w-full px-4 py-3.5 rounded-xl border border-white bg-white text-[10px] font-bold focus:ring-2 focus:ring-red-800 outline-none shadow-sm">
+                        <input type="text" name="cp_wa" required placeholder="Nomor WhatsApp" class="w-full px-4 py-3.5 rounded-xl border border-gray-200 bg-white text-[10px] font-bold focus:ring-2 focus:ring-red-800 outline-none shadow-sm">
+                        <input type="text" name="cp_line" id="input_line" placeholder="ID LINE" class="w-full px-4 py-3.5 rounded-xl border border-gray-200 bg-white text-[10px] font-bold focus:ring-2 focus:ring-red-800 outline-none shadow-sm">
                     </div>
-                    <input type="email" name="cp_email" required placeholder="ALAMAT EMAIL AKTIF" class="w-full px-4 py-3.5 rounded-xl border border-white bg-white text-[10px] font-bold focus:ring-2 focus:ring-red-800 outline-none shadow-sm">
+                    <input type="email" name="cp_email" required placeholder="Alamat Email Aktif" class="w-full px-4 py-3.5 rounded-xl border border-gray-200 bg-white text-[10px] font-bold focus:ring-2 focus:ring-red-800 outline-none shadow-sm">
                 </div>
 
                 {{-- LINK PDF --}}
                 <div class="space-y-2">
-                    <label class="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">Tautan (Link) PDF Proposal</label>
-                    <input type="url" name="link_pdf" required placeholder="Tempelkan link Google Drive PDF proposal..." 
-                           class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50 text-[10px] font-bold text-blue-600 focus:ring-2 focus:ring-red-800 outline-none transition-all">
+                    <label class="text-[10px] font-black uppercase text-gray-700 tracking-widest ml-1">Tautan (Link) PDF Proposal</label>
+                    <input type="url" name="link_pdf" required placeholder="Tempelkan Link Google Drive PDF Proposal" 
+                           class="w-full px-5 py-4 rounded-2xl border border-gray-300 bg-gray-50 text-[10px] font-bold text-blue-600 focus:ring-2 focus:ring-red-800 outline-none transition-all">
                     <div class="flex items-center gap-2 mt-1 ml-1">
                         <svg class="w-3 h-3 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                        <p class="text-[8px] font-bold text-gray-400 uppercase tracking-tight">Pastikan akses link: <span class="text-amber-600 underline">"Siapa saja yang memiliki link"</span></p>
+                        <p class="text-[8px] font-bold text-gray-700 uppercase tracking-tight">Pastikan akses link: <span class="text-amber-600 underline">"Siapa saja yang memiliki link"</span></p>
                     </div>
                 </div>
 
