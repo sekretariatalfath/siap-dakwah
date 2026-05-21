@@ -69,8 +69,8 @@ class SuratMasukController extends Controller
             'jenis_kontak'     => $request->jenis_kontak,
             'detail_kontak'    => $detailKontak,
             'perihal'          => $request->perihal,
-            'nama_kegiatan'    => $request->nama_kegiatan,
-            'ditujukan_kepada' => $request->ditujukan_kepada,
+            'nama_kegiatan'    => $request->nama_kegiatan ?? '-',
+            'ditujukan_kepada' => $request->ditujukan_kepada ?? '-',
             'tgl_terima'       => $request->tgl_terima,
             'penerima_fisik'   => $request->penerima_fisik,
             'link_drive'       => $request->link_drive,
@@ -88,7 +88,7 @@ class SuratMasukController extends Controller
             return back()->with('success', 'Arsip Berhasil Disimpan & Sinkron ke Cloud!');
         } catch (\Exception $e) {
             // Jika Cloud gagal, data di lokal sudah aman
-            return back()->with('warning', 'Data tersimpan di Web, tapi gagal sinkron ke Cloud: ' . $e->getMessage());
+            return back()->withInput()->with('error', 'Data tersimpan di Web, tapi gagal sinkron ke Cloud: ' . $e->getMessage());
         }
     }
 
