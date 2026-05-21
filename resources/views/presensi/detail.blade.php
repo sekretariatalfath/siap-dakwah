@@ -276,19 +276,9 @@
                     <div class="relative">
                         <select name="wajihah" required class="w-full mt-1.5 p-4 rounded-2xl bg-red-50/30 border border-red-100 focus:bg-white focus:ring-2 focus:ring-red-800 transition-all outline-none text-[11px] font-black uppercase text-gray-700 appearance-none cursor-pointer">
                             <option value="" disabled selected>-- Pilih Wajihah --</option>
-                            <option value="DKM Syamsul 'Ulum">DKM Syamsul 'Ulum</option>
-                            <option value="LDK Al-Fath Pusat">LDK Al-Fath Pusat</option>
-                            <option value="MQ">MQ</option>
-                            <option value="PRISMA">PRISMA</option>
-                            <option value="LAZISSU">LAZISSU</option>
-                            <option value="Badan Mentoring (BM)">Badan Mentoring (BM)</option>
-                            <option value="LDF Al-Fath FIT">LDF Al-Fath FIT</option>
-                            <option value="LDF Al-Fath FIF">LDF Al-Fath FIF</option>
-                            <option value="LDF Al-Fath FTE">LDF Al-Fath FTE</option>
-                            <option value="LDF Al-Fath FRI">LDF Al-Fath FRI</option>
-                            <option value="LDF Al-Fath FEB">LDF Al-Fath FEB</option>
-                            <option value="LDF Al-Fath FKB">LDF Al-Fath FKB</option>
-                            <option value="LDF Al-Fath FIK">LDF Al-Fath FIK</option>
+                            @foreach($allUnits as $unit)
+                                <option value="{{ $unit }}">{{ $unit }}</option>
+                            @endforeach
                             <option value="Umum/Non-Wajihah">Umum/Non-Wajihah</option>
                         </select>
                         <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none mt-1">
