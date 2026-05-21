@@ -88,7 +88,7 @@
         </form>
 
         <div class="mt-8 pt-6 border-t border-gray-50 flex flex-col items-center">
-            <p class="text-[9px] text-gray-300 uppercase font-bold tracking-[0.3em]">SIAP DAKWAH • KESTARI AL-FATH</p>
+            <p class="text-[9px] text-gray-300 uppercase font-bold tracking-[0.3em]">SIAP DAKWAH • BIRO KESEKRETARIATAN LDK AL-FATH</p>
         </div>
     </div>
 </body>

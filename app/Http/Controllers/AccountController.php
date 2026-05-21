@@ -212,4 +212,60 @@ class AccountController extends Controller
 
         return back()->with('success', 'Mode otentikasi berhasil diubah ke ' . $request->source);
     }
+
+    /**
+     * SYNC CONTACT PERSON (CP) DARI GOOGLE SHEETS
+     */
+    public function syncCp(Request $request)
+    {
+        if (Auth::user()->role !== 'superadmin' && Auth::user()->unit !== 'Biro Kesekretariatan') {
+            abort(403);
+        }
+
+        try {
+            $service = new GoogleSheetService();
+            $spreadsheetId = env('GSHEET_CP_ID');
+
+            // Ambil data dari sheet CP_siapdakwah_db
+            $response = $service->getService()->spreadsheets_values->get($spreadsheetId, 'CP_siapdakwah_db!A2:C');
+            $rows = $response->getValues() ?? [];
+
+            $cpPusat = [];
+            $cpFakultas = [];
+
+            foreach ($rows as $row) {
+                $kategori = strtoupper(trim($row[0] ?? ''));
+                $nama = trim($row[1] ?? '');
+                $wa = trim($row[2] ?? '');
+
+                if ($nama && $wa) {
+                    // Pastikan format WA benar
+                    $wa = preg_replace('/[^0-9]/', '', $wa);
+
+                    $cpData = [
+                        'nama' => $nama,
+                        'wa' => $wa
+                    ];
+
+                    if ($kategori === 'PUSAT') {
+                        $cpPusat[] = $cpData;
+                    } elseif ($kategori === 'FAKULTAS') {
+                        $cpFakultas[] = $cpData;
+                    }
+                }
+            }
+
+            $contactPersons = [
+                'PUSAT' => $cpPusat,
+                'FAKULTAS' => $cpFakultas
+            ];
+
+            // Simpan ke Cache selama 1 Bulan (atau sampai tombol ditekan lagi)
+            \Illuminate\Support\Facades\Cache::put('contact_persons_footer', $contactPersons, now()->addDays(30));
+
+            return back()->with('success', 'Kontak Person berhasil disinkronisasi dari Google Sheets!');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Gagal sinkronisasi CP: ' . $e->getMessage());
+        }
+    }
 }

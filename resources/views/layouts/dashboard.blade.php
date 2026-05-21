@@ -168,14 +168,41 @@
 
         {{-- Footer Kontak Person --}}
         <footer class="mt-12 pt-6 pb-2 border-t border-gray-200/60 flex flex-col items-center justify-center">
-            <p class="text-[10px] font-black text-gray-500 uppercase tracking-widest text-center mb-2">Pusat Bantuan & Kendala Sistem</p>
-            <div class="flex items-center gap-4 text-xs font-bold text-gray-700">
-                <a href="https://wa.me/6289655512211" target="_blank" class="hover:text-[#7a221f] transition-colors flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-full shadow-sm border border-gray-100">
-                    <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                    Naufal (Admin Kestari)
-                </a>
+            <p class="text-[10px] font-black text-gray-500 uppercase tracking-widest text-center mb-4">Pusat Bantuan & Kendala Sistem</p>
+            
+            <div class="flex flex-col md:flex-row gap-6 md:gap-12 w-full max-w-4xl justify-center px-4">
+                {{-- CPs Pusat --}}
+                @if(isset($contactPersons['PUSAT']) && count($contactPersons['PUSAT']) > 0)
+                <div class="flex flex-col items-center">
+                    <span class="text-[9px] font-black text-indigo-700 bg-indigo-50 px-3 py-1 rounded-full mb-3 tracking-widest uppercase">Pusat</span>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        @foreach($contactPersons['PUSAT'] as $cp)
+                        <a href="https://wa.me/{{ $cp['wa'] }}" target="_blank" class="hover:text-indigo-700 transition-colors flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-full shadow-sm border border-gray-100 text-xs font-bold text-gray-700 hover:border-indigo-200 hover:shadow-md">
+                            <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            {{ $cp['nama'] }}
+                        </a>
+                        @endforeach
+                    </div>
+                </div>
+                @endif
+
+                {{-- CPs Fakultas --}}
+                @if(isset($contactPersons['FAKULTAS']) && count($contactPersons['FAKULTAS']) > 0)
+                <div class="flex flex-col items-center">
+                    <span class="text-[9px] font-black text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full mb-3 tracking-widest uppercase">Fakultas</span>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        @foreach($contactPersons['FAKULTAS'] as $cp)
+                        <a href="https://wa.me/{{ $cp['wa'] }}" target="_blank" class="hover:text-emerald-700 transition-colors flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-full shadow-sm border border-gray-100 text-xs font-bold text-gray-700 hover:border-emerald-200 hover:shadow-md">
+                            <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            {{ $cp['nama'] }}
+                        </a>
+                        @endforeach
+                    </div>
+                </div>
+                @endif
             </div>
-            <p class="text-[9px] text-gray-400 font-bold tracking-[0.2em] uppercase mt-4">SIAP DAKWAH &copy; {{ date('Y') }} • KESTARI AL-FATH</p>
+
+            <p class="text-[9px] text-gray-400 font-bold tracking-[0.2em] uppercase mt-8">SIAP DAKWAH &copy; {{ date('Y') }} • BIRO KESEKRETARIATAN LDK AL-FATH</p>
         </footer>
     </main>
 

@@ -82,6 +82,21 @@
 
             {{-- DANGER ZONE: Reset SPS --}}
             @if(Auth::user()->role == 'superadmin' || Auth::user()->unit == 'Kestari')
+            <div class="bg-indigo-50 p-8 rounded-[40px] border border-indigo-100 mb-6 animasi-kotak delay-150">
+                <h3 class="text-sm font-black text-indigo-900 uppercase tracking-widest mb-2 flex items-center gap-2">
+                    🔄 Sync Kontak Person (Footer)
+                </h3>
+                <p class="text-[10px] text-indigo-700/70 font-medium leading-relaxed mb-6">
+                    Ambil data Kontak Person terbaru dari sheet <b>CP_siapdakwah_db</b> untuk memperbarui footer di semua halaman.
+                </p>
+                <form action="{{ route('settings.sync-cp') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="w-full py-4 bg-indigo-600 text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-xl shadow-indigo-200 hover:bg-indigo-700 transition-all">
+                        Sync Kontak
+                    </button>
+                </form>
+            </div>
+
             <div class="bg-amber-50 p-8 rounded-[40px] border border-amber-100 mb-6 animasi-kotak delay-200">
                 <h3 class="text-sm font-black text-amber-900 uppercase tracking-widest mb-2 flex items-center gap-2">
                     🧹 Reset Resources

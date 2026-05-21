@@ -99,6 +99,13 @@ class AppServiceProvider extends ServiceProvider
                 $view->with(['allUnits' => $allUnits, 'pusatUnits' => [], 'ldfUnits' => []]);
             }
 
+            // Bagikan Contact Person Footer
+            $contactPersons = \Illuminate\Support\Facades\Cache::get('contact_persons_footer', [
+                'PUSAT' => [['nama' => 'Naufal (Admin Kestari)', 'wa' => '6289655512211']],
+                'FAKULTAS' => []
+            ]);
+            $view->with('contactPersons', $contactPersons);
+
             // 4. THEME & LOGO (Khusus User Login)
             if (Auth::check()) {
                 $user = Auth::user();
