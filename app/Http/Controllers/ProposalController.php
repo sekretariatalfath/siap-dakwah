@@ -87,7 +87,7 @@ class ProposalController extends Controller
             return back()->with('success', 'Proposal Berhasil Diajukan & Tersinkron!');
         } catch (\Exception $e) {
             // Jika Cloud gagal, data lokal sudah tersimpan
-            return back()->with('warning', 'Data tersimpan lokal, tapi gagal sinkron ke Cloud: ' . $e->getMessage());
+            return back()->withInput()->with('error', 'Data tersimpan lokal, tapi gagal sinkron ke Cloud: ' . $e->getMessage());
         }
     }
 

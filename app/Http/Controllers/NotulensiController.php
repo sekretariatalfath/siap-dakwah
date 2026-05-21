@@ -199,12 +199,12 @@ class NotulensiController extends Controller
             // 3. Hapus data di Database MySQL
             $notulensi->delete();
 
-            return back()->with('success', 'Arsip dan file di Google Drive berhasil dihapus!');
-
+            return back()->with('success', 'Arsip Notulensi dan file di Google Drive berhasil dihapus!');
+            
         } catch (\Exception $e) {
             // Jika gagal hapus di Drive (misal file sudah dihapus manual), tetap hapus di DB
             $notulensi->delete();
-            return back()->with('warning', 'Data dihapus, tapi file di Drive tidak ditemukan/gagal dihapus.');
+            return back()->with('error', 'Data dihapus, tapi file di Drive tidak ditemukan/gagal dihapus: ' . $e->getMessage());
         }
     }
 }

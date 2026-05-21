@@ -101,7 +101,7 @@ class LpjController extends Controller
             return back()->with('success', 'LPJ Berhasil Diarsipkan & Sinkron ke Cloud!');
         } catch (\Exception $e) {
             // Notifikasi jika Cloud gagal tapi Lokal berhasil[cite: 15]
-            return back()->with('warning', 'Arsip lokal berhasil, namun gagal sinkron ke Spreadsheet: ' . $e->getMessage());
+            return back()->withInput()->with('error', 'Arsip lokal berhasil, namun gagal sinkron ke Spreadsheet: ' . $e->getMessage());
         }
     }
 

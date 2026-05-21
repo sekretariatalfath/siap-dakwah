@@ -182,7 +182,7 @@ class EvaluasiController extends Controller
                 return redirect()->route('evaluasi.index')->with('success', "Alhamdulillah! Evaluasi berhasil dibuat dan tersinkron ke Spreadsheet.");
 
             } catch (\Exception $e) {
-                return redirect()->route('evaluasi.index')->with('warning', "Google Docs berhasil dibuat, tapi gagal sinkron ke Sheets: " . $e->getMessage());
+                return redirect()->route('evaluasi.index')->with('error', "Google Docs berhasil dibuat, tapi gagal sinkron ke Sheets: " . $e->getMessage());
             }
 
         } catch (\Exception $e) {
